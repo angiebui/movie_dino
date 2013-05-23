@@ -34,6 +34,7 @@ class MovieTimes
   def fetch_and_save_theatres
     page.root.css('div.theater').each do |theater_doc|
       theater = fetch_theater(theater_doc)
+      theater.update_attributes(cache_date: DateTime.now)
       theater_movies = theater_doc.css('div.showtimes').css('div.movie')
       theater_movies.each do |movie_doc|
         movie = fetch_movies(movie_doc)
