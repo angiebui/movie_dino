@@ -1,9 +1,10 @@
 class Scraper
+  attr_reader :page, :increment
   def initialize(location)
     @agent = Mechanize.new
-    @uri = URI("http://www.google.com/movies?hl=en&near=#{location}")
-    @page = @agent.get @uri
-    fetch_times!(@page)
+    @location = location
+    open_page(@location)
+    fetch_times!
   end
 
   def self.fetch!(args)
@@ -17,9 +18,21 @@ class Scraper
       Scraper.new(location)
   end
 
-  def fetch_times!(page)
-    @doc = page.root.css('div.theater')
-    @doc.each do |theater_doc|
+  def open_page(location, increment=0)
+    @uri = URI("http://www.google.com/movies?hl=en&near=#{location}&date=#{increment}")
+    @increment = increment
+    @page = @agent.get @uri
+  end
+
+  def fetch_times!
+    fetch_and_save_theatres
+    increment = increment
+    click_next_page
+    next_day
+  end
+
+  def fetch_and_save_theatres
+    page.root.css('div.theater').each do |theater_doc|
       theater = fetch_theater(theater_doc)
       theater_movies = theater_doc.css('div.showtimes').css('div.movie')
       theater_movies.each do |movie_doc|
@@ -27,16 +40,26 @@ class Scraper
         times_doc = movie_doc.css('div.times')
         times_doc.each do |time_doc|
           time_doc.text.gsub(/&nbsp/,'').split(' ').each do |one_time|
-            time = fetch_time(one_time)
+            time = datetime(increment,one_time)
             Showtime.create(theater:theater, movie:movie, time:time)
           end
         end
       end
     end
+  end
+
+  def click_next_page
     page.links.each do |link|
       if link.text =~ /Next/ && link.href =~ /movies\?near/
         fetch_times!(link.click)
       end
+    end
+  end
+
+  def next_day
+    if increment < 7
+      open_page(@location, increment+1)
+      fetch_times!
     end
   end
 
@@ -49,12 +72,15 @@ class Scraper
                                       phone_number:phone)
   end
 
+  def datetime(increment, time)
+    #what the heck is google giving us? string time doesn't act like a string.
+    #Can't get rid of the 'white space'
+    Chronic.parse("#{increment} days from now at #{time[1..-2]}")
+  end
+
   def fetch_movies(movie_doc)
     title = movie_doc.css('div.name a').text
     Movie.find_or_create_by_title(title: title)
   end
 
-  def fetch_time(time)
-    DateTime.parse(time)
-  end
 end

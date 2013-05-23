@@ -7,6 +7,7 @@ gem 'sidekiq'
 gem 'jquery-rails'
 gem 'mechanize'
 
+gem 'chronic' #for time parsing
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
