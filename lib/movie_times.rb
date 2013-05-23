@@ -1,4 +1,4 @@
-class Scraper
+class MovieTimes
   attr_reader :page, :increment
   def initialize(location)
     @agent = Mechanize.new
@@ -15,7 +15,7 @@ class Scraper
       state = args[:state].gsub(/ /,'+')
       location = "#{city},+#{state}"
     end
-      Scraper.new(location)
+      MovieTimes.new(location)
   end
 
   def open_page(location, increment=0)
