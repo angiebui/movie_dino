@@ -17,4 +17,9 @@ namespace :times do
 
     puts "Refreshed #{city_state_pairs.uniq.count} theatre records"
   end
+
+  desc 'Seed San Francisco Times'
+  task :seed => :environment do
+    MovieTimes.fetch!(zip: '94108')
+  end
 end
