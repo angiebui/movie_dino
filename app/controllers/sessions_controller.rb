@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def index
+    @user
   end
 
   def create
