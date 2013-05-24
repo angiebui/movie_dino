@@ -48,7 +48,7 @@ class MovieTimes
         times_doc = movie_doc.css('div.times')
         times_doc.each do |time_doc|
           time_doc.text.gsub(/&nbsp/,'').split(' ').each do |one_time|
-            time = datetime(increment,one_time)
+            time = datetime(increment,one_time) 
             Showtime.create(theater:theater, movie:movie, time:time)
           end
         end
@@ -87,6 +87,7 @@ class MovieTimes
     # What the heck is google giving us? 
     # String time doesn't act like a string.
     # Can't get rid of the 'white space'
+    # " 10:30 "
     Chronic.parse("#{increment} days from now at #{time[1..-2]}")
   end
 
