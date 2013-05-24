@@ -2,7 +2,7 @@
   <h3> Movies </h3>
   <% @movies.each do |movie| %>
    <p>
-    <%= check_box_tag(:movie, movie.id, checked = false, name: "movie[#{movie.title}]") %><%= movie.title %>
+    <%= check_box_tag(:movie, movie.id, checked = false, name: "movies[#{movie.title}]") %><%= movie.title %>
   </p>
   <% end %>
 

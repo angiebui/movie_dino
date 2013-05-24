@@ -8,7 +8,7 @@ class OutingsController < ApplicationController
     values = (8..24).to_a
 
     @time_ranges = titles.zip(values)
-    
+
     # 2.days.from_now.strftime('%A') - gives you day of week 2 days from now
     # zip days to match with (0..6), 0 being "Today" and 7 being week from now
 
@@ -19,6 +19,14 @@ class OutingsController < ApplicationController
   end
 
   def create
+    start_time = Chronic.parse("#{params[:day]} days from now at #{params[:start_time]}")
+    end_time = Chronic.parse("#{params[:day]} days from now at #{params[:end_time]}")
+    @movies = params[:movies].values.map{|movie| movie.to_i}
+  
+    @match_times = Showtime.possible_times(start_time: start_time, end_time: end_time, movie_ids: @movies)
+
+
+
     #params => start: noon, end:  9pm, date from today (tomorrow)
     # convert to time object in ruby
     # Chronic.parse
