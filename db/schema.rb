@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524181142) do
+ActiveRecord::Schema.define(:version => 20130524230513) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20130524181142) do
   end
 
   create_table "selections", :force => true do |t|
-    t.integer  "movie_id"
     t.integer  "showtime_id"
     t.integer  "selectable_id"
     t.string   "selectable_type"
