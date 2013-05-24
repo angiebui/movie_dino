@@ -3,7 +3,6 @@ class MovieTimes
 
   def initialize(location)
     @google_address = "http://www.google.com/movies?hl=en&near=#{location}&date=#{increment}"
-
     @agent = Mechanize.new
 
     @location = location
@@ -23,6 +22,10 @@ class MovieTimes
     MovieTimes.new(location)
   end
 
+  def fetch_posters!
+
+  end
+
   def open_page(location, increment = 0)
     @uri = URI(@google_address)
     @increment = increment
@@ -39,9 +42,11 @@ class MovieTimes
   def fetch_and_save_theatres!
     page.root.css('div.theater').each do |theater_doc|
       theater = fetch_theater(theater_doc)
+
       if theater.cache_date
         next unless (Time.now - theater.cache_date) > 3.days
       end
+
       theater.update_attributes(:cache_date => Time.now) if increment == 7
       theater_movies = theater_doc.css('div.showtimes').css('div.movie')
       theater_movies.each do |movie_doc|
