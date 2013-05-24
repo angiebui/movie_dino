@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523214311) do
+ActiveRecord::Schema.define(:version => 20130524002718) do
 
   create_table "movies", :force => true do |t|
     t.string   "title"
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(:version => 20130523214311) do
   create_table "theaters", :force => true do |t|
     t.string   "name"
     t.string   "phone_number"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.datetime "cache_date"
     t.string   "street"
     t.string   "city"
     t.string   "state"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
   end
 
   create_table "users", :force => true do |t|
