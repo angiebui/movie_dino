@@ -32,7 +32,10 @@ ActiveRecord::Schema.define(:version => 20130523214311) do
   create_table "theaters", :force => true do |t|
     t.string   "name"
     t.string   "phone_number"
-    t.string   "address"
+    t.datetime "cache_date"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

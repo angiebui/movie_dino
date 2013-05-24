@@ -9,6 +9,8 @@ gem 'mechanize'
 gem 'omniauth-facebook', '~> 1.4.0'
 gem 'coffee-script'
 
+gem 'chronic' #for time parsing
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
