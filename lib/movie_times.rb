@@ -84,8 +84,9 @@ class MovieTimes
   end
 
   def datetime(increment, time)
-    #what the heck is google giving us? string time doesn't act like a string.
-    #Can't get rid of the 'white space'
+    # What the heck is google giving us? 
+    # String time doesn't act like a string.
+    # Can't get rid of the 'white space'
     Chronic.parse("#{increment} days from now at #{time[1..-2]}")
   end
 

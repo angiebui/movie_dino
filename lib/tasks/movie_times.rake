@@ -6,10 +6,16 @@ namespace :movie_times do
     puts "Deleted #{outdated.count} records."
   end
 
-  desc 'Refresh current theatre times' do
-    task :refresh => :environment do
-      
-      MovieTimes.fetch!
+  desc 'Refresh current theatre times'
+  task :refresh => :environment do
+    outdated = Theater.outdated
+    cities = outdated.map(&:city)
+    states = outdated.map(&:state)
+    city_state_pairs = cities.zip(states)
+    city_state_pairs.uniq.each do |city, state|
+      MovieTimes.fetch!(city: city, state: state)
     end
+
+    puts "Refreshed #{city_state_pairs.uniq.count} theatre records"
   end
 end
