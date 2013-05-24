@@ -10,4 +10,9 @@ class Showtime < ActiveRecord::Base
     today = DateTime.now
     Showtime.where('time < ?', today)
   end
+
+  def self.possible_times(args)
+    Showtime.where(:time => args[:start_time]..args[:end_time]).where(:movie_id => args[:movie_ids])
+  end
+
 end
