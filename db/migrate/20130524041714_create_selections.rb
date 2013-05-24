@@ -4,7 +4,6 @@ class CreateSelections < ActiveRecord::Migration
       t.references :movie
       t.references :showtime
       t.references :selectable, :polymorphic => true
-      
       t.timestamps
     end
   end
