@@ -1,13 +1,12 @@
 class OutingsController < ApplicationController
-
   def new
     @outing = Outing.new
     @movies = Movie.limit(5)
     titles = ["8:00a","9:00a","10:00a","11:00a","Noon","1:00p","2:00p","3:00p","4:00p","5:00p","6:00p", 
-              "7:00p", "8:00p", "9:00p", "10:00p", "11:00p", "12:00a"]
-    values = (8..24).to_a
+      "7:00p", "8:00p", "9:00p", "10:00p", "11:00p", "12:00a"]
+      values = (8..24).to_a
 
-    @time_ranges = titles.zip(values)
+      @time_ranges = titles.zip(values)
 
     # 2.days.from_now.strftime('%A') - gives you day of week 2 days from now
     # zip days to match with (0..6), 0 being "Today" and 7 being week from now
@@ -19,14 +18,6 @@ class OutingsController < ApplicationController
   end
 
   def create
-    start_time = Chronic.parse("#{params[:day]} days from now at #{params[:start_time]}")
-    end_time = Chronic.parse("#{params[:day]} days from now at #{params[:end_time]}")
-    @movies = params[:movies].values.map{|movie| movie.to_i}
-  
-    @match_times = Showtime.possible_times(start_time: start_time, end_time: end_time, movie_ids: @movies)
-
-
-
     #params => start: noon, end:  9pm, date from today (tomorrow)
     # convert to time object in ruby
     # Chronic.parse
@@ -34,7 +25,24 @@ class OutingsController < ApplicationController
     # end_time
     # Showtime.possible_times(start_time: start_time, end_time: end_time, movie_ids: [1,2,3,4])
 
+    @outing = Outing.create(user_id: current_user.id)
+    start_time = Chronic.parse("#{params[:day]} days from now at #{params[:start_time]}")
+    end_time = Chronic.parse("#{params[:day]} days from now at #{params[:end_time]}")
+    @movies = params[:movies].values.map{|movie| movie.to_i}
+
+    @showtimes = Showtime.possible_times(start_time: start_time, end_time: end_time, movie_ids: @movies)
+
+    @showtimes.each do |showtime|
+      @outing.selections.create(movie_id: showtime.movie_id, showtime_id: showtime.id)
+    end
+
+    render 'show'
   end
+
+  def show
+    @outing = Outing.find(params[:id])
+  end
+
 
 end
 

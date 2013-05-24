@@ -1,4 +1,3 @@
-<% @match_times.each do |match| %>
-  <p><%= match.time %></p>
-  <p><%= match.movie.title %></p>
+<% @outing.selections.each do |selection| %>
+  <p><%= selection.showtime.time %></p>
 <% end %>
