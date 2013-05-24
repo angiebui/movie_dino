@@ -10,6 +10,7 @@ gem 'omniauth-facebook', '~> 1.4.0'
 gem 'coffee-script'
 
 gem 'chronic' #for time parsing
+gem 'fuzzily'
 
 group :production do
   gem 'newrelic_rpm'
