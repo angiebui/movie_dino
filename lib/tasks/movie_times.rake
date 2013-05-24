@@ -1,4 +1,4 @@
-namespace :movie_times do
+namespace :times do
   desc 'Cleanup old Showtimes'
   task :clean => :environment do
     outdated = Showtime.outdated
@@ -9,8 +9,7 @@ namespace :movie_times do
   desc 'Refresh current theatre times'
   task :refresh => :environment do
     outdated = Theater.outdated
-    cities = outdated.map(&:city)
-    states = outdated.map(&:state)
+    cities, states = outdated.map(&:city), outdated.map(&:state)
     city_state_pairs = cities.zip(states)
     city_state_pairs.uniq.each do |city, state|
       MovieTimes.fetch!(city: city, state: state)
