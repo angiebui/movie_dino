@@ -40,7 +40,9 @@ class MovieTimes
   def fetch_and_save_theatres!
     page.root.css('div.theater').each do |theater_doc|
       theater = fetch_theater(theater_doc)
-      next unless (Time.now - theater.cache_date) > 3.days
+      if theater.cache_date 
+        next unless (Time.now - theater.cache_date) > 3.days
+      end
       theater.update_attributes(:cache_date => Time.now)
       theater_movies = theater_doc.css('div.showtimes').css('div.movie')
       theater_movies.each do |movie_doc|

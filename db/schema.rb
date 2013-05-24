@@ -11,12 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524002718) do
+ActiveRecord::Schema.define(:version => 20130524041714) do
+
+  create_table "attendees", :force => true do |t|
+    t.integer  "outing_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "movies", :force => true do |t|
     t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "outings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "final_selection_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "selections", :force => true do |t|
+    t.integer  "movie_id"
+    t.integer  "showtime_id"
+    t.integer  "selectable_id"
+    t.string   "selectable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "showtimes", :force => true do |t|

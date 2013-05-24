@@ -2,11 +2,16 @@ MovieBuddy::Application.routes.draw do
 
   resources :sessions
 
-  root to: 'sessions#index'
+  resources :users do
+    resources :outings
+  end
+
+  root to: 'users#index'
 
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
