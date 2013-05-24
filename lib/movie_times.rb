@@ -20,7 +20,6 @@ class MovieTimes
       state = location_data[:state].gsub(/ /,'+')
       location = "#{city},+#{state}"
     end
-    
     MovieTimes.new(location)
   end
 
@@ -40,10 +39,10 @@ class MovieTimes
   def fetch_and_save_theatres!
     page.root.css('div.theater').each do |theater_doc|
       theater = fetch_theater(theater_doc)
-      if theater.cache_date 
+      if theater.cache_date
         next unless (Time.now - theater.cache_date) > 3.days
       end
-      theater.update_attributes(:cache_date => Time.now)
+      theater.update_attributes(:cache_date => Time.now) if increment == 7
       theater_movies = theater_doc.css('div.showtimes').css('div.movie')
       theater_movies.each do |movie_doc|
         movie = fetch_movies(movie_doc)
