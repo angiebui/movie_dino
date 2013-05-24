@@ -23,6 +23,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'quiet_assets'
   gem 'capybara', '2.0.3'
   gem 'factory_girl_rails'

@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :showtime do
+    movie
+    theater
+    time Time.now
   end
 end
