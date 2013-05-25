@@ -2,12 +2,19 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'pg'
-gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'sidekiq'
+
 gem 'jquery-rails'
+
+#mac-api
 gem 'mechanize'
+
+#login
 gem 'omniauth-facebook', '~> 1.4.0'
-gem 'coffee-script'
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+# async stuffs
+gem 'sidekiq'
+gem 'sidekiq-status'
 
 gem 'chronic' #for time parsing
 gem 'fuzzily'
