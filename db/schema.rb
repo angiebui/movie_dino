@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20130525224243) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "theaters_zipcodes", ["zipcode_id"], :name => "index_theaters_zipcodes_on_zipcode_id"
+
   create_table "trigrams", :force => true do |t|
     t.string  "trigram",     :limit => 3
     t.integer "score",       :limit => 2
@@ -101,7 +103,5 @@ ActiveRecord::Schema.define(:version => 20130525224243) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "zipcodes", ["zipcode"], :name => "index_zipcodes_on_zipcode"
 
 end
