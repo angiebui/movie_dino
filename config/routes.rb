@@ -6,6 +6,7 @@ MovieBuddy::Application.routes.draw do
 
   root to: 'pages#index'
 
+  match '/start', to: 'outings#new'
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'

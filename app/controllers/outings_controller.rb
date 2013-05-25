@@ -1,4 +1,5 @@
 class OutingsController < ApplicationController
+
   def new
     @outing = Outing.new
     @movies = Movie.limit(5)
@@ -34,6 +35,9 @@ class OutingsController < ApplicationController
     @outing = Outing.find_by_link(params[:link])
     render 'show'
   end
+
+
+
 end
 
 
