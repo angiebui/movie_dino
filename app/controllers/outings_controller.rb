@@ -33,7 +33,7 @@ class OutingsController < ApplicationController
     @showtimes = Showtime.possible_times(start_time: start_time, end_time: end_time, movie_ids: @movies)
 
     @showtimes.each do |showtime|
-      @outing.selections.create(movie_id: showtime.movie_id, showtime_id: showtime.id)
+      @outing.selections.create(showtime: showtime)
     end
 
     render 'show'

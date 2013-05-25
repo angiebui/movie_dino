@@ -1,3 +1,7 @@
+<h2> Possible Showtimes </h2>
+
 <% @outing.selections.each do |selection| %>
-  <p><%= selection.showtime.time %></p>
+  <p><%= selection.showtime.movie.title %></p>
+  <p><%= time_tag(selection.showtime.time) %></p>
+  <hr>
 <% end %>
