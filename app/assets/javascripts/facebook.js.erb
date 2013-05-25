@@ -15,21 +15,23 @@ window.fbAsyncInit = function() {
     status: true
   });
 
-  $('#sign_in').click(function(e) {
-    e.preventDefault();
-    FB.login(function(response) {
-      if (response.authResponse) {
-        window.location = '/auth/facebook';
-      }
+  FB.getLoginStatus(function(response){
+    $('#sign_in').click(function(e) {
+      e.preventDefault();
+      FB.login(function(response) {
+        if (response.authResponse) {
+          window.location = '/auth/facebook';
+        }
+      });
     });
-  });
 
-  $('#sign_out').click(function(e) {
-    FB.getLoginStatus(function(response) {
-      if (response.authResponse) {
-        FB.logout();
-      }
+    $('#sign_out').click(function(e) {
+      FB.getLoginStatus(function(response) {
+        if (response.authResponse) {
+          FB.logout();
+        }
+      });
+      return true;
     });
-    return true;
-  });
+  })
 };
