@@ -9,7 +9,8 @@ jQuery(function() {
 });
 
 window.fbAsyncInit = function() {
-  $('body').append("what the <%= ENV['FACEBOOK_APP_ID'] %>")
+  $('body').append("what the <%= ENV['FACEBOOK_APP_ID'] %>");
+  console.log('plase');
   FB.init({
     appId: '<%= ENV['FACEBOOK_APP_ID'] %>',
     cookie: true,
