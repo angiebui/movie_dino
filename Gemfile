@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'mechanize'
 gem 'omniauth-facebook', '~> 1.4.0'
 gem 'coffee-script'
+gem 'tzip'
 
 gem 'chronic' #for time parsing
 gem 'fuzzily'

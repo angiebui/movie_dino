@@ -1,1 +1,3 @@
-<%= link_to "Create an outing", new_user_outing_path(current_user) %>
+<%= label_tag :zipcode %>
+<%= text_field_tag 'zip', nil, maxlength: 5 %><br>
+<%= link_to "Create an outing", '/outings/new?zip=94105' %>
