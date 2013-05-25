@@ -22,6 +22,7 @@ window.fbAsyncInit = function() {
       }
     });
   });
+
   $('#sign_out').click(function(e) {
     FB.getLoginStatus(function(response) {
       if (response.authResponse) {
@@ -31,4 +32,3 @@ window.fbAsyncInit = function() {
     return true;
   });
 };
-
