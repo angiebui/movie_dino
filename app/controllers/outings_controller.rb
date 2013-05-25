@@ -30,8 +30,6 @@ class OutingsController < ApplicationController
     @outing = Outing.find_by_link(params[:link])
     render 'show'
   end
-
-
 end
 
 
