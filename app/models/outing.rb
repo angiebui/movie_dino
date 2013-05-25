@@ -12,6 +12,6 @@ class Outing < ActiveRecord::Base
 
   private
   def generate_link
-    self.link = '/' + SecureRandom.hex(3)
+    self.link = SecureRandom.hex(3)
   end
 end
