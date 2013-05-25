@@ -9,29 +9,30 @@ jQuery(function() {
 });
 
 window.fbAsyncInit = function() {
+  $('body').append("what the <%= ENV['FACEBOOK_APP_ID'] %>")
   FB.init({
     appId: '<%= ENV['FACEBOOK_APP_ID'] %>',
     cookie: true,
     status: true
   });
 
-  FB.getLoginStatus(function(response){
-    $('#sign_in').click(function(e) {
-      e.preventDefault();
-      FB.login(function(response) {
-        if (response.authResponse) {
-          window.location = '/auth/facebook';
-        }
-      });
-    });
+  console.log('FB init probs ran?')
 
-    $('#sign_out').click(function(e) {
-      FB.getLoginStatus(function(response) {
-        if (response.authResponse) {
-          FB.logout();
-        }
-      });
-      return true;
+  $('#sign_in').click(function(e) {
+    e.preventDefault();
+    FB.login(function(response) {
+      if (response.authResponse) {
+        window.location = '/auth/facebook';
+      }
     });
-  })
+  });
+
+  $('#sign_out').click(function(e) {
+    FB.getLoginStatus(function(response) {
+      if (response.authResponse) {
+        FB.logout();
+      }
+    });
+    return true;
+  });
 };
