@@ -55,7 +55,7 @@ class MovieTimes
         times_doc.each do |time_doc|
           time_doc.text.gsub(/&nbsp/,'').split(' ').each do |one_time|
             time = datetime(increment,one_time) 
-            Showtime.create(theater:theater, movie:movie, time:time)
+            Showtime.create(theater: theater, movie: movie, time: time)
           end
         end
       end
@@ -98,7 +98,7 @@ class MovieTimes
   end
 
   def fetch_movies(movie_doc)
-    title = movie_doc.css('div.name a').text
+    title = movie_doc.css('div.name a').text.downcase.gsub('-', ' ')
     Movie.find_or_create_by_title(title: title)
   end
 

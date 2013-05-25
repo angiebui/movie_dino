@@ -62,6 +62,17 @@ ActiveRecord::Schema.define(:version => 20130525001950) do
     t.string   "state"
   end
 
+  create_table "trigrams", :force => true do |t|
+    t.string  "trigram",     :limit => 3
+    t.integer "score",       :limit => 2
+    t.integer "owner_id"
+    t.string  "owner_type"
+    t.string  "fuzzy_field"
+  end
+
+  add_index "trigrams", ["owner_id", "owner_type", "fuzzy_field", "trigram", "score"], :name => "index_for_match"
+  add_index "trigrams", ["owner_id", "owner_type"], :name => "index_by_owner"
+
   create_table "users", :force => true do |t|
     t.string   "provider"
     t.string   "uid"

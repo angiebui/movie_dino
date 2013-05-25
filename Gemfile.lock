@@ -73,6 +73,8 @@ GEM
     faraday (0.8.7)
       multipart-post (~> 1.1)
     ffi (1.8.1)
+    fuzzily (0.2.2)
+      activerecord (>= 2.3.17)
     hashie (2.0.5)
     hike (1.2.2)
     http-cookie (1.0.1)
@@ -217,6 +219,7 @@ DEPENDENCIES
   database_cleaner
   debugger
   factory_girl_rails
+  fuzzily
   jquery-rails
   mechanize
   newrelic_rpm
