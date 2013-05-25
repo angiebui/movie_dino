@@ -1,9 +1,8 @@
 MovieBuddy::Application.routes.draw do
 
   resources :sessions
-  resources :users do
-    resources :outings
-  end
+  resources :users
+  resources :outings
 
   root to: 'pages#index'
 
