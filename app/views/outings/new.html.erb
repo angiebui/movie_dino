@@ -2,15 +2,16 @@
   <h3> Movies </h3>
   <% @movies.each do |movie| %>
    <p>
-    <%= check_box_tag(:movie, movie.id, checked = false, name: "movie[#{movie.title}]") %><%= movie.title %>
+    <%= check_box_tag(:movie, movie.id, checked = false, name: "movies[#{movie.title}]") %><%= movie.title %>
   </p>
   <% end %>
 
   <h3> Available Times </h3>
   <p>
-    <%= select_tag(:date, options_for_select(['Today', 'Tomorrow', 'Weekend'])) %>
-    <%= select_tag(:start_time, options_for_select(['7:00pm', '8:00pm', '9:00pm'])) %>
-    <%= select_tag(:end_time, options_for_select(['10:00pm', '11:00pm', '12:00am'])) %>
+    <%= select_tag(:day, options_for_select(@days))%>
+    <%= label_tag "Start Time Range" %>
+    <%= select_tag(:start_time, options_for_select(@time_ranges)) %>
+    <%= select_tag(:end_time, options_for_select(@time_ranges)) %>
   </p>
 
   <%= f.submit "Create Outing" %>
