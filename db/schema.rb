@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525163627) do
+ActiveRecord::Schema.define(:version => 20130525192333) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20130525163627) do
     t.integer  "owner_id"
     t.string   "owner_type"
   end
+
+  add_index "selections", ["owner_id", "owner_type"], :name => "index_selections_on_owner_id_and_owner_type"
 
   create_table "showtimes", :force => true do |t|
     t.datetime "created_at", :null => false

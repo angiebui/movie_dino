@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
     days.zip((0..7).to_a)
   end
 
-  def get_datetime(day, time)
-    Time.at(day.to_i.days.from_now).change(:hour => time.to_i)
+  def get_datetime(day, time, time_zone)
+    time_zone.at(day.to_i.days.from_now).change(:hour => time.to_i)
   end
 
   def convert_to_id(hash)
