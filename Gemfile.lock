@@ -191,6 +191,8 @@ GEM
       json
       redis (>= 3.0)
       redis-namespace
+    sidekiq-status (0.3.0)
+      sidekiq (~> 2.7)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -224,7 +226,6 @@ DEPENDENCIES
   capybara (= 2.0.3)
   chronic
   coffee-rails (~> 3.2.1)
-  coffee-script
   database_cleaner
   debugger
   factory_girl_rails
@@ -240,4 +241,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   shoulda-matchers
   sidekiq
+  sidekiq-status
   uglifier (>= 1.0.3)
