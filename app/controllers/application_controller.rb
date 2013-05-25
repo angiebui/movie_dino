@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_datetime(day, time)
-    Chronic.parse("#{day} days from now at #{time}")
+    Time.at(day.to_i.days.from_now).change(:hour => time.to_i)
   end
 
   def convert_to_id(hash)

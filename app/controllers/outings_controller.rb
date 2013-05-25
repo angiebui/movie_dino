@@ -9,17 +9,17 @@ class OutingsController < ApplicationController
   end
 
   def create
-    @outing = Outing.create(user_id: current_user.id)
+    outing = Outing.create(user_id: current_user.id)
     start_time = get_datetime(params[:day], params[:start_time])
-    end_time = get_datetime(params[:day], params[:start_time])
+    end_time = get_datetime(params[:day], params[:end_time])
 
-    @movies = convert_to_id(params[:movies])
+    movies = convert_to_id(params[:movies])
 
-    @showtimes = Showtime.possible_times(start_time: start_time, end_time: end_time, movie_ids: @movies)
+    showtimes = Showtime.possible_times(start_time: start_time, 
+                                        end_time: end_time, movie_ids: movies)
+    showtimes.each {|showtime| outing.selections.create(showtime: showtime)}
 
-    @showtimes.each {|showtime| @outing.selections.create(showtime: showtime)}
-
-    render 'show'
+    redirect_to [current_user, outing]
   end
 
   def show
