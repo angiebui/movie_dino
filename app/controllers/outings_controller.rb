@@ -26,6 +26,11 @@ class OutingsController < ApplicationController
     @outing = Outing.find(params[:id])
   end
 
+  def link_show
+    @outing = Outing.find_by_link(params[:link])
+    render 'show'
+  end
+
 
 end
 

@@ -7,10 +7,13 @@ MovieBuddy::Application.routes.draw do
   end
 
   root to: 'pages#index'
-
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
+
+  #please dont move this, it's greedy.
+  match '/:link', to: 'outings#link_show'
+
 
 
   # The priority is based upon order of creation:
