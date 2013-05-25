@@ -12,7 +12,6 @@ window.fbAsyncInit = ->
 
   $('#sign_in').click (e) ->
     e.preventDefault()
-
     FB.login (response) ->
       window.location = '/auth/facebook' if response.authResponse
 
