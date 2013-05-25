@@ -11,7 +11,8 @@ jQuery(function() {
 window.fbAsyncInit = function() {
   FB.init({
     appId: '<%= ENV['FACEBOOK_APP_ID'] %>',
-    cookie: true
+    cookie: true,
+    status: true
   });
 
   $('#sign_in').click(function(e) {
