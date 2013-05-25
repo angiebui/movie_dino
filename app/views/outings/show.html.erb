@@ -2,6 +2,6 @@
 
 <% @outing.selections.each do |selection| %>
   <p><%= selection.showtime.movie.title %></p>
-  <p><%= time_tag(selection.showtime.time) %></p>
+  <p><%= time_tag(selection.showtime.time.getlocal) %></p>
   <hr>
 <% end %>
