@@ -36,8 +36,6 @@ class OutingsController < ApplicationController
     render 'show'
   end
 
-
-
 end
 
 
