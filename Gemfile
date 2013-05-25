@@ -16,6 +16,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'sidekiq'
 gem 'sidekiq-status'
 
+# time
+gem 'tzip'
 gem 'chronic' #for time parsing
 gem 'fuzzily'
 

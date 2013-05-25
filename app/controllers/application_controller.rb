@@ -16,14 +16,18 @@ class ApplicationController < ActionController::Base
     TIMES.zip(values)
   end
 
-  def day_range
-    name_days = (2..7).to_a.map {|n| n.days.from_now.strftime('%A')}
+  def day_range(time_zone)
+    name_days = (2..7).to_a.map.each do |n|
+      Time.use_zone(time_zone) { n.days.from_now.strftime('%A') }
+    end
+
     days = ["Today", "Tomorrow"]+ name_days
     days.zip((0..7).to_a)
   end
 
-  def get_datetime(day, time, time_zone)
-    time_zone.at(day.to_i.days.from_now).change(:hour => time.to_i)
+  def datetime_in_utc(day, time, time_zone)
+    local = time_zone.at(day.to_i.days.from_now).change(:hour => time.to_i)
+    local.utc
   end
 
   def convert_to_id(hash)

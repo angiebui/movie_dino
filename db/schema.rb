@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525192333) do
+ActiveRecord::Schema.define(:version => 20130525224243) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(:version => 20130525192333) do
     t.string   "state"
   end
 
+  create_table "theaters_zipcodes", :force => true do |t|
+    t.integer  "zipcode_id"
+    t.integer  "theater_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "theaters_zipcodes", ["zipcode_id"], :name => "index_theaters_zipcodes_on_zipcode_id"
+
   create_table "trigrams", :force => true do |t|
     t.string  "trigram",     :limit => 3
     t.integer "score",       :limit => 2
@@ -87,6 +96,12 @@ ActiveRecord::Schema.define(:version => 20130525192333) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "zipcodes", :force => true do |t|
+    t.string   "zipcode"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
