@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524230513) do
+ActiveRecord::Schema.define(:version => 20130525001950) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(:version => 20130524230513) do
 
   create_table "selections", :force => true do |t|
     t.integer  "showtime_id"
-    t.integer  "selectable_id"
-    t.string   "selectable_type"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "owner_id"
+    t.string   "owner_type"
   end
 
   create_table "showtimes", :force => true do |t|

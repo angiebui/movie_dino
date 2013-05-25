@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Outing do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_many(:selections) }
+  it { should have_many(:attendees) }
+  it { should belong_to(:user) }
+
 end
