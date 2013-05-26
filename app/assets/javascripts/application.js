@@ -12,4 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require_tree .
+
+$(document).foundation();
+
+$(document).ready(function(){
+  $(".marquee input[type='checkbox']").change(function(){
+    console.log(this);
+    if($(this).is(':checked')){
+      $(this).next('label').removeClass('hover').addClass('checked');
+    }
+    else{
+      $(this).next('label').removeClass('checked');
+    }
+  });
+});

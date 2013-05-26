@@ -1,0 +1,14 @@
+<h1>MOVIE MARQUEE</h1>
+<div id="movie-grid" class="row">
+  <%= form_for @outing, :html => {:class => "marquee"} do |f| %>
+    <% @movies.each_with_index do |movie, index| %>
+      <div class="large-3 columns">
+        <%= check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
+        <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_url})") %>
+      </div>
+    <% end %>
+    <%= render 'outings/time_selects' %>
+    <%= hidden_field_tag(:time_zone, @time_zone) %>
+    <%= f.submit "Create Outing" %>
+  <% end %>
+</div>
