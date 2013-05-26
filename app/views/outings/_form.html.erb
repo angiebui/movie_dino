@@ -7,7 +7,9 @@
         <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_url})") %>
       </div>
     <% end %>
+
     <%= render 'outings/time_selects' %>
+
     <%= hidden_field_tag(:time_zone, @time_zone) %>
     <%= f.submit "Create Outing" %>
   <% end %>

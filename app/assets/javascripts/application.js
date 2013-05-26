@@ -17,13 +17,12 @@
 
 $(document).foundation();
 
-$(document).ready(function(){
-  $(".marquee input[type='checkbox']").change(function(){
+$(document).ready(function() {
+  $(".marquee input[type='checkbox']").change(function() {
     console.log(this);
-    if($(this).is(':checked')){
-      $(this).next('label').removeClass('hover').addClass('checked');
-    }
-    else{
+    if($(this).is(':checked')) {
+      $(this).next('label').addClass('checked');
+    } else {
       $(this).next('label').removeClass('checked');
     }
   });
