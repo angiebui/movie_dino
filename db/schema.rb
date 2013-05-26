@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525224243) do
+ActiveRecord::Schema.define(:version => 20130526015024) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20130525224243) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "theaters_zipcodes", ["zipcode_id", "theater_id"], :name => "index_theaters_zipcodes_on_zipcode_id_and_theater_id", :unique => true
   add_index "theaters_zipcodes", ["zipcode_id"], :name => "index_theaters_zipcodes_on_zipcode_id"
 
   create_table "trigrams", :force => true do |t|
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20130525224243) do
     t.string   "zipcode"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.datetime "cache_date"
   end
 
 end
