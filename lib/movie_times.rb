@@ -2,7 +2,7 @@ class MovieTimes
   attr_reader :page, :increment
 
   def initialize(location)
-    @zipcode = Zipcode.find_or_create_by_zipcode(zipcode: location)
+    @zipcode = Zipcode.find_or_create_by_zipcode(location)
     @google_address = "http://www.google.com/movies?hl=en&near=#{location}&date=#{increment}"
     @agent = Mechanize.new
 
@@ -88,7 +88,8 @@ class MovieTimes
                   city: city,
                   state: state,
                   phone_number: phone).first_or_create
-    theater.zipcodes << @zipcode
+    theater.zipcodes << @zipcode unless theater.zipcodes.include?(@zipcode)
+    theater
   end
 
   def datetime(increment, time)
