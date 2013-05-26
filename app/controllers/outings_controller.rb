@@ -13,10 +13,10 @@ class OutingsController < ApplicationController
     zipcode = Zipcode.find_or_create_by_zipcode(@zipcode)
 
     if zipcode.stale?
+      zipcode.fetch_times!
       # needs a spinner before entering the form 
       # movies that display are based off of where the user is
       # we show all movies that are displayed nearby, ordered by rank
-      ShowtimeWorker.perform_async(@zipcode)
     end
   end
 

@@ -4,10 +4,15 @@ class Zipcode < ActiveRecord::Base
   has_many :theaters, through: :theaters_zipcodes
   has_many :theaters_zipcodes
 
+  validates :zipcode, presence: true
 
   def stale?
-    return true unless self.cache_date
+    return true if self.cache_date.nil?
     (Time.now - self.cache_date) > 3.days
+  end
+
+  def fetch_times!
+    ShowtimeWorker.perform_async(self.zipcode)
   end
 
 end

@@ -15,10 +15,12 @@ class MovieTime
   def self.fetch!(location_data)
     if location_data[:zip]
       location = location_data[:zip]
-    else
+    elsif location_data[:city] && location_data[:state]
       city = location_data[:city].gsub(/ /,'+')
       state = location_data[:state].gsub(/ /,'+')
       location = "#{city},+#{state}"
+    else
+      raise ArgumentError
     end
     MovieTime.new(location)
   end
@@ -41,6 +43,7 @@ class MovieTime
   end
 
   def fetch_and_save_theatres!
+    @zipcode.update_attributes(:cache_date => Time.now) if increment == 7
     page.root.css('div.theater').each do |theater_doc|
       theater = fetch_theater(theater_doc)
 
@@ -64,11 +67,13 @@ class MovieTime
                 pm << index
               end
             end
-            pm_index = pm.first-1 || -1
+            pm_index = pm.first ? pm.first - 1 : -1
             first_am = sanitized.split(' ')[0..am.first].map{|time| time =~ /am/ ? time : time + 'am'}
             first_pm = sanitized.split(' ')[am.first+1..pm_index].map{|time| time =~ /pm/ ? time : time + 'pm'}
             if am.length > 1
               second_am = sanitized.split(' ')[am.last..-1].map{|time| time =~ /am/ ? time : time + 'am'}
+            else
+              second_am = []
             end
             sanitized = first_am + first_pm + second_am
           else
@@ -109,7 +114,6 @@ class MovieTime
                   state: state,
                   phone_number: phone).first_or_create
     theater.zipcodes << @zipcode unless theater.zipcodes.include?(@zipcode)
-    @zipcode.update_attributes(:cache_date => Time.now) if increment == 7
     theater
   end
 
