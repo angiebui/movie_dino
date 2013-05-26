@@ -3,13 +3,21 @@ class OutingsController < ApplicationController
   def new
     @outing = Outing.new
     @movies = Movie.limit(12)
-    # convert zipcode to appropriate time zone
-    @time_zone = ActiveSupport::TimeZone.find_by_zipcode(params[:zip])
+    # converts zipcode to appropriate timezone
+    session[:zipcode] = params[:zipcode]
+    @zipcode = params[:zipcode]
+    @time_zone = ActiveSupport::TimeZone.find_by_zipcode(@zipcode)
     @time_ranges = time_range
-
-    #TODO: days need to account for local time_zone, given zipcode (currently UTC)
     @days = day_range(@time_zone)
 
+    zipcode = Zipcode.find_or_create_by_zipcode(@zipcode)
+
+    if zipcode.stale?
+      # needs a spinner before entering the form 
+      # movies that display are based off of where the user is
+      # we show all movies that are displayed nearby, ordered by rank
+      ShowtimeWorker.perform_async(@zipcode)
+    end
   end
 
   def create
@@ -21,7 +29,8 @@ class OutingsController < ApplicationController
     movies = convert_to_id(params[:movies])
 
     showtimes = Showtime.possible_times(start_time: start_time,
-                                        end_time: end_time, movie_ids: movies)
+                                        end_time: end_time, movie_ids: movies,
+                                        zipcode: current_zipcode)
     showtimes.each {|showtime| outing.selections.create(showtime: showtime)}
 
     redirect_to outing
