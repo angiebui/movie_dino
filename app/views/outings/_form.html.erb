@@ -1,4 +1,16 @@
 <h1>MOVIE MARQUEE</h1>
+
+<div id="movie-marquee" class="movie-marquee">
+  <ul>
+  <%= @movies.each_with_index do |movie, index| %>
+    <%= build_marquee(movie, index).html_safe %>
+  <% end %>
+  <% if @movies.length % 4 == 0 %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
 <div id="movie-grid" class="row">
   <%= form_for @outing, :html => {:class => "marquee"} do |f| %>
     <% @movies.each_with_index do |movie, index| %>

@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MovieBuddy</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "vendor/custom.modernizr" %>
+  <%= javascript_include_tag "modernizr" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -15,6 +15,21 @@
   <div class="row">
     <%= yield %>
   </div>
+  <%= javascript_include_tag "movie_marquee" %>
+  <script>
+    $(document).ready(function() {
 
+      $(".marquee input[type='checkbox']").change(function() {
+        if($(this).is(':checked')) {
+          $(this).next('label').addClass('checked');
+        } else {
+          $(this).next('label').removeClass('checked');
+        }
+      });
+
+      $( '#movie-marquee' ).movieMarquee();
+
+    });
+  </script>
 </body>
 </html>

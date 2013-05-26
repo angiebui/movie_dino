@@ -16,14 +16,3 @@
 //= require_tree .
 
 $(document).foundation();
-
-$(document).ready(function() {
-  $(".marquee input[type='checkbox']").change(function() {
-    console.log(this);
-    if($(this).is(':checked')) {
-      $(this).next('label').addClass('checked');
-    } else {
-      $(this).next('label').removeClass('checked');
-    }
-  });
-});
