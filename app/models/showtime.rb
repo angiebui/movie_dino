@@ -15,7 +15,7 @@ class Showtime < ActiveRecord::Base
   def self.possible_times(args)
     Showtime.where(:time => args[:start_time]..args[:end_time]).where(
                    :movie_id => args[:movie_ids]).select do |showtime|
-      showtime.theater.zipcodes.include?(args[:zipcode])
+      showtime.theater.zipcodes.map{|zipcode| zipcode.zipcode}.include?(args[:zipcode])
     end
   end
 

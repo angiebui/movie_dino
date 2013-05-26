@@ -13,6 +13,9 @@ class OutingsController < ApplicationController
     zipcode = Zipcode.find_or_create_by_zipcode(@zipcode)
 
     if zipcode.stale?
+      # needs a spinner before entering the form 
+      # movies that display are based off of where the user is
+      # we show all movies that are displayed nearby, ordered by rank
       ShowtimeWorker.perform_async(@zipcode)
     end
   end
@@ -26,7 +29,15 @@ class OutingsController < ApplicationController
     movies = convert_to_id(params[:movies])
 
     showtimes = Showtime.possible_times(start_time: start_time,
-                                        end_time: end_time, movie_ids: movies)
+                                        end_time: end_time, movie_ids: movies,
+                                        zipcode: current_zipcode)
+
+    p "current zipcode"
+    p current_zipcode
+    
+    p "SHOWTIMES?" 
+    p showtimes
+
     showtimes.each {|showtime| outing.selections.create(showtime: showtime)}
 
     redirect_to outing
