@@ -81,6 +81,7 @@ class MovieTime
           end
           sanitized.each do |one_time|
             time = datetime(increment,one_time) 
+            debugger
             Showtime.create(theater: theater, movie: movie, time: time)
           end
         end

@@ -12,7 +12,6 @@ MovieBuddy::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout'
 
 
-
   ###################################
   #please dont move this, it's greedy.
   #maybe we use /m/:link instead?

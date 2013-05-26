@@ -22,7 +22,6 @@ class OutingsController < ApplicationController
                                         end_time: end_time, movie_ids: movies,
                                         zipcode: current_zipcode)
     showtimes.each {|showtime| outing.selections.create(showtime: showtime)}
-
     redirect_to outing
   end
 
