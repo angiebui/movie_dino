@@ -75,7 +75,6 @@ class MovieTime
             sanitized = sanitized.split(' ').map{|time| time =~ /pm/ ? time : time + 'pm'}
           end
           sanitized.each do |one_time|
-            debugger
             time = datetime(increment,one_time) 
             Showtime.create(theater: theater, movie: movie, time: time)
           end

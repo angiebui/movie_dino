@@ -31,13 +31,7 @@ class OutingsController < ApplicationController
     showtimes = Showtime.possible_times(start_time: start_time,
                                         end_time: end_time, movie_ids: movies,
                                         zipcode: current_zipcode)
-
-    p "current zipcode"
-    p current_zipcode
     
-    p "SHOWTIMES?" 
-    p showtimes
-
     showtimes.each {|showtime| outing.selections.create(showtime: showtime)}
 
     redirect_to outing
