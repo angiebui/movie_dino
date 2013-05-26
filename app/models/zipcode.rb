@@ -6,6 +6,7 @@ class Zipcode < ActiveRecord::Base
 
 
   def stale?
+    return true unless self.cache_date
     (Time.now - self.cache_date) > 3.days
   end
 

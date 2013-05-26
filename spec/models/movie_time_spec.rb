@@ -20,7 +20,6 @@ describe MovieTime do
   describe '#fetch_theater' do
     it 'should require a theater_doc' do
       pending
-      p @mt.methods - Object.methods
       expect { @mt.fetch_theater() }.to raise_error(ArgumentError)
     end
   end
