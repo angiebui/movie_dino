@@ -89,6 +89,7 @@ class MovieTimes
                   state: state,
                   phone_number: phone).first_or_create
     theater.zipcodes << @zipcode unless theater.zipcodes.include?(@zipcode)
+    @zipcode.update_attributes(:cache_date => Time.now) if increment == 7
     theater
   end
 
