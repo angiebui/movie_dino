@@ -4,4 +4,9 @@ class Zipcode < ActiveRecord::Base
   has_many :theaters, through: :theaters_zipcodes
   has_many :theaters_zipcodes
 
+
+  def stale?
+    (Time.now - self.cache_date) > 3.days
+  end
+
 end

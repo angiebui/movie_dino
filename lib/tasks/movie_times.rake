@@ -12,7 +12,7 @@ namespace :times do
     cities, states = outdated.map(&:city), outdated.map(&:state)
     city_state_pairs = cities.zip(states)
     city_state_pairs.uniq.each do |city, state|
-      MovieTimes.fetch!(city: city, state: state)
+      MovieTime.fetch!(city: city, state: state)
     end
 
     puts "Refreshed #{city_state_pairs.uniq.count} theatre records"
@@ -20,6 +20,6 @@ namespace :times do
 
   desc 'Seed San Francisco Times'
   task :seed => :environment do
-    MovieTimes.fetch!(zip: '94108')
+    MovieTime.fetch!(zip: '94108')
   end
 end

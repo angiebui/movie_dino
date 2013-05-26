@@ -3,13 +3,17 @@ class OutingsController < ApplicationController
   def new
     @outing = Outing.new
     @movies = Movie.limit(5)
-    # convert zipcode to appropriate time zone
-    @time_zone = ActiveSupport::TimeZone.find_by_zipcode(params[:zip])
+    # converts zipcode to appropriate timezone
+    zipcode = params[:zip]
+    @time_zone = ActiveSupport::TimeZone.find_by_zipcode(zipcode)
     @time_ranges = time_range
-
-    #TODO: days need to account for local time_zone, given zipcode (currently UTC)
     @days = day_range(@time_zone)
 
+    zipcode = Zipcode.find_by_zipcode(zipcode)
+
+    if zipcode.stale?
+      ShowtimeWorker.perform_async(zipcode)
+    end
   end
 
   def create
