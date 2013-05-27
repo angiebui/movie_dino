@@ -7,17 +7,20 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def convert_to_id(hash)
+    hash.values.map {|movie| movie.to_i}
+  end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def current_zipcode
-    session[:zipcode]
+  def current_timezone_string
+    ActiveSupport::TimeZone.find_by_zipcode(current_zipcode)
   end
 
-  def time_range
-    values = (8..24).to_a
-    TIMES.zip(values)
+  def current_zipcode
+    session[:zipcode]
   end
 
   def day_range(time_zone)
@@ -35,10 +38,15 @@ class ApplicationController < ActionController::Base
     local.utc
   end
 
-  def convert_to_id(hash)
-    hash.values.map {|movie| movie.to_i}
+  def display_time(time)
+    time.in_time_zone(current_timezone_string).strftime('%l:%M%P')
   end
 
-  helper_method :current_user, :time_range, :day_range, :get_datetime
+  def time_range
+    values = (8..24).to_a
+    TIMES.zip(values)
+  end
+  helper_method :current_user, :time_range, :day_range, :get_datetime, 
+    :display_time, :current_timezone_string
 
 end
