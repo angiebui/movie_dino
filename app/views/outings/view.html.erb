@@ -20,6 +20,7 @@
   
   <% @outing.selections.each do |selection| %>
     <div class='panel' data-selection-id="<%=selection.id %>">
+      <%= check_box_tag(selection.id, selection.id, checked = false, name: "selection[#{selection.id}]", :data => {theater_id: "#{selection.showtime.theater.id}", movie_id: "#{selection.showtime.movie.id}"}) %>
       <p><%= selection.showtime.movie.title %></p>
       <p><%= selection.showtime.theater.name %></p>
       <p><%= time_tag(selection.showtime.time.getlocal) %></p>
