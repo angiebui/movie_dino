@@ -2,7 +2,7 @@ class Movie < ActiveRecord::
   ROTTEN_ADDRESS = 'http://api.rottentomatoes.com/api/public/v1.0'
   ROTTEN_API = ENV['ROTTEN_APP_ID']
 
-  attr_accessible :title, :poster_url
+  attr_accessible :title, :poster_large, :poster_med, :runtime, :mpaa_rating, :critics_score, :audience_score
   has_many :showtimes
   has_many :theaters, :through => :showtimes
 
@@ -19,7 +19,7 @@ class Movie < ActiveRecord::
     no_match = Movie.where(:poster_url => nil)
     no_match.each do |movie|
 
-      single_request = ROTTEN_ADDRESS + '/movies.json?apikey=' + ROTTEN_API + "&q=#{movie.title.gsub(':', '').gsub('(', '').gsub(')', '').gsub(' an imax 3d experience', '').gsub(' ', '%20')}"
+      single_request = ROTTEN_ADDRESS + '/movies.json?apikey=' + ROTTEN_API + "&q=#{movie.title.gsub('[^a-zA-Z\d\s&]', '').gsub(' an imax 3d experience', '').gsub(' ', '%20')}"
       temp = uri_to_json(single_request)
       temp = temp['movies'].first
       
