@@ -8,14 +8,14 @@ function theaterFilter()
   $('.theater-filter :checkbox').change(function(e){
     e.preventDefault();
     var theaterId = $(this).data('theater-id');
-    var theaterBox = $('.theater[data-theater-id=' + theaterId + ']')
+    var $theaterBox = $('.theater[data-theater-id=' + theaterId + ']')
 
     if ($(this).attr('checked')) {
-      theaterBox.hide();
+      $theaterBox.hide();
       $(this).removeAttr('checked');
-      theaterBox.find('.showtime-checkbox').children().removeAttr('checked');
+      $theaterBox.find('.showtime-checkbox').children().removeAttr('checked');
     } else {
-      theaterBox.show();
+      $theaterBox.show();
       $(this).attr('checked', 'checked');
     };
   })
@@ -26,14 +26,14 @@ function movieFilter()
   $('.movie-filter :checkbox').change(function(e){
     e.preventDefault();
     var movieId = $(this).data('movie-id');
-    var movieCheckBoxes = $('.movie[data-movie-id=' + movieId + ']')
+    var $movieCheckBoxes = $('.movie[data-movie-id=' + movieId + ']')
 
     if($(this).attr('checked')) {
-      movieCheckBoxes.hide();
+      $movieCheckBoxes.hide();
       $(this).removeAttr('checked');
-      movieCheckBoxes.find('.showtime-checkbox').children().removeAttr('checked');
+      $movieCheckBoxes.find('.showtime-checkbox').children().removeAttr('checked');
     } else {
-      movieCheckBoxes.show();
+      $movieCheckBoxes.show();
       $(this).attr('checked', 'checked');
     };
   });
