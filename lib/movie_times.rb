@@ -99,7 +99,8 @@ class MovieTimes
 
   def fetch_movies(movie_doc)
     title = movie_doc.css('div.name a').text.downcase.gsub('-', ' ')
-    Movie.where(title: title).first_or_create
+    movie = Movie.where(title: title).first_or_create
+    movie.sync
   end
 
 end

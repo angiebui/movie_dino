@@ -10,7 +10,7 @@ class Movie < ActiveRecord::Base
 
   end
 
-  def self.sync_posters
+  def sync_post
     rotten_address = 'http://api.rottentomatoes.com/api/public/v1.0'
     rotten_api = ENV['ROTTEN_APP_ID']
     movies_json = []
