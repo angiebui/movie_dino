@@ -13,9 +13,6 @@ class Movie < ActiveRecord::Base
   end
 
   def self.sync_movie
-    movies_json = []
-    matched_movies = []
-
     not_synced = Movie.where(:poster_large => nil,
                            :poster_med => nil,
                            :runtime => nil,
@@ -24,16 +21,16 @@ class Movie < ActiveRecord::Base
                            :audience_score => nil)
     not_synced.each do |movie|
 
-      single_request = ROTTEN_ADDRESS + '/movies.json?apikey=' + ROTTEN_API + "&q=#{movie.title.gsub('[^a-zA-Z\d\s&]', '').gsub(' an imax 3d experience', '').gsub(' ', '%20')}"
-      temp = uri_to_json(single_request)
-      temp = temp['movies'].first
+      single_movie_address = ROTTEN_ADDRESS + '/movies.json?apikey=' + ROTTEN_API + "&q=#{movie.title.gsub('[^a-zA-Z\d\s&]', '').gsub(' an imax 3d experience', '').gsub(' ', '%20')}"
+      search_results = uri_to_json(single_movie_address)
+      matched_result = search_results['movies'].first
       
-      movie.update_attributes(:poster_large => temp['posters']['original'],
-                              :poster_med => temp['posters']['profile'],
-                              :runtime => temp['runtime'],
-                              :mpaa_rating => temp['mpaa_rating'],
-                              :critics_score => temp['ratings']['critics_score'],
-                              :audience_score => temp['ratings']['audience_score'])
+      movie.update_attributes(:poster_large   => matched_result['posters']['original'],
+                              :poster_med     => matched_result['posters']['profile'],
+                              :runtime        => matched_result['runtime'],
+                              :mpaa_rating    => matched_result['mpaa_rating'],
+                              :critics_score  => matched_result['ratings']['critics_score'],
+                              :audience_score => matched_result['ratings']['audience_score'])
     end
   end
 
