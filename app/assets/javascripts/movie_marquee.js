@@ -55,13 +55,13 @@
       // check if the list is currently moving
       this.isAnimating = false;
       // the list (ul) will have a width of 100% x itemsCount
-      this.$list.css( 'width', 1000 * this.itemsCount + 'px' );
+      this.$list.css( 'width', 1030 * this.itemsCount + 'px' );
       // apply the transition
       if( this.support ) {
         this.$list.css( 'transition', this.transformName + ' 500ms ease' );
       }
       // each item will have a width of 100 / itemsCount
-      this.$items.css( 'width', '1000px' );
+      this.$items.css( 'width', '1030px' );
       // add navigation arrows if there is more than 1 item
       if( this.itemsCount > 1 ) {
         // add navigation arrows (the previous arrow is not shown initially):
@@ -73,7 +73,6 @@
     },
     _initEvents : function() {
       
-      var self = this;
       if( this.itemsCount > 1 ) {
         this.$navPrev.on( 'click.movieMarquee', $.proxy( this._navigate, this, 'previous' ) );
         this.$navNext.on( 'click.movieMarquee', $.proxy( this._navigate, this, 'next' ) );
@@ -149,7 +148,7 @@
       }
     });
 
-    return this;
+    // return this;
   };
 
 } )( jQuery, window );
