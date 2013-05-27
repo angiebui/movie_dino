@@ -18,7 +18,15 @@ class Movie < ActiveRecord::Base
   def sync_with_rotten_api
     movie_address = ROTTEN_ADDRESS + '/movies.json?apikey=' + ROTTEN_API + "&q=#{self.title.gsub('[^a-zA-Z\d\s&]', '').gsub(' an imax 3d experience', '').gsub(' ', '%20')}"
     search_results = uri_to_json(movie_address)
-    matched_result = search_results['movies'].first
+
+    good_results = search_results['movies'].select {|movie| movie['release_dates']['theater'] != nil}
+    good_results.reject! {|movie| Time.parse(movie['release_dates']['theater']).year > Time.now.year}
+
+    good_results.sort_by! do |movie|
+      Time.parse(movie['release_dates']['theater'])
+    end
+
+    matched_result = good_results.last
 
     self.update_attributes(:poster_large   => matched_result['posters']['original'],
                            :poster_med     => matched_result['posters']['profile'],
