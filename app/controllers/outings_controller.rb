@@ -1,14 +1,17 @@
 class OutingsController < ApplicationController
 
-  def new
-    @outing = Outing.new
-    @zipcode = Zipcode.find_by_zipcode(current_zipcode)
-    @movies = @zipcode.movies
-    # converts zipcode to appropriate timezone
+  def cache
+    session[:zipcode] = params[:zipcode]
+    @zipcode = params[:zipcode]
+    zipcode = Zipcode.find_or_create_by_zipcode(@zipcode)
 
-    @time_zone = ActiveSupport::TimeZone.find_by_zipcode(current_zipcode)
-    @time_ranges = time_range
-    @days = day_range(@time_zone)
+    if zipcode.stale?
+      zipcode.fetch_times!
+      # needs a spinner before entering the form 
+      # movies that display are based off of where the user is
+      # we show all movies that are displayed nearby, ordered by rank
+    end
+    redirect_to new_outing_path
   end
 
   def create
@@ -29,28 +32,26 @@ class OutingsController < ApplicationController
     redirect_to outing
   end
 
-  def show
-    @outing = Outing.find(params[:id])
-    @showtimes = @outing.showtimes
-  end
-
   def link_show
     @outing = Outing.find_by_link(params[:link])
     render 'show'
   end
 
-  def cache
-    session[:zipcode] = params[:zipcode]
-    @zipcode = params[:zipcode]
-    zipcode = Zipcode.find_or_create_by_zipcode(@zipcode)
+  def new
+    @outing = Outing.new
+    @zipcode = Zipcode.find_by_zipcode(current_zipcode)
+    @movies = @zipcode.movies
+    # converts zipcode to appropriate timezone
 
-    if zipcode.stale?
-      zipcode.fetch_times!
-      # needs a spinner before entering the form 
-      # movies that display are based off of where the user is
-      # we show all movies that are displayed nearby, ordered by rank
-    end
-    redirect_to new_outing_path
+    @time_zone = ActiveSupport::TimeZone.find_by_zipcode(current_zipcode)
+    @time_ranges = time_range
+    @days = day_range(@time_zone)
+  end
+
+
+  def show
+    @outing = Outing.find(params[:id])
+    @showtimes = @outing.showtimes
   end
 
 end

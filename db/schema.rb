@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20130527232807) do
     t.integer  "outing_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
   end
 
   create_table "movies", :force => true do |t|
@@ -41,8 +42,8 @@ ActiveRecord::Schema.define(:version => 20130527232807) do
   end
 
   create_table "selecteds", :force => true do |t|
-    t.integer "attendees_id"
-    t.integer "selections_id"
+    t.integer "attendee_id"
+    t.integer "selection_id"
   end
 
   create_table "selections", :force => true do |t|

@@ -8,4 +8,5 @@ class EmailWorker
       UserMailer.outing_result(user_id, outing_id).deliver
     end
   end
+  
 end

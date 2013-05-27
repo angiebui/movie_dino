@@ -7,13 +7,13 @@ class Zipcode < ActiveRecord::Base
 
   validates_presence_of :zipcode
 
+  def fetch_times!
+    ShowtimeWorker.perform_async(self.zipcode)
+  end
+
   def stale?
     return true if self.cache_date.nil?
     (Time.now - self.cache_date) > 3.days
-  end
-
-  def fetch_times!
-    ShowtimeWorker.perform_async(self.zipcode)
   end
 
 end

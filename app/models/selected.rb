@@ -6,8 +6,10 @@ class Selected < ActiveRecord::Base
   after_create :update_selection_cache
 
   private
+
   def update_selection_cache
     picked = self.selection
     picked.update_attributes(selected_count: picked.selected_count + 1)
   end
+  
 end

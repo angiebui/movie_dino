@@ -1,56 +1,39 @@
 $(document).ready(function(){
   theaterFilter();
   movieFilter();
-  $('#attendee-submit').on('click', function(e){
-    e.preventDefault();
-    console.log($(this).serialize());
-    // $.ajax({
-    //   method: 'post',
-    //   action: '/attendees/create',
-    //   data: 
-
-
-    // });
-
-
-  });
 });
 
-
-
-
-
-
-
-
-
-
-
-var theaterFilter = function(){
+function theaterFilter()
+{
   $('.theater-filter :checkbox').change(function(e){
     e.preventDefault();
     var theaterId = $(this).data('theater-id');
+    var $theaterBox = $('.theater[data-theater-id=' + theaterId + ']')
 
     if ($(this).attr('checked')) {
-      $('.theater[data-theater-id=' + theaterId + ']').hide();
+      $theaterBox.hide();
       $(this).removeAttr('checked');
+      $theaterBox.find('.showtime-checkbox').children().removeAttr('checked');
     } else {
-      $('.theater[data-theater-id=' + theaterId + ']').show();
+      $theaterBox.show();
       $(this).attr('checked', 'checked');
     };
   })
 };
 
-var movieFilter = function(){
+function movieFilter()
+{
   $('.movie-filter :checkbox').change(function(e){
     e.preventDefault();
     var movieId = $(this).data('movie-id');
+    var $movieCheckBoxes = $('.movie[data-movie-id=' + movieId + ']')
 
     if($(this).attr('checked')) {
-      $('.movie[data-movie-id=' + movieId + ']').hide();
+      $movieCheckBoxes.hide();
       $(this).removeAttr('checked');
+      $movieCheckBoxes.find('.showtime-checkbox').children().removeAttr('checked');
     } else {
-      $('.movie[data-movie-id=' + movieId + ']').show();
+      $movieCheckBoxes.show();
       $(this).attr('checked', 'checked');
     };
   });

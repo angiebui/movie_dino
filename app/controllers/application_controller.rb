@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
             "8:00p","9:00p","10:00p","11:00p","12:00a" ]
 
   private
-
+ 
   def convert_to_id(hash)
     hash.values.map {|movie| movie.to_i}
   end
@@ -45,6 +45,7 @@ class ApplicationController < ActionController::Base
     values = (8..24).to_a
     TIMES.zip(values)
   end
+  
   helper_method :current_user, :time_range, :day_range, :get_datetime, 
     :display_time, :current_timezone_string
 
