@@ -3,7 +3,7 @@ class Selection < ActiveRecord::Base
     :time, :selected_count
 
   has_many :selecteds
-  has_many :attendees, through: :selected
+  has_many :attendees, through: :selecteds
 
   belongs_to :outing
   belongs_to :showtime
