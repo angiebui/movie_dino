@@ -4,7 +4,7 @@ class Zipcode < ActiveRecord::Base
   has_many :theaters, through: :theaters_zipcodes
   has_many :theaters_zipcodes
 
-  validates :zipcode, presence: true
+  validates_presence_of :zipcode
 
   def stale?
     return true if self.cache_date.nil?
