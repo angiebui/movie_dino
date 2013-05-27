@@ -10,7 +10,8 @@ MovieBuddy::Application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
-
+  match '/users', to: 'pages#index'
+  get '/outings/:id/view' , to: 'outings#view'
 
   ###################################
   #please dont move this, it's greedy.
