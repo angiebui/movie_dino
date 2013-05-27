@@ -25,7 +25,6 @@ class Showtime < ActiveRecord::Base
 
   def self.find_by_zipcode(zipcode)
     Showtime.joins(:theater => :zipcodes).where('zipcodes.zipcode = ?', zipcode)
-
   end
 
 end
