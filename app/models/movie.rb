@@ -41,7 +41,7 @@ class Movie < ActiveRecord::Base
   end
 
   def store_image(img_url)
-    bucket = AWS::S3.new.bucket['moviedino']
+    bucket = AWS::S3.new.buckets['moviedino']
     image = open(img_url)
     converted_image = Magick::Image.read(image)
     converted_image = converted_image.resize_to_fill(100,200)
