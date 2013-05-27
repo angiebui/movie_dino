@@ -9,12 +9,7 @@
         <li class='movie' data-movie-id='<%= movie.id %>'><h6><%= movie.display_title %></h6>
           <ul>
           <% @theater_movies.reverse.each do |selection| %>
-            <li data-selection-id='<%= selection.id %>'><%= check_box_tag(selection.movie.title, 
-            [movie_id: selection.movie_id, 
-             showtime_id: selection.showtime.id, 
-             time: selection.time, 
-             theater_id: selection.theater_id,
-             outing_id: @outing.id],
+            <li data-selection-id='<%= selection.id %>'><%= check_box_tag(selection.movie.title, selection.id,
              checked = false, name: "selections[#{selection.movie.title}_#{selection.id}]") %><%=display_time selection.time %></li>
           <% end %>
         </ul>

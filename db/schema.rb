@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527201252) do
+ActiveRecord::Schema.define(:version => 20130527202943) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20130527201252) do
   end
 
   create_table "selecteds", :force => true do |t|
-    t.integer "attendees_id"
-    t.integer "selections_id"
+    t.integer "attendee_id"
+    t.integer "selection_id"
   end
 
   create_table "selections", :force => true do |t|

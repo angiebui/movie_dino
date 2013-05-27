@@ -1,19 +1,6 @@
 $(document).ready(function(){
   theaterFilter();
   movieFilter();
-  $('#attendee-submit').on('click', function(e){
-    e.preventDefault();
-    console.log($(this).serialize());
-    // $.ajax({
-    //   method: 'post',
-    //   action: '/attendees/create',
-    //   data: 
-
-
-    // });
-
-
-  });
 });
 
 

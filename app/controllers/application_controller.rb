@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
             "8:00p","9:00p","10:00p","11:00p","12:00a" ]
 
   private
-
+ 
   def convert_to_id(hash)
     hash.values.map {|movie| movie.to_i}
   end
