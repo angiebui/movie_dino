@@ -1,10 +1,12 @@
 class Selection < ActiveRecord::Base
-  attr_accessible :outing_id, :attendee_id, :showtime, :owner, :movie, :theater,
-    :time
+  attr_accessible :outing_id, :attendee_id, :showtime, :selection, :movie, :theater,
+    :time, :selected_count
 
-  belongs_to :owner, :polymorphic => true
+  has_many :selected
+  has_many :attendees, through: :selected
+
+  belongs_to :outing
   belongs_to :showtime
   belongs_to :movie
   belongs_to :theater
-
 end

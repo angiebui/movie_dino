@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527044439) do
+ActiveRecord::Schema.define(:version => 20130527201252) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -39,18 +39,21 @@ ActiveRecord::Schema.define(:version => 20130527044439) do
     t.string   "link"
   end
 
+  create_table "selecteds", :force => true do |t|
+    t.integer "attendees_id"
+    t.integer "selections_id"
+  end
+
   create_table "selections", :force => true do |t|
     t.integer  "showtime_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "owner_id"
-    t.string   "owner_type"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "movie_id"
     t.integer  "theater_id"
     t.datetime "time"
+    t.integer  "outing_id"
+    t.integer  "selected_count", :default => 0
   end
-
-  add_index "selections", ["owner_id", "owner_type"], :name => "index_selections_on_owner_id_and_owner_type"
 
   create_table "showtimes", :force => true do |t|
     t.datetime "created_at", :null => false
