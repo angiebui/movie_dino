@@ -3,17 +3,7 @@ $(document).ready(function(){
   movieFilter();
 });
 
-
-
-
-
-
-
-
-
-
-
-var theaterFilter = function(){
+function theaterFilter(){
   $('.theater-filter :checkbox').change(function(e){
     e.preventDefault();
     var theaterId = $(this).data('theater-id');
@@ -28,7 +18,7 @@ var theaterFilter = function(){
   })
 };
 
-var movieFilter = function(){
+function movieFilter(){
   $('.movie-filter :checkbox').change(function(e){
     e.preventDefault();
     var movieId = $(this).data('movie-id');
