@@ -4,7 +4,7 @@
   <% @movies.each do |movie| %>
     <div class="large-3 columns">
       <%= check_box_tag(movie.title, movie.id, checked = true, name: "movies[#{movie.title}]") %>
-       <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_large})") %>
+       <%= label_tag(movie.title, nil, :class => 'checked panel', :style => "background-image: url(#{movie.poster_large})") %>
     </div>
   <% end %>
 
