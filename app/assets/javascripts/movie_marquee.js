@@ -5,23 +5,13 @@
   // global
   var Modernizr = window.Modernizr;
 
-  $.CBPFWSlider = function( options, element ) {
+  var Marquee = function( element ) {
     this.$el = $( element );
-    this._init( options );
+    this._init();
   };
 
-  // the options
-  $.CBPFWSlider.defaults = {
-    // default transition speed (ms)
-    speed : 500,
-    // default transition easing
-    easing : 'ease'
-  };
-
-  $.CBPFWSlider.prototype = {
-    _init : function( options ) {
-      // options
-      this.options = $.extend( true, {}, $.CBPFWSlider.defaults, options );
+  Marquee.prototype = {
+    _init : function() {
       // cache some elements and initialize some variables
       this._config();
       // initialize/bind the events
@@ -47,13 +37,13 @@
           'msTransition' : 'MSTransitionEnd',
           'transition' : 'transitionend'
         },
-        transformNames = {
-          'WebkitTransform' : '-webkit-transform',
-          'MozTransform' : '-moz-transform',
-          'OTransform' : '-o-transform',
-          'msTransform' : '-ms-transform',
-          'transform' : 'transform'
-        };
+      transformNames = {
+        'WebkitTransform' : '-webkit-transform',
+        'MozTransform' : '-moz-transform',
+        'OTransform' : '-o-transform',
+        'msTransform' : '-ms-transform',
+        'transform' : 'transform'
+      };
 
       if( this.support ) {
         this.transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ] + '.movieMarquee';
@@ -68,19 +58,16 @@
       this.$list.css( 'width', 1000 * this.itemsCount + 'px' );
       // apply the transition
       if( this.support ) {
-        this.$list.css( 'transition', this.transformName + ' ' + this.options.speed + 'ms ' + this.options.easing );
+        this.$list.css( 'transition', this.transformName + ' 500ms ease' );
       }
       // each item will have a width of 100 / itemsCount
       this.$items.css( 'width', '1000px' );
       // add navigation arrows if there is more than 1 item
       if( this.itemsCount > 1 ) {
-
         // add navigation arrows (the previous arrow is not shown initially):
-        this.$navPrev = $( '<span class="cbp-fwprev">&lt;</span>' ).hide();
-        this.$navNext = $( '<span class="cbp-fwnext">&gt;</span>' );
+        this.$navPrev = $( '<span class="marquee-prev">&lt;</span>' ).hide();
+        this.$navNext = $( '<span class="marquee-next">&gt;</span>' );
         $( '<nav/>' ).append( this.$navPrev, this.$navNext ).appendTo( this.$el );
-        
-
       }
 
     },
@@ -90,7 +77,6 @@
       if( this.itemsCount > 1 ) {
         this.$navPrev.on( 'click.movieMarquee', $.proxy( this._navigate, this, 'previous' ) );
         this.$navNext.on( 'click.movieMarquee', $.proxy( this._navigate, this, 'next' ) );
-        
       }
 
     },
@@ -148,59 +134,21 @@
         case this.itemsCount - 1 : this.$navNext.hide(); this.$navPrev.show(); break;
         default : this.$navNext.show(); this.$navPrev.show(); break;
       }
-      // highlight navigation dot
-      
-
     },
-    destroy : function() {
-
-      if( this.itemsCount > 1 ) {
-        this.$navPrev.parent().remove();
-        
-      }
-      this.$list.css( 'width', 'auto' );
-      if( this.support ) {
-        this.$list.css( 'transition', 'none' );
-      }
-      this.$items.css( 'width', 'auto' );
-
-    }
   };
 
-  var logError = function( message ) {
-    if ( window.console ) {
-      window.console.error( message );
-    }
-  };
+  $.fn.movieMarquee = function() {
+    
+    this.each(function() {  
+      var instance = $.data( this, 'movieMarquee' );
+      if ( instance ) {
+        instance._init();
+      }
+      else {
+        instance = $.data( this, 'movieMarquee', new Marquee( this ) );
+      }
+    });
 
-  $.fn.movieMarquee = function( options ) {
-    if ( typeof options === 'string' ) {
-      var args = Array.prototype.slice.call( arguments, 1 );
-      this.each(function() {
-        var instance = $.data( this, 'movieMarquee' );
-        if ( !instance ) {
-          logError( "cannot call methods on movieMarquee prior to initialization; " +
-          "attempted to call method '" + options + "'" );
-          return;
-        }
-        if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {
-          logError( "no such method '" + options + "' for movieMarquee instance" );
-          return;
-        }
-        instance[ options ].apply( instance, args );
-      });
-    } 
-    else {
-      this.each(function() {  
-        var instance = $.data( this, 'movieMarquee' );
-        if ( instance ) {
-          instance._init();
-        }
-        else {
-          instance = $.data( this, 'movieMarquee', new $.CBPFWSlider( options, this ) );
-        }
-      });
-    }
     return this;
   };
 

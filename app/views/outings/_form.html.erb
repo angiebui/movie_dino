@@ -1,28 +1,50 @@
 <h1>MOVIE MARQUEE</h1>
 
-<div id="movie-marquee" class="movie-marquee">
-  <ul>
-  <%= @movies.each_with_index do |movie, index| %>
-    <%= build_marquee(movie, index).html_safe %>
-  <% end %>
-  <% if @movies.length % 4 == 0 %>
-    </li>
-  <% end %>
-  </ul>
-</div>
-
-<div id="movie-grid" class="row">
+<div id="dino-form">
   <%= form_for @outing, :html => {:class => "marquee"} do |f| %>
+  <div id="movie-marquee" class="movie-marquee">
+    <ul>
     <% @movies.each_with_index do |movie, index| %>
-      <div class="large-3 columns">
-        <%= check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
-        <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_url})") %>
-      </div>
+
+      <% if (index + 1) % 4 == 1 %>
+        <li class='row'>
+          <div class='large-3 columns'>
+            <%= check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
+            <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_url})") %>
+          </div>
+      <% elsif (index + 1) % 4 == 0 %>
+        <div class='large-3 columns'>
+          <%= check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
+          <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_url})") %>
+        </div>
+      </li>
+      <% else %>
+        <div class='large-3 columns'>
+          <%= check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
+          <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_url})") %>
+        </div>
+      <% end %>
     <% end %>
 
-    <%= render 'outings/time_selects' %>
+    <% if @movies.length % 4 == 0 %>
+      </li>
+    <% end %>
 
-    <%= hidden_field_tag(:time_zone, @time_zone) %>
-    <%= f.submit "Create Outing" %>
+    </ul>
+  </div>
+
+  <%= render 'outings/time_selects' %>
+  
+  <div class="row">
+    <div class='large-12 columns'>
+      <p>
+        <%= hidden_field_tag(:time_zone, @time_zone) %>
+        <%= f.submit "CREATE EVENT", :class => "button" %>
+      </p>
+    </div>
+  </div>
+
   <% end %>
 </div>
+
+<hr>

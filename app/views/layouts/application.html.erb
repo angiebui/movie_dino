@@ -19,7 +19,9 @@
   <script>
     $(document).ready(function() {
 
-      $(".marquee input[type='checkbox']").change(function() {
+      $(document).foundation();
+
+      $(".movie-marquee input[type='checkbox']").change(function() {
         if($(this).is(':checked')) {
           $(this).next('label').addClass('checked');
         } else {
