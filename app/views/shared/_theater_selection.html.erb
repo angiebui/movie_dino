@@ -1,6 +1,6 @@
 <% @outing.get_theaters.each do |theater|  %>
 <div class='theater' data-theater-id='<%= theater.id %>'>
-  <h1><%= theater.name %></h1>
+  <h2><%= theater.name %></h2>
   <% @theater_selections = @outing.selections.where(:theater_id => theater.id) %>
   <ul>
     <% @outing.get_movies.each do |movie|  %>
@@ -9,7 +9,7 @@
         <li class='movie' data-movie-id='<%= movie.id %>'><h6><%= movie.display_title %></h6>
           <ul>
           <% @theater_movies.reverse.each do |selection| %>
-            <li data-selection-id='<%= selection.id %>'><%= check_box_tag(selection.movie.title, selection.id,
+            <li class='showtime-checkbox' data-selection-id='<%= selection.id %>'><%= check_box_tag(selection.movie.title, selection.id,
              checked = false, name: "selections[#{selection.movie.title}_#{selection.id}]") %><%=display_time selection.time %></li>
           <% end %>
         </ul>
