@@ -8,7 +8,7 @@
       <% unless @theater_movies.empty? %>
         <li class='movie' data-movie-id='<%= movie.id %>'><h6><%= movie.display_title %></h6>
           <ul>
-          <% @theater_movies.reverse.each do |selection| %>
+          <% @theater_movies.each do |selection| %>
             <li class='showtime-checkbox' data-selection-id='<%= selection.id %>'><%= check_box_tag(selection.movie.title, selection.id,
              checked = false, name: "selections[#{selection.movie.title}_#{selection.id}]") %><%=display_time selection.time %></li>
           <% end %>
