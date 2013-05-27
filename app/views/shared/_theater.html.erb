@@ -5,13 +5,12 @@
     <% @outing.get_movies.each do |movie|  %>
       <% @theater_movies = @theater_selections.where(movie_id: movie.id) %>
       <% unless @theater_movies.empty? %>
-        <li><h6><%= movie.title %></h6>
+        <li><h6><%= movie.display_title %></h6>
           <% @theater_movies.each do |selection| %>
             <%= display_time selection.time %>
           <% end %>
         </p>
         </li>
-        </ul>
       <% end %>
     <% end %>
   </ul>
