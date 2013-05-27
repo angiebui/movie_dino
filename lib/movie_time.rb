@@ -64,7 +64,6 @@ class MovieTime
           sanitized = sanitize_time_doc(time_doc)
           sanitized.each do |one_time|
             result = store_time!(one_time)
-            debugger
           end
         end
       end
@@ -150,13 +149,11 @@ class MovieTime
         time = base.change :hour => hour.to_i + 12, :min => min
       end
     end
-    debugger
     time
   end
 
   def fetch_movie(movie_doc)
     title = movie_doc.css('div.name a').text.downcase.gsub('-', ' ')
-    self.movie = Movie.find_or_create_by_title(title: title)
+    self.movie = Movie.where(title: title).first_or_create
   end
-
 end
