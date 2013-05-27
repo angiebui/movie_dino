@@ -4,11 +4,13 @@ describe Theater do
   let(:theater) { build(:theater) }
   it { should have_many(:showtimes) }
   it { should have_many(:movies).through(:showtimes) }
-  it { should validate_presence_of(:name)}
-  it { should validate_presence_of(:street)}
-  it { should validate_presence_of(:city)}
-  it { should validate_presence_of(:state)}
-  it { should validate_presence_of(:phone_number)}
+  it { should have_many(:theaters_zipcodes) }
+  it { should have_many(:zipcodes).through(:theaters_zipcodes) }
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:street) }
+  it { should validate_presence_of(:city) }
+  it { should validate_presence_of(:state) }
+  it { should validate_presence_of(:phone_number) }
 
   it {should validate_uniqueness_of(:street).scoped_to(:name,
                                                        :city,

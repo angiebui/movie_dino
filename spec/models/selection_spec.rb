@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Selection do
   it { should belong_to(:showtime) }
   it { should belong_to(:owner) }
+  it { should belong_to(:movie) }
+  it { should belong_to(:theater) }
 
   describe 'references the correct owner' do
     context 'when given an outing' do
