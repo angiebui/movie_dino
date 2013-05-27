@@ -14,4 +14,5 @@ class Theater < ActiveRecord::Base
   def self.outdated
     Theater.where('cache_date < ?', Time.now - 3.days)
   end
+  
 end

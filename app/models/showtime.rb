@@ -11,6 +11,10 @@ class Showtime < ActiveRecord::Base
     self.time.to_date
   end
 
+  def self.find_by_zipcode(zipcode)
+    Showtime.joins(:theater => :zipcodes).where('zipcodes.zipcode = ?', zipcode)
+  end
+
   def self.outdated
     today = DateTime.now
     Showtime.where('time < ?', today)
@@ -21,10 +25,6 @@ class Showtime < ActiveRecord::Base
                    :movie_id => args[:movie_ids]).select do |showtime|
       showtime.theater.zipcodes.map{|zipcode| zipcode.zipcode}.include?(args[:zipcode])
     end
-  end
-
-  def self.find_by_zipcode(zipcode)
-    Showtime.joins(:theater => :zipcodes).where('zipcodes.zipcode = ?', zipcode)
-  end
+  end 
 
 end
