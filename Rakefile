@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-MovieBuddy::Application.load_tasks
+MovieDino::Application.load_tasks

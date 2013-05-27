@@ -1,4 +1,4 @@
-MovieBuddy::Application.routes.draw do
+MovieDino::Application.routes.draw do
 
   resources :sessions
   resources :users
