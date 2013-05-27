@@ -2,7 +2,8 @@ class OutingsController < ApplicationController
 
   def new
     @outing = Outing.new
-    @movies = Movie.limit(12)
+    @zipcode = Zipcode.find_by_zipcode(current_zipcode)
+    @movies = @zipcode.movies
     # converts zipcode to appropriate timezone
 
     @time_zone = ActiveSupport::TimeZone.find_by_zipcode(current_zipcode)
