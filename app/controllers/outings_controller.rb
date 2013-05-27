@@ -29,7 +29,6 @@ class OutingsController < ApplicationController
 
   def show
     @outing = Outing.find(params[:id])
-    p @showtimes
     @showtimes = @outing.showtimes
   end
 
