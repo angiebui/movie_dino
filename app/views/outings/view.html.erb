@@ -8,7 +8,6 @@
   <% end %>
 </div>
 
-
 <div>
   <h4> Theaters </h4>
     <% @theaters.each do |theater| %>
@@ -20,7 +19,7 @@
   <h4> Which showtimes are you interested in? </h4>
   
   <% @outing.selections.each do |selection| %>
-    <div class='panel'>
+    <div class='panel' data-selection-id="<%=selection.id %>">
       <p><%= selection.showtime.movie.title %></p>
       <p><%= selection.showtime.theater.name %></p>
       <p><%= time_tag(selection.showtime.time.getlocal) %></p>
