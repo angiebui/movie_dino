@@ -65,9 +65,9 @@
       // add navigation arrows if there is more than 1 item
       if( this.itemsCount > 1 ) {
         // add navigation arrows (the previous arrow is not shown initially):
-        this.$navPrev = $( '<span class="marquee-prev">&lt;</span>' ).hide();
-        this.$navNext = $( '<span class="marquee-next">&gt;</span>' );
-        $( '<nav/>' ).append( this.$navPrev, this.$navNext ).appendTo( this.$el );
+        this.$navPrev = $( '<span class="marquee-prev"><i class="icon-angle-left"></i></span>' ).hide();
+        this.$navNext = $( '<span class="marquee-next"><i class="icon-angle-right"></i></span>' );
+        $( '<nav/>' ).append( this.$navPrev, this.$navNext ).appendTo( $('#movie-marquee-wrapper') );
       }
 
     },
@@ -134,9 +134,11 @@
       $.each($posters, function() {
         var $label = $(this).find('label');
         console.log($label.css( 'backgroundImage' ));
+
         if($label.css( 'backgroundImage' ) == 'none') {
           $label.css( 'backgroundImage', 'url(' + $label.data( 'image-url' ) + ')');
         }
+
       });
 
     },

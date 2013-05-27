@@ -40,11 +40,11 @@ p {
 }
 
 .movie-marquee div label:hover {
-  background-color: green;
+  background-color: #3299BB;
 }
 
 .movie-marquee div label.checked {
-  border: 5px solid green;
+  border: 5px solid #3299BB;
 }
 
 /*
@@ -88,33 +88,37 @@ p {
   line-height: 1;
 }
 
-#movie-marquee nav span {
+#movie-marquee-wrapper nav span {
   position: absolute;
   top: 50%;
   width: 50px;
   height: 100px;
-  background: #2ba6cb;
+  background: #3299BB;
   color: #fff;
   font-size: 50px;
   text-align: center;
-  margin-top: -75px;
+  margin-top: -50px;
   line-height: 100px;
   cursor: pointer;
   font-weight: normal;
 }
 
-#movie-marquee nav span:hover {
+#movie-marquee-wrapper nav span:hover {
   background: #378fc3;
 }
 
-#movie-marquee nav span.marquee-next {
+#movie-marquee-wrapper nav span.marquee-next {
   position: absolute;
-  right: 0px;
+  right: -50px;
 }
 
-#movie-marquee nav span.marquee-prev {
+#movie-marquee-wrapper nav span.marquee-prev {
   position: absolute;
-  left: 0px;
+  left: -50px;
+}
+
+#movie-marquee-wrapper {
+  position: relative;
 }
 
 /*
