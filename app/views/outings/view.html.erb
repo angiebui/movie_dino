@@ -16,6 +16,8 @@
 </div>
 <hr>
 
+  <%= render 'shared/theater' %>
+
   <h4> Which showtimes are you interested in? </h4>
   
   <% @outing.selections.each do |selection| %>
@@ -26,4 +28,5 @@
       <p><%= time_tag(selection.showtime.time.getlocal) %></p>
     </div>
   <% end %>
+
 
