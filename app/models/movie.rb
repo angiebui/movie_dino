@@ -12,7 +12,7 @@ class Movie < ActiveRecord::Base
 
   end
 
-  def self.sync_movie
+  def self.sync_movie_data
     not_synced = Movie.where(:poster_large => nil,
                            :poster_med => nil,
                            :runtime => nil,
