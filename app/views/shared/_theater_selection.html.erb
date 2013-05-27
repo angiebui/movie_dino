@@ -1,5 +1,5 @@
 <% @outing.get_theaters.each do |theater|  %>
-<div data-theater-id='<%= theater.id %>'>
+<div class='theater' data-theater-id='<%= theater.id %>'>
   <h1><%= theater.name %></h1>
   <% @theater_selections = @outing.selections.where(:theater_id => theater.id) %>
   <ul>

@@ -8,7 +8,7 @@
   <% end %>
 </div>
 
-<div>
+<div class='theater-filter'>
   <h4> Theaters </h4>
     <% @theaters.each do |theater| %>
       <%= check_box_tag(theater.name, theater.id, checked = true, name: "theaters[#{theater.name}]", :data => {theater_id: "#{theater.id}", theater_name: "#{theater.name}"}) %><%= theater.name %><br>
@@ -16,17 +16,8 @@
 </div>
 <hr>
 
-  <%= render 'shared/theater_selection' %>
-
   <h4> Which showtimes are you interested in? </h4>
+    <%= render 'shared/theater_selection' %>
   
-  <% @outing.selections.each do |selection| %>
-    <div class='panel' data-selection-id="<%=selection.id %>">
-      <%= check_box_tag(selection.id, selection.id, checked = false, name: "selection[#{selection.id}]", :data => {theater_id: "#{selection.showtime.theater.id}", movie_id: "#{selection.showtime.movie.id}"}) %>
-      <p><%= selection.showtime.movie.title %></p>
-      <p><%= selection.showtime.theater.name %></p>
-      <p><%= time_tag(selection.showtime.time.getlocal) %></p>
-    </div>
-  <% end %>
 
 
