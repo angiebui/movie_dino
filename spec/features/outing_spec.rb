@@ -1,21 +1,26 @@
 require 'spec_helper'
 require 'debugger'
 
-describe 'Outing',  :js => true do
+describe 'Outings', :js => true do 
+  before :each do
+    visit root_path
+    fill_in 'zipcode', with: '94108'
+    click_button 'Start an outing'
+  end
 
-  context 'on the main page' do
-    before :each do
-      visit root_path
+  context 'on the outings create page' do
+    it 'allows you to select tomorrow for date' do
+      select('Tomorrow', from: 'day')
     end
 
-    it 'allows you to add a zipcode' do
-      fill_in 'zipcode', with: '94108'
-      click_button 'Start an outing'
+    it 'allows you to select a start_time' do
+      select('1:00p', from: 'start_time')
     end
 
-    it 'should have a Facebook login' do
-      page.should have_content 'Sign in with Facebook'
+    it 'allows you to select an end_time' do
+      select('10:00p', from: 'end_time')
     end
   end
+
 
 end
