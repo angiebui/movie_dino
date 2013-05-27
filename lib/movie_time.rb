@@ -60,7 +60,7 @@ class MovieTime
       theater_movies.each do |movie_doc|
         fetch_movie(movie_doc)
         times_doc = movie_doc.css('div.times')
-        times_doc.each do |time_doc|
+        times_doc.each do |time_doc| 
           sanitized = sanitize_time_doc(time_doc)
           sanitized.each do |one_time|
             result = store_time!(one_time)
@@ -77,7 +77,6 @@ class MovieTime
                     movie: movie, 
                     time: time)
   end
-
 
   def sanitize_time_doc(time_doc)
     sanitized = time_doc.text.gsub(/&nbsp/,'').gsub(/\u200e/,'')
@@ -104,9 +103,6 @@ class MovieTime
     end
     sanitized
   end
-
-
-
 
   def click_next_page
     page.links.each do |link|
