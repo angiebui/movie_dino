@@ -1,3 +1,5 @@
+require 'rmagick'
+
 class Movie < ActiveRecord::Base
   ROTTEN_ADDRESS = 'http://api.rottentomatoes.com/api/public/v1.0'
   ROTTEN_API = ENV['ROTTEN_APP_ID']
