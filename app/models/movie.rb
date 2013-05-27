@@ -15,6 +15,11 @@ class Movie < ActiveRecord::Base
     self.title.titleize
   end
 
+  def fetch_movie_count(count_request)
+    movies_json = uri_to_json(count_request)
+    movies_json['total']
+  end
+
   def sync_after_create
     MovieWorker.perform_async(self.id)
   end
@@ -40,14 +45,10 @@ class Movie < ActiveRecord::Base
                            :audience_score => matched_result['ratings']['audience_score'])
   end
 
-  def fetch_movie_count(count_request)
-    movies_json = uri_to_json(count_request)
-    movies_json['total']
-  end
-
   def uri_to_json(url)
     uri = URI(url)
     request = Net::HTTP::get(uri)
     movies_json = JSON.parse(request)
   end
+  
 end
