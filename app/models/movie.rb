@@ -1,4 +1,7 @@
-class Movie < ActiveRecord::Base
+class Movie < ActiveRecord::
+  ROTTEN_ADDRESS = 'http://api.rottentomatoes.com/api/public/v1.0'
+  ROTTEN_API = ENV['ROTTEN_APP_ID']
+
   attr_accessible :title, :poster_url
   has_many :showtimes
   has_many :theaters, :through => :showtimes
@@ -9,33 +12,34 @@ class Movie < ActiveRecord::Base
 
   end
 
-  def self.sync_posters
-    rotten_address = 'http://api.rottentomatoes.com/api/public/v1.0'
-    rotten_api = ENV['ROTTEN_APP_ID']
+  def self.sync_movie
     movies_json = []
     matched_movies = []
 
     no_match = Movie.where(:poster_url => nil)
     no_match.each do |movie|
 
-      single_request = rotten_address + '/movies.json?apikey=' + rotten_api + "&q=#{movie.title.gsub(':', '').gsub('(', '').gsub(')', '').gsub(' an imax 3d experience', '').gsub(' ', '%20')}"
+      single_request = ROTTEN_ADDRESS + '/movies.json?apikey=' + ROTTEN_API + "&q=#{movie.title.gsub(':', '').gsub('(', '').gsub(')', '').gsub(' an imax 3d experience', '').gsub(' ', '%20')}"
       temp = uri_to_json(single_request)
-      debugger
+      temp = temp['movies'].first
       
-      movie.update_attributes(:poster_url => temp['movies'].first['posters']['profile'])
+      movie.update_attributes(:poster_large => temp['posters']['original'],
+                              :poster_med => temp['posters']['profile'],
+                              :runtime => temp['runtime'],
+                              :mpaa_rating => temp['mpaa_rating'],
+                              :critics_score => temp['critics_score'],
+                              :audience_score => temp['audience_score'])
     end
   end
 
   def self.fetch_movie_json!
-    rotten_address = 'http://api.rottentomatoes.com/api/public/v1.0'
-    rotten_api = ENV['ROTTEN_APP_ID']
     movies_json = []
-    count_request = rotten_address + '/lists/movies/in_theaters.json?apikey=' + rotten_api
+    count_request = ROTTEN_ADDRESS + '/lists/movies/in_theaters.json?apikey=' + ROTTEN_API
 
     total_movies = fetch_movie_count!(count_request)
 
     (total_movies / 50 + 1).times do |page|
-      movie_search_url = rotten_address + '/lists/movies/in_theaters.json?apikey=' + rotten_api + "&page_limit=50&page=#{page + 1}"
+      movie_search_url = ROTTEN_ADDRESS + '/lists/movies/in_theaters.json?apikey=' + ROTTEN_API + "&page_limit=50&page=#{page + 1}"
       
       temp = uri_to_json(movie_search_url)
 
