@@ -1,0 +1,27 @@
+<div class='movie-marquee' id='movie-marquee'>
+  <%= form_for @attendee do |f| %>
+    <div class='movie-filter'>
+     <h4> Movies </h4>
+      <% @movies.each do |movie| %>
+        <div class="large-3 columns">
+          <%= check_box_tag(movie.title, movie.id, checked = true, name: "movies[#{movie.title}]", :data => {movie_id: "#{movie.id}", movie_title: "#{movie.title}"}) %>
+          <%= label_tag(movie.title, nil, :class => 'checked panel', :style => "background-image: url(#{movie.poster_large})")%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='theater-filter'>
+    <h4> Theaters </h4>
+      <% @theaters.each do |theater| %>
+        <%= check_box_tag(theater.name, theater.id, checked = true, name: "theaters[#{theater.name}]", :data => {theater_id: "#{theater.id}", theater_name: "#{theater.name}"}) %><%= theater.name %><br>
+      <% end %>
+  </div>
+  <hr>
+
+    <h4> Which showtimes are you interested in? </h4>
+      <%= render 'shared/theater_selection' %>
+  <%= f.submit 'Submit', id: 'attendee-submit' %>
+<% end %>
+
+

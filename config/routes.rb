@@ -3,6 +3,7 @@ MovieDino::Application.routes.draw do
   resources :sessions
   resources :users
   resources :outings
+  resources :attendees
 
   root to: 'pages#index'
 
@@ -11,7 +12,7 @@ MovieDino::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
   match '/users', to: 'pages#index'
-  get '/outings/:id/view' , to: 'outings#view'
+  match '/outings/:id/form' , to: 'attendees#new'
 
   ###################################
   #please dont move this, it's greedy.
