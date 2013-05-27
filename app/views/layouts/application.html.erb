@@ -16,6 +16,7 @@
     <%= yield %>
   </div>
   <%= javascript_include_tag "movie_marquee" %>
+  <script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
   <script>
     $(document).ready(function() {
 
