@@ -5,6 +5,7 @@ class Theater < ActiveRecord::Base
 
   has_many :zipcodes, through: :theaters_zipcodes
   has_many :theaters_zipcodes
+  has_many :selections
 
   validates_presence_of :name, :street, :city, :state, :phone_number
   validates_uniqueness_of :street, scope: [:name, :city, :state, :phone_number]
