@@ -1,10 +1,11 @@
 class MovieTime
-  attr_reader :page, :increment, :agent
+  attr_reader :page, :increment, :agent, :time_zone
 
   def initialize(location)
     @zipcode = Zipcode.find_or_create_by_zipcode(location)
     @google_address = "http://www.google.com/movies?hl=en&near=#{location}&date=#{increment}"
     @agent = Mechanize.new
+    @time_zone = find_time_zone
 
     @location = location
     open_page(@location)
@@ -23,6 +24,11 @@ class MovieTime
       raise ArgumentError
     end
     MovieTime.new(location)
+  end
+
+  def find_time_zone
+    tz_string = ActiveSupport::TimeZone.find_by_zipcode(@zipcode.zipcode)
+    ActiveSupport::TimeZone.new(tz_string)
   end
 
   def fetch_posters!
@@ -57,7 +63,7 @@ class MovieTime
         movie = fetch_movies(movie_doc)
         times_doc = movie_doc.css('div.times')
         times_doc.each do |time_doc|
-          sanitized = time_doc.text.gsub(/&nbsp/,'')
+          sanitized = time_doc.text.gsub(/&nbsp/,'').gsub(/\u200e/,'')
           am, pm = [], []
           if sanitized =~ /am/
             sanitized.split(' ').each_with_index do |time, index|
@@ -119,11 +125,24 @@ class MovieTime
   end
 
   def datetime(increment, time)
-    # What the heck is google giving us? 
-    # String time doesn't act like a string.
-    # Can't get rid of the 'white space'
-    # " 10:30 "
-    Chronic.parse("#{increment} days from now at #{time}")
+    # Chronic.parse("#{increment} days from now at #{time}")
+    base = time_zone.at(increment.days.from_now)
+    hour, min = time.scan(/\d{1,2}/)
+    if time =~ /am/
+      if time =~ /12:/
+        time = base.change :hour => '00', :min => min
+      else
+        time = base.change :hour => hour, :min => min
+      end
+    elsif time =~ /pm/
+      if time =~ /12:/
+        time = base.change :hour => hour, :min => min
+      else
+        time = base.change :hour => hour.to_i + 12, :min => min
+      end
+    end
+    debugger
+    time
   end
 
   def fetch_movies(movie_doc)
