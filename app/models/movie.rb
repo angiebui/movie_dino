@@ -40,6 +40,12 @@ class Movie < ActiveRecord::Base
                            :audience_score => matched_result['ratings']['audience_score'])
   end
 
+  def store_image(img_url)
+    image = open(img_url)
+    converted_image = Magick::Image.read(image)
+    converted_image = converted_image.resize_to_fill(100,200)
+  end
+
   def fetch_movie_count(count_request)
     movies_json = uri_to_json(count_request)
     movies_json['total']

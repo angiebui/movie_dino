@@ -29,6 +29,10 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
+    aws-sdk (1.10.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
@@ -48,6 +52,10 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.9.1)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -129,6 +137,12 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    paperclip (3.4.2)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
     pg (0.15.1)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
@@ -213,6 +227,7 @@ GEM
     unf (0.1.1)
       unf_ext
     unf_ext (0.0.6)
+    uuidtools (2.1.4)
     webrobots (0.1.1)
     websocket (1.0.7)
     xpath (1.0.0)
@@ -224,6 +239,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk
   bcrypt-ruby (~> 3.0.0)
   better_errors
   binding_of_caller
@@ -238,6 +254,7 @@ DEPENDENCIES
   mechanize
   newrelic_rpm
   omniauth-facebook (~> 1.4.0)
+  paperclip
   pg
   quiet_assets
   rails (= 3.2.13)
