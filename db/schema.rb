@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527201252) do
+ActiveRecord::Schema.define(:version => 20130527232807) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20130527201252) do
     t.string   "mpaa_rating"
     t.integer  "critics_score"
     t.integer  "audience_score"
+    t.string   "poster"
   end
 
   create_table "outings", :force => true do |t|

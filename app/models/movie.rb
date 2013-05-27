@@ -1,4 +1,3 @@
-require 'rmagick'
 
 class Movie < ActiveRecord::Base
   ROTTEN_ADDRESS = 'http://api.rottentomatoes.com/api/public/v1.0'
@@ -6,7 +5,7 @@ class Movie < ActiveRecord::Base
 
   after_commit :sync_after_create, :on => :create
 
-  attr_accessible :title, :poster_large, :poster_med, :runtime, :mpaa_rating, :critics_score, :audience_score
+  attr_accessible :title, :poster_large, :poster_med, :runtime, :mpaa_rating, :critics_score, :audience_score, :poster
   has_many :showtimes
   has_many :theaters, :through => :showtimes
   has_many :selections
@@ -40,16 +39,19 @@ class Movie < ActiveRecord::Base
                            :mpaa_rating    => matched_result['mpaa_rating'],
                            :critics_score  => matched_result['ratings']['critics_score'],
                            :audience_score => matched_result['ratings']['audience_score'])
+    store_image(self.poster_large)
   end
 
   def store_image(img_url)
     bucket = AWS::S3.new.buckets['moviedino']
-    image = open(img_url)
-    converted_image = Magick::Image.read(image)
-    converted_image = converted_image.resize_to_fill(100,200)
+    image = MiniMagick::Image.open(img_url)
+    image.resize('400')
     obj = bucket.objects[self.filename]
-    obj.write(single_requiest: true, content_type: 'image/gif', data: converted_image)
+    obj.write(acl: :public_read, single_requiest: true, content_type: 'image/gif', data: image.to_blob)
+    self.update_attributes(poster: obj.public_url.to_s)
   end
+
+
 
   def filename
     self.title.gsub(/ /,'-')

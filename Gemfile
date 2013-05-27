@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'pg'
 
-gem 'paperclip'
-gem 'rmagick'
+gem 'mini_magick'
 gem 'aws-sdk'
 
 gem 'jquery-rails'
