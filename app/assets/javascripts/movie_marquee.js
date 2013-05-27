@@ -91,6 +91,7 @@
       this.old = this.current;
       if( direction === 'next' && this.current < this.itemsCount - 1 ) {
         ++this.current;
+        this._loadImages(); //comment out when we fix image load
       }
       else if( direction === 'previous' && this.current > 0 ) {
         --this.current;
@@ -122,6 +123,21 @@
       else {
         transitionendfn.call();
       }
+
+    },
+    _loadImages : function() {
+
+      var current = this.current + 1;
+      var list = this.$items[current];
+      var $posters = $(list).find('div');
+
+      $.each($posters, function() {
+        var $label = $(this).find('label');
+        console.log($label.css( 'backgroundImage' ));
+        if($label.css( 'backgroundImage' ) == 'none') {
+          $label.css( 'backgroundImage', 'url(' + $label.data( 'image-url' ) + ')');
+        }
+      });
 
     },
     _toggleNavControls : function() {
