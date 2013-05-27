@@ -5,4 +5,5 @@ class ShowtimeWorker
     raise ArgumentError unless zipcode
     MovieTime.fetch!(zip: zipcode.to_s)
   end
+  
 end
