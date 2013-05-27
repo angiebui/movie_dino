@@ -14,18 +14,18 @@
           <li>
             <div class='large-3 columns'>
               <%= check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
-              <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_url})") %>
+              <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_large})") %>
             </div>
         <% elsif (index + 1) % 4 == 0 %>
           <div class='large-3 columns'>
             <%= check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
-            <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_url})") %>
+            <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_large})") %>
           </div>
         </li>
         <% else %>
           <div class='large-3 columns'>
             <%= check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
-            <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_url})") %>
+            <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_large})") %>
           </div>
         <% end %>
       <% end %>

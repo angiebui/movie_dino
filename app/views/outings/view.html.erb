@@ -1,0 +1,22 @@
+
+<div class="movie-marquee" id="movie-marquee">
+  
+  <% @movies.each do |movie| %>
+    <div class="large-3 columns">
+      <%= check_box_tag(movie.title, movie.id, checked = true, name: "movies[#{movie.title}]") %>
+       <%= label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_large})") %>
+    </div>
+  <% end %>
+
+</div>
+
+<div class='row'>
+  <h4> Which showtimes are you interested in? </h4>
+
+  <% @outing.selections.each do |selection| %>
+    <p><%= selection.showtime.movie.title %></p>
+    <p><%= selection.showtime.theater.name %></p>
+    <p><%= time_tag(selection.showtime.time.getlocal) %></p>
+    <hr>
+  <% end %>
+</div>

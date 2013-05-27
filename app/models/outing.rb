@@ -9,6 +9,9 @@ class Outing < ActiveRecord::Base
 
   validates_uniqueness_of :link
 
+  def get_movies
+    self.selections.map {|s| s.showtime.movie }.uniq
+  end
 
   private
   def generate_link

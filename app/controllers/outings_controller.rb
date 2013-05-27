@@ -48,6 +48,11 @@ class OutingsController < ApplicationController
     redirect_to new_outing_path
   end
 
+  def view
+    @outing = Outing.find(params[:id])
+    @movies = @outing.get_movies
+  end
+
 end
 
 
