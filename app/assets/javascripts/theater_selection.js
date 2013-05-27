@@ -13,6 +13,7 @@ function theaterFilter()
     if ($(this).attr('checked')) {
       theaterBox.hide();
       $(this).removeAttr('checked');
+      theaterBox.find('.showtime-checkbox').children().removeAttr('checked');
     } else {
       theaterBox.show();
       $(this).attr('checked', 'checked');
@@ -30,6 +31,7 @@ function movieFilter()
     if($(this).attr('checked')) {
       movieCheckBoxes.hide();
       $(this).removeAttr('checked');
+      movieCheckBoxes.find('.showtime-checkbox').children().removeAttr('checked');
     } else {
       movieCheckBoxes.show();
       $(this).attr('checked', 'checked');
