@@ -7,12 +7,12 @@ class AttendeesController < ApplicationController
   end
 
   def create
-    @attendee = Attendee.new
-    @attendee.save!
-    selections = convert_to_id(params[:selections])
-    
-    selections.each do |id|
-      @attendee.selections << Selection.find(id)
+    @attendee = Attendee.new(params[:attendee])
+    if @attendee.save
+      selections = convert_to_id(params[:selections])
+      selections.each {|id| @attendee.selections << Selection.find(id) }
+    else
+      # show errors 
     end
   end
 

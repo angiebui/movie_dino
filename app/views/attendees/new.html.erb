@@ -1,5 +1,9 @@
 <div class='movie-marquee' id='movie-marquee'>
   <%= form_for @attendee do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.hidden_field :outing_id, value: @outing.id %>
+
     <div class='movie-filter'>
      <h4> Movies </h4>
       <% @movies.each do |movie| %>
@@ -21,7 +25,7 @@
 
     <h4> Which showtimes are you interested in? </h4>
       <%= render 'shared/theater_selection' %>
-  <%= f.submit 'Submit', id: 'attendee-submit' %>
+  <%= f.submit 'Submit' %>
 <% end %>
 
 
