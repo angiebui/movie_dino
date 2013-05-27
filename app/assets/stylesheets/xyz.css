@@ -1,0 +1,174 @@
+body {
+  font-family: 'Oswald', sans-serif;
+  background: #f8f8f8;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Oswald', sans-serif;
+  text-shadow: 1px 1px #fff;
+}
+
+p {
+  line-height: 1;
+}
+
+ #dino-form .button {
+  position: relative;
+   margin-top: 20px;
+ }
+
+#movie-grid .panel {
+  height: 228px;
+  background-size : 100%;
+  background-repeat : no-repeat;
+}
+
+.movie-marquee div input[type='checkbox'] {
+  display:none;
+}
+
+.movie-marquee div label {
+  color: #eee;
+  font-size: 1.5em;
+  text-shadow: 1px 1px #333;
+  text-transform: uppercase;
+}
+
+.movie-marquee div label:hover {
+  background-color: green;
+}
+
+.movie-marquee div label.checked {
+  border: 5px solid green;
+}
+
+/*
+ * MOVIE MARQUEE
+ */
+
+#movie-marquee {
+  overflow: hidden;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+#movie-marquee ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#movie-marquee ul li {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
+  float: left;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+#movie-marquee ul li > a,
+#movie-marquee ul li > div {
+  display: block;
+  text-align: center;
+  outline: none;
+}
+
+#movie-marquee .panel {
+  height: 328px;
+  background-size : 100% 100%;
+  background-repeat : no-repeat;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+#movie-marquee nav span {
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 100px;
+  background: #2ba6cb;
+  color: #fff;
+  font-size: 50px;
+  text-align: center;
+  margin-top: -75px;
+  line-height: 100px;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+#movie-marquee nav span:hover {
+  background: #378fc3;
+}
+
+#movie-marquee nav span.marquee-next {
+  position: absolute;
+  right: 0px;
+}
+
+#movie-marquee nav span.marquee-prev {
+  position: absolute;
+  left: 0px;
+}
+
+/*
+ * FOOTER
+ */
+
+footer {
+  font-family: 'credit_block', sans-serif;
+  color: #fff;
+  font-size: 2.25em;
+  text-align: center;
+  background: #111;
+}
+
+footer p {
+  margin-bottom: 0;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer ul li {
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+}
+
+footer #credits {
+  margin: 40px 0;
+}
+
+footer #date {
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+}
+
+footer #date .date {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #3299BB;
+}
+
+footer #date .rating {
+  font-size: 0.5em;
+  padding: 2px 5px;
+  border: 1px solid #fff;
+}
+
+footer #date .twitter a {
+  color: #fff;
+  font-size: 0.75em;
+}
+
+footer #date .twitter a:hover {
+  color: #3299BB;
+}
