@@ -11,6 +11,10 @@ class Movie < ActiveRecord::Base
 
   fuzzily_searchable :title
 
+  def display_title
+    self.title.titleize
+  end
+
   def sync_after_create
     MovieWorker.perform_async(self.id)
   end
