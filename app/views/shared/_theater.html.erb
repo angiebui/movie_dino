@@ -1,0 +1,16 @@
+<% theaters = @showtimes.map{|show| show.theater }.uniq %>
+<% theaters.each do |theater| %>
+  <% theater_shows = Showtime.joins(:selections)>
+  <h1><%= theater.name %></h1>
+  <% theater.movies.each do |movie| %>
+    <% if show.movie>
+    <h3> <%= movie.title %> </h3>
+    <ul>
+    <% @showtimes.each do |show| %>
+      <% if show.movie == movie && show.theater == theater %>
+        <li><%= show.time %></li>
+      <% end %>
+    <% end %>
+    </ul>
+  <% end %>
+<% end %>

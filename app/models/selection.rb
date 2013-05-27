@@ -3,5 +3,7 @@ class Selection < ActiveRecord::Base
 
   belongs_to :owner, :polymorphic => true
   belongs_to :showtime
+  belongs_to :movie
+  belongs_to :theater
 
 end

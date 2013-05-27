@@ -3,6 +3,7 @@ class Outing < ActiveRecord::Base
 
   has_many :selections, as: :owner
   has_many :attendees
+  has_many :showtimes, through: :selections
   belongs_to :user
 
   before_validation :generate_link, on: :create

@@ -7,6 +7,7 @@ class Movie < ActiveRecord::Base
   attr_accessible :title, :poster_large, :poster_med, :runtime, :mpaa_rating, :critics_score, :audience_score
   has_many :showtimes
   has_many :theaters, :through => :showtimes
+  has_many :selections
 
   fuzzily_searchable :title
 

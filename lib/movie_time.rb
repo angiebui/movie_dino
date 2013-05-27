@@ -63,8 +63,7 @@ class MovieTime
         times_doc.each do |time_doc| 
           sanitized = sanitize_time_doc(time_doc)
           sanitized.each do |one_time|
-            result = store_time!(one_time)
-            debugger
+            store_time!(one_time)
           end
         end
       end
@@ -150,7 +149,6 @@ class MovieTime
         time = base.change :hour => hour.to_i + 12, :min => min
       end
     end
-    debugger
     time
   end
 

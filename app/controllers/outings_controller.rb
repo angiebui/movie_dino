@@ -4,7 +4,7 @@ class OutingsController < ApplicationController
     @outing = Outing.new
     @movies = Movie.limit(12)
     # converts zipcode to appropriate timezone
-    
+
     @time_zone = ActiveSupport::TimeZone.find_by_zipcode(current_zipcode)
     @time_ranges = time_range
     @days = day_range(@time_zone)
@@ -21,12 +21,16 @@ class OutingsController < ApplicationController
     showtimes = Showtime.possible_times(start_time: start_time,
                                         end_time: end_time, movie_ids: movies,
                                         zipcode: current_zipcode)
-    showtimes.each {|showtime| outing.selections.create(showtime: showtime)}
+    showtimes.each {|showtime| outing.selections.create(showtime: showtime,
+                                                        movie: showtime.movie,
+                                                        theater: showtime.theater)}
     redirect_to outing
   end
 
   def show
     @outing = Outing.find(params[:id])
+    p @showtimes
+    @showtimes = @outing.showtimes
   end
 
   def link_show
