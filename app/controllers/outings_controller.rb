@@ -23,6 +23,7 @@ class OutingsController < ApplicationController
                                         zipcode: current_zipcode)
     showtimes.each {|showtime| outing.selections.create(showtime: showtime,
                                                         movie: showtime.movie,
+                                                        time: showtime.time,
                                                         theater: showtime.theater)}
     redirect_to outing
   end

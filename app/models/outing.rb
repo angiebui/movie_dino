@@ -4,6 +4,9 @@ class Outing < ActiveRecord::Base
   has_many :selections, as: :owner
   has_many :attendees
   has_many :showtimes, through: :selections
+  has_many :theaters, through: :selections
+  has_many :movies, through: :selections
+  has_many :times, through: :selections
   belongs_to :user
 
   before_validation :generate_link, on: :create
@@ -11,11 +14,11 @@ class Outing < ActiveRecord::Base
   validates_uniqueness_of :link
 
   def get_movies
-    self.selections.map {|s| s.showtime.movie }.uniq
+    self.movies.uniq
   end
 
   def get_theaters
-    self.selections.map {|s| s.showtime.theater }.uniq
+    self.theaters.uniq
   end
 
   private
