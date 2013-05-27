@@ -1,0 +1,17 @@
+<% @outing.get_theaters.each do |theater|  %>
+  <h1><%= theater.name %></h1>
+  <% @theater_selections = @outing.selections.where(:theater_id => theater.id) %>
+  <ul>
+    <% @outing.get_movies.each do |movie|  %>
+      <% @theater_movies = @theater_selections.where(movie_id: movie.id) %>
+      <% unless @theater_movies.empty? %>
+        <li><%= movie.title %></li>
+        <ul>
+          <% @theater_movies.each do |selection| %>
+            <li><%= selection.time %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

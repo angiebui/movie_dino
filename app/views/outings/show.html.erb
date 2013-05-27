@@ -1,11 +1,3 @@
 <h2> Possible Showtimes </h2>
 
-<% @outing.selections.each do |selection| %>
-  <p><%= selection.showtime.movie.title %></p>
-  <p><%= selection.showtime.theater.name %></p>
-  <p><%= time_tag(selection.showtime.time.getlocal) %></p>
-  <hr>
-<% end %>
-
-
 <%= render 'shared/theater'  %>
