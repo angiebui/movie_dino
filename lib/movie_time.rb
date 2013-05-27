@@ -154,7 +154,6 @@ class MovieTime
 
   def fetch_movie(movie_doc)
     title = movie_doc.css('div.name a').text.downcase.gsub('-', ' ')
-    self.movie = Movie.find_or_create_by_title(title: title)
+    self.movie = Movie.where(title: title).first_or_create
   end
-
 end
