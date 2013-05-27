@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
 
   def datetime_in_utc(day, time, time_zone)
     local = time_zone.at(day.to_i.days.from_now).change(:hour => time.to_i)
+    p local
     local.utc
   end
 
