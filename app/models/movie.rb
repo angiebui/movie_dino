@@ -41,9 +41,16 @@ class Movie < ActiveRecord::Base
   end
 
   def store_image(img_url)
+    bucket = AWS::S3.new.bucket['moviedino']
     image = open(img_url)
     converted_image = Magick::Image.read(image)
     converted_image = converted_image.resize_to_fill(100,200)
+    obj = bucket.objects[self.filename]
+    obj.write(single_requiest: true, content_type: 'image/gif', data: converted_image)
+  end
+
+  def filename
+    self.title.gsub(/ /,'-')
   end
 
   def fetch_movie_count(count_request)
