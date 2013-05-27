@@ -51,6 +51,7 @@ class OutingsController < ApplicationController
   def view
     @outing = Outing.find(params[:id])
     @movies = @outing.get_movies
+    @theaters = @outing.get_theaters
   end
 
 end

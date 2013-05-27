@@ -10,6 +10,13 @@
 
 </div>
 
+<div>
+  <% @theaters.each do |theater| %>
+    <%= check_box_tag(theater.name, theater.id, checked = true, name: "theaters[#{theater.name}]") %>
+    <%= label_tag(theater.name, nil, :class => 'checked panel') %>
+  <% end %>
+</div>
+
 <div class='row'>
   <h4> Which showtimes are you interested in? </h4>
 
