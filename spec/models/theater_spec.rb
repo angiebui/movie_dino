@@ -14,9 +14,9 @@ describe Theater do
                                                        :city,
                                                        :state,
                                                        :phone_number)}
-
   describe 'attributes' do
     it 'should have a name' do
+
       theater.name.should eq "A Theater"
     end
     it 'should have a street' do

@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def current_zipcode
+    session[:zipcode]
+  end
+
   def time_range
     values = (8..24).to_a
     TIMES.zip(values)
@@ -27,6 +31,7 @@ class ApplicationController < ActionController::Base
 
   def datetime_in_utc(day, time, time_zone)
     local = time_zone.at(day.to_i.days.from_now).change(:hour => time.to_i)
+    p local
     local.utc
   end
 
