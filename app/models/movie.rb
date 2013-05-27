@@ -16,13 +16,13 @@ class Movie < ActiveRecord::Base
     movies_json = []
     matched_movies = []
 
-    no_match = Movie.where(:poster_large => nil,
+    not_synced = Movie.where(:poster_large => nil,
                            :poster_med => nil,
                            :runtime => nil,
                            :mpaa_rating => nil,
                            :critics_score => nil,
                            :audience_score => nil)
-    no_match.each do |movie|
+    not_synced.each do |movie|
 
       single_request = ROTTEN_ADDRESS + '/movies.json?apikey=' + ROTTEN_API + "&q=#{movie.title.gsub('[^a-zA-Z\d\s&]', '').gsub(' an imax 3d experience', '').gsub(' ', '%20')}"
       temp = uri_to_json(single_request)
