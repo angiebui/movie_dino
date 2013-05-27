@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem 'rename'
 gem 'rails', '3.2.13'
 gem 'pg'
 
