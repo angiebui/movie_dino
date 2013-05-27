@@ -19,9 +19,12 @@
 
   <h4> Which showtimes are you interested in? </h4>
 
+  
   <% @outing.selections.each do |selection| %>
-    <p><%= selection.showtime.movie.title %></p>
-    <p><%= selection.showtime.theater.name %></p>
-    <p><%= time_tag(selection.showtime.time.getlocal) %></p>
-    <hr>
+    <div class='panel'>
+      <p><%= selection.showtime.movie.title %></p>
+      <p><%= selection.showtime.theater.name %></p>
+      <p><%= time_tag(selection.showtime.time.getlocal) %></p>
+     </div>
   <% end %>
+
