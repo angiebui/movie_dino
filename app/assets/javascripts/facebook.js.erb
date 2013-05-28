@@ -19,7 +19,13 @@ window.fbAsyncInit = function() {
     e.preventDefault();
     FB.login(function(response) {
       if (response.authResponse) {
-        window.location = '/auth/facebook';
+        $.getJSON('/facebook/auth', response.authResponse)
+        .done(function(data){
+          console.log(data)
+        })
+        .fail(function(){
+          console.log('failure');
+        })
       }
     });
   });

@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'mechanize'
 
 #login
-gem 'omniauth-facebook', '~> 1.4.0'
+gem 'oauth2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # async stuffs

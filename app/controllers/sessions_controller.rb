@@ -1,9 +1,13 @@
 class SessionsController < ApplicationController
 
   def create
-    user = User.from_omniauth(env['omniauth.auth'])
+    user = User.find_or_create_user_by_token(params)
     session[:user_id] = user.id
-    redirect_to '/'
+    if user.errors.empty?
+      render json: {result: 'success'}, status: :ok
+    else
+      render json: {result: 'errors'}, status: :unauthorized
+    end
   end
 
   def destroy
@@ -13,5 +17,4 @@ class SessionsController < ApplicationController
 
   def index
   end
-  
 end
