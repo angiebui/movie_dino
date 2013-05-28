@@ -34,9 +34,6 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
-    better_errors (0.9.0)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
@@ -52,7 +49,6 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.9.1)
-    coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -234,7 +230,6 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   bcrypt-ruby (~> 3.0.0)
-  better_errors
   binding_of_caller
   capybara (= 2.0.3)
   chronic
