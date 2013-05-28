@@ -13,7 +13,7 @@
  *= require foundation_and_overrides
  */
 
- /*
+/*
  * CUSTOM FONTS
  */
 
@@ -39,34 +39,13 @@
   font-style: normal;
 }
 
-/*@font-face {
+@font-face {
   font-family: 'Bender-Inline';
-  src: url('../fonts/Bender-Inline.eot');
-  src: local('☺'), url('../fonts/Bender-Inline.woff') format('woff'), url('../fonts/Bender-Inline.ttf') format('truetype'), url('../fonts/Bender-Inline.svg') format('svg');
+  src: url('Bender-Inline.eot');
+  src: url('Bender-Inline.eot?#iefix') format('embedded-opentype'),
+       url('Bender-Inline.woff') format('woff'),
+       url('Bender-Inline.ttf') format('truetype'),
+       url('Bender-Inline.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
-
-@font-face {
-  font-family: 'ValenciaHairline';
-  src: url('/fonts/ValenciaHairline.eot');
-  src: local('☺'), url('/fonts/ValenciaHairline.woff') format('woff'), url('/fonts/ValenciaHairline.ttf') format('truetype'), url('/fonts/ValenciaHairline.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Conv_ValenciaLight';
-  src: url('fonts/ValenciaLight.eot');
-  src: local('☺'), url('fonts/ValenciaLight.woff') format('woff'), url('fonts/ValenciaLight.ttf') format('truetype'), url('fonts/ValenciaLight.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Conv_credit_block';
-  src: url('fonts/credit_block.eot');
-  src: local('☺'), url('fonts/credit_block.woff') format('woff'), url('fonts/credit_block.ttf') format('truetype'), url('fonts/credit_block.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}*/
