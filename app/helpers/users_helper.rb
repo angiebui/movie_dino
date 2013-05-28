@@ -17,7 +17,7 @@ module UsersHelper
         compiled_selections << {theater:       selection.theater,
                                 movie:         selection.movie,
                                 showtime:      selection.showtime.time_in_timezone,
-                                attendees:     selection.fetch_attendee_list
+                                attendees:     selection.fetch_attendee_list,
                                 attendees_num: selection.selected_count}
       end
       compiled_selections
