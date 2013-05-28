@@ -13,3 +13,4 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: "It's time to go out!")
   end
 end
+

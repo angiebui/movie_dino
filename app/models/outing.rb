@@ -32,9 +32,10 @@ class Outing < ActiveRecord::Base
     datetime = self.earliest_showtime - 6.hours
     self.result_date = datetime
     self.save
+    schedule_result_email
   end
 
-  def email_outing_result
+  def schedule_result_email
     EmailWorker.perform_at(self.result_date, self.user_id, self.id)
   end
 
