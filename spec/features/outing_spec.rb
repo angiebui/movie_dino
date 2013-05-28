@@ -37,12 +37,15 @@ describe 'Outings', :js => true do
     end
 
     it 'allows you to select a movie' do
-      find('panel').click
+      pending
+      find("label").click
     end
 
     it 'allows you to search through movies' do
       find(:css, 'span.marquee-next').click
     end
+
+
   end
 
 
