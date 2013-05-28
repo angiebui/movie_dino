@@ -4,7 +4,7 @@
 
     <% @outings.each do |outing|%>
       <h3>Outing on <%= outing[:info].created_at.to_date.to_formatted_s(:long_ordinal) %></h3>
-
+      <h5>Total Responses: <%= outing[:total_responses] %></h5>
       <div>
         <ul>
           <h5>Movie</h5>

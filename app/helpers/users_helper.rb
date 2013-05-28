@@ -3,8 +3,9 @@ module UsersHelper
   def created_outings_data
     outings = []
     current_user.outings.each do |outing|
-      outings << {info: outing,
-                  selections: fetch_selection_data(outing.top_selections)}
+      outings << {info:            outing,
+                  total_responses: outing.attendees.count,
+                  selections:      fetch_selection_data(outing.top_selections)}
     end
     outings
   end
