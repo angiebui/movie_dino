@@ -1,1 +1,13 @@
-<%= current_user.first_name %>
+<%= "You currently have #{@outings.count} outings in progress." %>
+<br>
+<% @outings.each_with_index do |outing, index| %>
+  <strong><%= index+1 %></strong>
+  <ul>
+    <li><%= "Possible Showtimes: #{outing.selections.count}" %></li>
+    <li><%= "Attendee Responses: #{outing.attendees.count}" %></li>
+    <li><%= "Top 3 Selections:"%></li>
+    <ul>
+      <li></li>
+    </ul>
+  </ul>
+<% end %>

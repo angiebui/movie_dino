@@ -21,6 +21,9 @@ class Outing < ActiveRecord::Base
     self.theaters.uniq
   end
 
+  def top_selections
+  end
+
   private
   
   def generate_link
