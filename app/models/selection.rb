@@ -9,5 +9,6 @@ class Selection < ActiveRecord::Base
   belongs_to :showtime
   belongs_to :movie
   belongs_to :theater
-  
+  scope :top_picks, order('selected_count DESC')
+
 end
