@@ -22,6 +22,9 @@ class Outing < ActiveRecord::Base
   end
 
   def top_selections
+    top = []
+    self.selections.order('selected_count DESC').limit(3).each {|selected| top << selected}
+    top
   end
 
   private

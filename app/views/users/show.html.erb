@@ -1,40 +1,45 @@
 <div class='profile-container'>
   <div class='profile'>
-    <h3> Created Events </h3>
+    <h2>Events you've created</h2>
 
-    <% @events = show_created_events %>
+    <% @outings.each do |outing|%>
+      <h3>Outing on <%= outing[:info].created_at.to_date.to_formatted_s(:long_ordinal) %></h3>
 
-    <div>
-      <ul>
-        <h4>Selection</h4>
-        <% @events.each do |event| %>
-          <li> <%= event[0] %> </li>
-        <% end %>
-      </ul>
-    </div>
-    <div>
-      <ul>
-        <h4>Theater</h4>
-        <% @events.each do |event| %>
-          <li> <%= event[1] %> </li>
-        <% end %>
-      </ul>
-    </div>
-    <div>
-      <ul>
-        <h4>Time</h4>
-        <% @events.each do |event| %>
-          <li> <%= event[2] %> </li>
-        <% end %>
-      </ul>
-    </div>
-    <div>
-      <ul>
-        <h4>Created On</h4>
-        <% @events.each do |event| %>
-          <li> <%= event[1] %> </li>
-        <% end %>
-      </ul>
-    </div>
+      <div>
+        <ul>
+          <h5>Movie</h5>
+          <% outing[:selections].each do |selection| %>
+            <li> <%= selection[:movie].title.upcase %> </li>
+          <% end %>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <h5>Theater</h5>
+          <% outing[:selections].each do |selection| %>
+            <li> <%= selection[:theater].name %> </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div>
+        <ul>
+          <h5>Showtime</h5>
+          <% outing[:selections].each do |selection| %>
+            <li> <%= display_time(selection[:showtime]) %> </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div>
+        <ul>
+          <h5>Number of Attendees</h5>
+          <% outing[:selections].each do |selection| %>
+            <li> <%= selection[:attendees_num] %> </li>
+          <% end %>
+        </ul>
+      </div>
+
+    <% end %>
   </div>
 </div>
