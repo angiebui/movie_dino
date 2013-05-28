@@ -13,9 +13,9 @@
           <% index += 1 %>
           <% checkbox = check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
           <% if index <= 8 %>
-            <% label = label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster_large})", :data => {:image_url => movie.poster_large}) %>
+            <% label = label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster})", :data => {:image_url => movie.poster}) %>
           <% else %>
-            <% label = label_tag(movie.title, nil, :class => 'panel', :data => {:image_url => movie.poster_large}) %>
+            <% label = label_tag(movie.title, nil, :class => 'panel', :data => {:image_url => movie.poster}) %>
           <% end %>
           <% if (index) % 4 == 1 %>
             <li>
