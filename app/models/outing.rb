@@ -1,5 +1,5 @@
 class Outing < ActiveRecord::Base
-  attr_accessible :user, :user_id, :final_selection_id
+  attr_accessible :user, :user_id, :email_contact_date
 
   has_many :selections
   has_many :attendees
@@ -10,6 +10,7 @@ class Outing < ActiveRecord::Base
   belongs_to :user
 
   before_validation :generate_link, on: :create
+  # after_create :save_email_contact_date
 
   validates_uniqueness_of :link
 
@@ -29,5 +30,11 @@ class Outing < ActiveRecord::Base
   def generate_link
     self.link = SecureRandom.hex(3)
   end
+
+  # def save_email_contact_date
+  #   self.selections.order()
+  #   self.email_contact_date =
+  # 
+  # end
 
 end
