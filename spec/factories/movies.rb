@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :movie do
-    title "Sample Movie Title"
+    sequence(:title) {|n| "Sample Movie Title #{n}" }
     poster_large "/assets/dino_poster.jpg"
   end
 end
