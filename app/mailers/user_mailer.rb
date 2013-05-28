@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "dino@moviedino.com"
+  default from: "Movie Dino <dino@moviedino.com>"
 
   def outing_invite(user_id, outing_id)
     @user = User.find(user_id)
