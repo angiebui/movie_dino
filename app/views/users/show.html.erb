@@ -9,12 +9,37 @@
         <ul>
           <h5>Movie</h5>
           <% outing[:selections].each do |selection| %>
-            <li> <%= selection[:movie] %> </li>
+            <li> <%= selection[:movie].title.upcase %> </li>
+          <% end %>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <h5>Theater</h5>
+          <% outing[:selections].each do |selection| %>
+            <li> <%= selection[:theater].name %> </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div>
+        <ul>
+          <h5>Showtime</h5>
+          <% outing[:selections].each do |selection| %>
+            <li> <%= display_time(selection[:showtime]) %> </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div>
+        <ul>
+          <h5>Number of Attendees</h5>
+          <% outing[:selections].each do |selection| %>
+            <li> <%= selection[:attendees_num] %> </li>
           <% end %>
         </ul>
       </div>
 
     <% end %>
-
   </div>
 </div>
