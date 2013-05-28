@@ -38,6 +38,7 @@ class Movie < ActiveRecord::Base
 
     matched_result = good_results.last
 
+    raise "Empty results from RT API" if matched_result.empty?
     self.update_attributes(:poster_large   => matched_result['posters']['original'],
                            :poster_med     => matched_result['posters']['profile'],
                            :runtime        => matched_result['runtime'],
@@ -49,10 +50,10 @@ class Movie < ActiveRecord::Base
 
   def store_image(img_url)
     bucket = AWS::S3.new.buckets['moviedino']
-    image = MiniMagick::Image.open(img_url)
-    image.resize('400')
     obj = bucket.objects[self.filename]
     unless obj.exists?
+      image = MiniMagick::Image.open(img_url)
+      image.resize('400')
       obj.write(acl: :public_read, single_requiest: true, content_type: 'image/gif', data: image.to_blob)
     end
     self.update_attributes(poster: obj.public_url.to_s)

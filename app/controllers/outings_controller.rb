@@ -6,12 +6,12 @@ class OutingsController < ApplicationController
     zipcode = Zipcode.find_or_create_by_zipcode(@zipcode)
 
     if zipcode.stale?
-      zipcode.fetch_times!
-      # needs a spinner before entering the form 
-      # movies that display are based off of where the user is
-      # we show all movies that are displayed nearby, ordered by rank
+      jid = zipcode.fetch_times!
+      session[:jid] = jid
+      redirect_to loading_path
+    else
+      redirect_to new_outing_path
     end
-    redirect_to new_outing_path
   end
 
   def create
@@ -38,6 +38,10 @@ class OutingsController < ApplicationController
     render 'show'
   end
 
+  def loading
+    @jid = fetch_jid
+  end
+
   def new
     @outing = Outing.new
     @zipcode = Zipcode.find_by_zipcode(current_zipcode)
@@ -52,6 +56,12 @@ class OutingsController < ApplicationController
   def show
     @outing = Outing.find(params[:id])
     @showtimes = @outing.showtimes
+  end
+
+  def status
+    status = Sidekiq::Status::status(params[:jid])
+    p status
+    render :json => {status: status.to_s}
   end
 
 end

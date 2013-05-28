@@ -41,6 +41,10 @@ class ApplicationController < ActionController::Base
     time.in_time_zone(current_timezone_string).strftime('%-l:%M%P')
   end
 
+  def fetch_jid
+    session.delete(:jid)
+  end
+
   def time_range
     values = (8..24).to_a
     TIMES.zip(values)

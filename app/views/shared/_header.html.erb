@@ -1,42 +1,41 @@
-<div class="nav-wrapper">
-  <div class="row">
-    <div class="large-6 columns">
-      <ul class="nav">
-        <li id="settings">
-          <a href="/" id="logo">DINO</a>
-        </li>
-        <li>
-          <a href="#">IN THEATERS</a>
-        </li>
-        <li>
-          <a href="#">ABOUT</a>
-        </li>
-      </ul>
-    </div>
-    <div class="large-6 columns">
-      <ul class="nav">
-        <li id="search">
-          <%= form_for :outing, url: start_path, method: 'get' do |f|  %>
-            <button type="button" name="search_button" id="search_button"><i class="icon-ticket"></i></button>
-            <%= text_field_tag 'zipcode', nil, maxlength: 5, id: 'search_text', placeholder: 'ZIP CODE' %>
-            <!-- <input type="text" name="search_text" id="search_text" placeholder="ZIP CODE"/> -->
+<div class="row">
+  <div class="large-12 columns">
+    <div class="nav-wrapper">
+      <div class="logo-nav">
+        <ul class="nav">
+          <li id="settings">
+            <a href="/" id="logo">DINO</a>
+          </li>
+          <li>
+            <a href="#">ABOUT</a>
+          </li>
+        </ul>
+      </div>
+      <div class="user-nav">
+        <ul class="nav">
+          <li id="search">
+            <%= form_for :outing, url: start_path, method: 'get' do |f|  %>
+              <button type="button" name="search_button" id="search_button"><i class="icon-ticket"></i></button>
+              <%= text_field_tag 'zipcode', nil, maxlength: 5, id: 'search_text', placeholder: 'ZIP CODE' %>
+              <!-- <input type="text" name="search_text" id="search_text" placeholder="ZIP CODE"/> -->
+            <% end %>
+          </li>
+          <li id="options">
+          <% if current_user %>
+            <a href="#"><%= current_user.first_name %></a>
+            <ul class="subnav">
+              <li><a href="#"><i class="icon-calendar"></i>My Events</a></li>
+              <li><a href="#"><i class="icon-user"></i>Profile</a></li>
+              <li><%= link_to "SIGN OUT", signout_path, id: "sign_out" %></li>
+            </ul>
+          <% else %>
+            <a href="#">Sign In</a>
+            <ul class="subnav">
+              <li> <%= link_to "Facebook", "/auth/facebook", rel: :external, id: "sign_in" %></li>
+            </ul>
           <% end %>
-        </li>
-        <li id="options">
-        <% if current_user %>
-          <a href="#"><%= current_user.first_name %></a>
-          <ul class="subnav">
-            <li><a href="#">My Events</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><%= link_to "SIGN OUT", signout_path, id: "sign_out" %></li>
-          </ul>
-        <% else %>
-          <a href="#">Sign In</a>
-          <ul class="subnav">
-            <li> <%= link_to "Facebook", "/auth/facebook", rel: :external, id: "sign_in" %></li>
-          </ul>
-        <% end %>
-        </li>
+          </li>
+        </div>
       </div>
     </ul>
   </div>
@@ -53,6 +52,10 @@
       $( '#search_text' ).css( { width : '200px', paddingLeft : '15px' } );
     }, function() {
       $( '#search_text' ).css( { width : '0px', paddingLeft : '0px' } );
+    });
+
+    $( '#search_text' ).on( 'click', function() {
+      $(this).css( { width : '200px', paddingLeft : '15px' } ).unbind( 'mouseleave' );
     });
 
   });

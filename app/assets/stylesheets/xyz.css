@@ -18,6 +18,18 @@ p {
 }
 
 /*
+ * HELPERS
+ */
+
+.no-padding-left {
+  padding-left: 0px;
+}
+
+.no-padding-right {
+  padding-right: 0px;
+}
+
+/*
  * NAV
  */
 
@@ -29,7 +41,14 @@ p {
   margin-bottom: 0px;
 }
 
+.logo-nav,
+.user-nav {
+  width: 485px;
+  float: left;
+}
+
 .nav-wrapper {
+  height: 60px;
   background: #222;
 }
 
@@ -40,65 +59,79 @@ p {
 }
 
 .nav li a {
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   display: block;
   line-height: 60px;
-  padding: 0 26px;
+  padding: 0px 25px;
   text-decoration: none;
-  border-left: 1px solid #2e2e2e;
+  border-left: 1px solid #2f2f2f;
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 .nav li a:hover {
-  background-color: #2e2e2e;
+  background-color: #2f2f2f;
+}
+
+.nav form {
+  padding: 0;
+  margin: 0;
 }
 
 #settings #logo {
-  color: #1f7f5c;
+  color: #1f7f5f;
   font-family: 'Bender-Inline', sans-serif;
   font-size: 50px;
   line-height: 60px;
 }
 
+/*#settings #logo span {
+  font-family: 'credit_block', sans-serif;
+  font-size: 50px;
+  line-height: 60px;
+}*/
+
 #search {
-  width: 357px;
-  margin: 4px;
+  width: 360px;
+  margin-top: 5px;
 }
 
-#search_text{
-  /*opacity: 0;*/
+#search_text {
+  height: 50px;
   width: 0px;
-  padding: 15px 0px;
-  font-size: 16px;
+  color: #fff;
+  font-size: 14px;
   border: 0 none;
-  height: 52px;
   margin-right: 0;
-  color: white;
   outline: none;
-  background: #1f7f5c;
+  background: #1f7f5f;
+  padding: 15px 0px;
   float: right;
   box-sizing: border-box;
   -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -ms-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
+     -moz-transition: all 0.2s ease-out;
+      -ms-transition: all 0.2s ease-out;
+       -o-transition: all 0.2s ease-out;
 }
 
 ::-webkit-input-placeholder {
-  color: white;
+  color: #fff;
+  opacity: 0.75;
 }
 
 :-moz-placeholder {
-  color: white;
+  color: #fff;
+  opacity: 0.75;
 }
 
 ::-moz-placeholder {
-  color: white;
+  color: #fff;
+  opacity: 0.75;
 }
 
 :-ms-input-placeholder {
-  color: white;
+  color: #fff;
+  opacity: 0.75;
 }
 
 #search_text:focus {
@@ -106,26 +139,28 @@ p {
 }
 
 #search_button {
-  height: 52px;
-  width: 60px;
-  font-size: 25px;
+  height: 50px;
+  width: 50px;
+  font-size: 28px;
   border: 0 none;
-  background: #1f7f5c;
+  background: #1f7f5f;
   float: right;
   padding: 0;
+  margin: 0;
   text-align: center;
   cursor: pointer;
 }
 
-#options a{
+#options {
+  width: 125px;
+}
+
+#options a {
   border-left: 0 none;
 }
 
 #options > a {
-  background-image: url(triangle.png);
-  background-position: 85% center;
-  background-repeat: no-repeat;
-  padding-right: 42px;
+  text-align: center;
 }
 
 .subnav {
@@ -133,7 +168,7 @@ p {
   position: absolute;
   top: 110%;
   right: 0;
-  width: 200px;
+  width: 228px;
   height: auto;
   opacity: 0;
   transition: all 0.2s;
@@ -142,11 +177,17 @@ p {
 }
 
 .subnav li {
+  height: 60px;
   float: none;
 }
 
 .subnav li a {
-  border-bottom: 1px solid #2e2e2e;
+  border-bottom: 1px solid #2f2f2f;
+}
+
+.subnav li a i {
+  opacity: 0.75;
+  margin-right: 10px;
 }
 
 #options:hover .subnav {
@@ -194,7 +235,7 @@ p {
 }
 
 .movie-marquee div label.checked {
-  border: 5px solid #1f7f5c;
+  border: 5px solid #1f7f5f;
   box-shadow: inset 0px 0px 25px rgba(0, 0, 0, 0.5);
 }
 

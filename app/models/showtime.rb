@@ -1,5 +1,5 @@
 class Showtime < ActiveRecord::Base
-  attr_accessible :theater, :moie, :time
+  attr_accessible :theater, :movie, :time
   belongs_to :movie
   belongs_to :theater
   has_many :selections 
