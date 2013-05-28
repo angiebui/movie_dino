@@ -9,7 +9,7 @@ describe 'Homepage',  :js => true do
     end
 
     it 'allows you to add a zipcode' do
-      fill_in 'zipcode', with: '94108'
+      fill_in 'zipcode', with: '12345'
       click_button 'Start an outing'
     end
 
