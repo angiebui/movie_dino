@@ -1,11 +1,15 @@
+<hr>
+
 <div class="row">
   <div class="large-12 columns">
-    <h1>MOVIE MARQUEE</h1>
+    <div id="select">
+      <h2>SELECT A MOVIE</h2>
+    </div>
   </div>
 </div>
 
 <div id="dino-form" class="row">
-    <%= form_for @outing, :html => {:class => "marquee"} do |f| %>
+  <%= form_for @outing, :html => {:class => "marquee"} do |f| %>
     <div id="movie-marquee-wrapper">
       <div id="movie-marquee" class="movie-marquee">
         <ul>
@@ -44,14 +48,29 @@
         </ul>
     </div>
   </div>
+</div>
 
-  <%= render 'outings/time_selects' %>
+  <div class="row">
+    <div class="large-12 columns">
+      <div id="select">
+        <h3>SELECT A DAY AND TIME</h3>
+      </div>
+    </div>
+  </div>
   
-  <div class='large-12 columns'>
-    <p>
-      <%= hidden_field_tag(:time_zone, @time_zone) %>
-      <%= f.submit "CREATE EVENT", :class => "button" %>
-    </p>
+  <div class="row">
+    <div id="day-time">
+      <%= render 'outings/time_selects' %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class='large-12 columns'>
+      <div id="create">
+        <%= hidden_field_tag(:time_zone, @time_zone) %>
+        <%= f.submit "CREATE EVENT", :class => "button" %>
+      </div>
+    </div>
   </div>
 
   <% end %>

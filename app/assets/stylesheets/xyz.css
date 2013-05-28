@@ -17,10 +17,18 @@ p {
   line-height: 1;
 }
 
- #dino-form .button {
+#dino-form .button {
   position: relative;
-   margin-top: 20px;
- }
+  margin-top: 20px;
+}
+
+#select h2,
+#select h3 {
+  color: #ccc;
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
+}
 
 #movie-grid .panel {
   height: 228px;
@@ -54,7 +62,6 @@ p {
 #movie-marquee {
   overflow: hidden;
   overflow: hidden;
-  padding: 20px 0;
 }
 
 #movie-marquee ul {
@@ -119,6 +126,20 @@ p {
 
 #movie-marquee-wrapper {
   position: relative;
+}
+
+#day-time div {
+  text-align: center;
+}
+
+#day-time .between {
+  font-weight: 900;
+  text-shadow: 1px 1px #fff;
+}
+
+#create {
+  text-align: right;
+  margin: 20px 0px;
 }
 
 /*
