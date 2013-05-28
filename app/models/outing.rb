@@ -1,5 +1,5 @@
 class Outing < ActiveRecord::Base
-  attr_accessible :user, :user_id, :final_selection_id
+  attr_accessible :user, :user_id, :result_date, :selections
 
   has_many :selections
   has_many :attendees
@@ -25,6 +25,21 @@ class Outing < ActiveRecord::Base
     top = []
     self.selections.order('selected_count DESC').limit(3).each {|selected| top << selected}
     top
+  end
+
+  def earliest_showtime
+    self.selections.order('time').first.time
+  end
+
+  def save_result_date
+    datetime = self.earliest_showtime - 6.hours
+    self.result_date = datetime
+    self.save
+    schedule_result_email
+  end
+
+  def schedule_result_email
+    EmailWorker.perform_at(self.result_date, self.user_id, self.id)
   end
 
   private

@@ -14,5 +14,10 @@ class Theater < ActiveRecord::Base
   def self.outdated
     Theater.where('cache_date < ?', Time.now - 3.days)
   end
+
+  def address
+    "#{self.street} #{self.city}, #{self.state}"
+  end
   
 end
+

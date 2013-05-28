@@ -29,12 +29,8 @@ class OutingsController < ApplicationController
                                                         movie: showtime.movie,
                                                         time: showtime.time,
                                                         theater: showtime.theater)}
+    outing.save_result_date
     redirect_to outing
-  end
-
-  def final_three
-    #fix this
-    self.selections.order('selected_count DESC').limit(3)
   end
 
   def link_show
@@ -50,7 +46,6 @@ class OutingsController < ApplicationController
     @outing = Outing.new
     @zipcode = Zipcode.find_by_zipcode(current_zipcode)
     @movies = @zipcode.movies
-    # converts zipcode to appropriate timezone
 
     @time_zone = ActiveSupport::TimeZone.find_by_zipcode(current_zipcode)
     @time_ranges = time_range

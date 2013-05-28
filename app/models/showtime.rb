@@ -1,5 +1,5 @@
 class Showtime < ActiveRecord::Base
-  attr_accessible :theater, :movie, :time
+  attr_accessible :theater, :moie, :time
   belongs_to :movie
   belongs_to :theater
   has_many :selections 
@@ -9,6 +9,13 @@ class Showtime < ActiveRecord::Base
 
   def date_only
     self.time.to_date
+  end
+
+  def time_in_timezone
+    zipcode = Zipcode.joins(:theaters).where('theaters.id = ?', self.theater_id).first.zipcode
+    string_timezone = ActiveSupport::TimeZone.find_by_zipcode(zipcode)
+
+    self.time.in_time_zone(string_timezone).strftime('%-l:%M%P')
   end
 
   def self.find_by_zipcode(zipcode)
