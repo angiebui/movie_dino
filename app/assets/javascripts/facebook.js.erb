@@ -22,7 +22,6 @@ window.fbAsyncInit = function() {
         $.getJSON('/facebook/auth', response.authResponse)
       .done(function(data){
           $('header').html(data.header)
-          $('#options').load()
         })
         .fail(function(){
           console.log('failure');
