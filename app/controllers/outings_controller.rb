@@ -29,6 +29,7 @@ class OutingsController < ApplicationController
                                                         movie: showtime.movie,
                                                         time: showtime.time,
                                                         theater: showtime.theater)}
+    outing.save_email_contact_date
     redirect_to outing
   end
 
