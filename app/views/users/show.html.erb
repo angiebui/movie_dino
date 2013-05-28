@@ -1,11 +1,20 @@
 <div class='profile-container'>
   <div class='profile'>
-    <h3>Events you've created</h3>
+    <h2>Events you've created</h2>
 
+    <% @outings.each do |outing|%>
+      <h3>Outing on <%= outing[:info].created_at.to_date.to_formatted_s(:long_ordinal) %></h3>
 
+      <div>
+        <ul>
+          <h5>Movie</h5>
+          <% outing[:selections].each do |selection| %>
+            <li> <%= selection[:movie] %> </li>
+          <% end %>
+        </ul>
+      </div>
 
-
-    <%= style_outings_data %>
+    <% end %>
 
   </div>
 </div>
