@@ -16,7 +16,7 @@
     <div class="large-6 columns">
       <ul class="nav">
         <li id="search">
-          <%= form_for @outing, url: start_path, method: 'get' do |f|  %>
+          <%= form_for :outing, url: start_path, method: 'get' do |f|  %>
             <button type="button" name="search_button" id="search_button"><i class="icon-ticket"></i></button>
             <%= text_field_tag 'zipcode', nil, maxlength: 5, id: 'search_text', placeholder: 'ZIP CODE' %>
             <!-- <input type="text" name="search_text" id="search_text" placeholder="ZIP CODE"/> -->
