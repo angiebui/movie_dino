@@ -27,6 +27,10 @@ class Outing < ActiveRecord::Base
     top
   end
 
+  def date
+    date = self.selections.order('time DESC').last.time.to_date.to_formatted_s(:long_ordinal)
+  end
+
   def earliest_showtime
     self.selections.order('time').first.time
   end

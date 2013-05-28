@@ -4,6 +4,7 @@ module UsersHelper
     outings = []
     current_user.outings.each do |outing|
       outings << {info:            outing,
+                  date:            outing.date,
                   total_responses: outing.attendees.count,
                   selections:      fetch_selection_data(outing.top_selections)}
     end
@@ -15,7 +16,7 @@ module UsersHelper
       selections.each do |selection|
         compiled_selections << {theater:       selection.theater,
                                 movie:         selection.movie,
-                                showtime:      selection.time,
+                                showtime:      selection.showtime.time_in_timezone,
                                 attendees_num: selection.selected_count}
       end
       compiled_selections

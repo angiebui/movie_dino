@@ -9,11 +9,10 @@
   margin: 20px auto;
   padding: 20px;
   width: 900px;
-  /*height: 400px;*/
   display: inline-block;
 }
 
-.profile div {
+.outing-info {
   width: 200px;
   float: left;
 }
@@ -21,4 +20,8 @@
 .profile li {
   margin: 10px 0;
   list-style-type: none;
+}
+
+.outing-box {
+  margin: 60px auto;
 }
