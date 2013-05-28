@@ -1,6 +1,6 @@
 MovieDino::Application.routes.draw do
 
-  resources :sessions
+  resources :sessions, defaults: { format: 'json'}
   resources :users
   resources :outings
   resources :attendees
@@ -13,6 +13,7 @@ MovieDino::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout'
   match '/users', to: 'pages#index'
   match '/outings/:id/form' , to: 'attendees#new'
+  match '/:provider/auth', to: 'sessions#create'
 
   ###################################
   #please dont move this, it's greedy.

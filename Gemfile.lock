@@ -86,7 +86,6 @@ GEM
     ffi (1.8.1)
     fuzzily (0.2.2)
       activerecord (>= 2.3.17)
-    hashie (2.0.5)
     hike (1.2.2)
     http-cookie (1.0.1)
       domain_name (~> 0.5)
@@ -127,14 +126,6 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
-    omniauth (1.1.4)
-      hashie (>= 1.2, < 3)
-      rack
-    omniauth-facebook (1.4.1)
-      omniauth-oauth2 (~> 1.1.0)
-    omniauth-oauth2 (1.1.1)
-      oauth2 (~> 0.8.0)
-      omniauth (~> 1.0)
     pg (0.15.1)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
@@ -247,7 +238,7 @@ DEPENDENCIES
   mechanize
   mini_magick
   newrelic_rpm
-  omniauth-facebook (~> 1.4.0)
+  oauth2
   pg
   quiet_assets
   rails (= 3.2.13)
