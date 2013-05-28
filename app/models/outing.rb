@@ -1,5 +1,5 @@
 class Outing < ActiveRecord::Base
-  attr_accessible :user, :user_id, :email_contact_date, :selections
+  attr_accessible :user, :user_id, :result_date, :selections
 
   has_many :selections
   has_many :attendees
@@ -28,10 +28,14 @@ class Outing < ActiveRecord::Base
     self.selections.order('time').first.time
   end
 
-  def save_email_contact_date
+  def save_result_date
     datetime = self.earliest_showtime - 6.hours
-    self.email_contact_date = datetime
+    self.result_date = datetime
     self.save
+  end
+
+  def email_outing_result
+    EmailWorker.perform_at(self.result_date, self.user_id, self.id)
   end
 
   private
@@ -39,5 +43,5 @@ class Outing < ActiveRecord::Base
   def generate_link
     self.link = SecureRandom.hex(3)
   end
-  
+
 end
