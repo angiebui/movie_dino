@@ -11,22 +11,16 @@
 </head>
 <body>
 
-  <header class="row">
-    <div class="large-12 colums">
-      <%= render 'shared/header' %>
-    </div>
+  <header>
+    <%= render 'shared/header' %>
   </header>
 
-  <div class="row">
-    <div class="large-12 colums">
-      <%= yield %>
-    </div>
-  </div>
+  <section id="main">
+    <%= yield %>
+  </section>
 
-  <footer class="row">
-    <div class="large-12 colums">
-      <%= render 'shared/footer' %>
-    </div>
+  <footer>
+    <%= render 'shared/footer' %>
   </footer>
 
   <%= javascript_include_tag "movie_marquee" %>
