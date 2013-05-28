@@ -1,13 +1,40 @@
-<%= "You currently have #{@outings.count} outings in progress." %>
-<br>
-<% @outings.each_with_index do |outing, index| %>
-  <strong><%= index+1 %></strong>
-  <ul>
-    <li><%= "Possible Showtimes: #{outing.selections.count}" %></li>
-    <li><%= "Attendee Responses: #{outing.attendees.count}" %></li>
-    <li><%= "Top 3 Selections:"%></li>
-    <ul>
-      <li></li>
-    </ul>
-  </ul>
-<% end %>
+<div class='profile-container'>
+  <div class='profile'>
+    <h3> Created Events </h3>
+
+    <% @events = show_created_events %>
+
+    <div>
+      <ul>
+        <h4>Selection</h4>
+        <% @events.each do |event| %>
+          <li> <%= event[0] %> </li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <h4>Theater</h4>
+        <% @events.each do |event| %>
+          <li> <%= event[1] %> </li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <h4>Time</h4>
+        <% @events.each do |event| %>
+          <li> <%= event[2] %> </li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <h4>Created On</h4>
+        <% @events.each do |event| %>
+          <li> <%= event[1] %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
