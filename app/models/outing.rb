@@ -39,7 +39,7 @@ class Outing < ActiveRecord::Base
   end
 
   def schedule_result_email
-    EmailWorker.perform_at(self.result_date, self.user_id, self.id)
+    EmailWorker.perform_at(self.result_date, self.user_id, self.id, 'result')
   end
 
   private

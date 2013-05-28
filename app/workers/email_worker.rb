@@ -8,9 +8,5 @@ class EmailWorker
       UserMailer.outing_result(user_id, outing_id).deliver
     end
   end
-
-  def perform_at(datetime, user_id, outing_id)
-    UserMailer.outing_result(user_id, outing_id).deliver
-  end
   
 end
