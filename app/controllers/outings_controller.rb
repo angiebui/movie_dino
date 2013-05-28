@@ -32,6 +32,11 @@ class OutingsController < ApplicationController
     redirect_to outing
   end
 
+  def final_three
+    #fix this
+    self.selections.order('selected_count DESC').limit(3)
+  end
+
   def link_show
     @outing = Outing.find_by_link(params[:link])
     render 'show'
