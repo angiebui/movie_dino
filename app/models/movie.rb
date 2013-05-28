@@ -38,6 +38,7 @@ class Movie < ActiveRecord::Base
 
     matched_result = good_results.last
 
+    raise "Empty results from RT API" if matched_result.empty?
     self.update_attributes(:poster_large   => matched_result['posters']['original'],
                            :poster_med     => matched_result['posters']['profile'],
                            :runtime        => matched_result['runtime'],
