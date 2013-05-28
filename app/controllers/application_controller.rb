@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def display_time(time)
-    time.in_time_zone(current_timezone_string).strftime('%l:%M%P')
+    time.in_time_zone(current_timezone_string).strftime('%-l:%M%P')
   end
 
   def time_range

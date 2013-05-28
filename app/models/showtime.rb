@@ -15,7 +15,7 @@ class Showtime < ActiveRecord::Base
     zipcode = Zipcode.joins(:theaters).where('theaters.id = ?', self.theater_id).first.zipcode
     string_timezone = ActiveSupport::TimeZone.find_by_zipcode(zipcode)
 
-    self.time.in_time_zone(string_timezone).strftime('%l:%M%P')
+    self.time.in_time_zone(string_timezone).strftime('%-l:%M%P')
   end
 
   def self.find_by_zipcode(zipcode)
