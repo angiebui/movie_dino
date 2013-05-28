@@ -23,8 +23,8 @@
         <% if current_user %>
           <a href="#"><%= current_user.first_name %></a>
           <ul class="subnav">
-            <li><a href="#">My Events</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="#"><i class="icon-calendar"></i>My Events</a></li>
+            <li><a href="#"><i class="icon-user"></i>Profile</a></li>
             <li><%= link_to "SIGN OUT", signout_path, id: "sign_out" %></li>
           </ul>
         <% else %>
@@ -50,6 +50,10 @@
       $( '#search_text' ).css( { width : '200px', paddingLeft : '15px' } );
     }, function() {
       $( '#search_text' ).css( { width : '0px', paddingLeft : '0px' } );
+    });
+
+    $( '#search_text' ).on( 'click', function() {
+      $(this).css( { width : '200px', paddingLeft : '15px' } ).unbind( 'mouseleave' );
     });
 
   });
