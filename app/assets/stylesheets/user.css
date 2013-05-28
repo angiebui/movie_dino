@@ -11,6 +11,15 @@
   width: 900px;
   display: inline-block;
 }
+.info-box {
+  display: inline-block;
+  border: 2px solid #222;
+  padding: 20px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+
+}
 
 .outing-info {
   width: 200px;
@@ -24,4 +33,18 @@
 
 .outing-box {
   margin: 60px auto;
+}
+
+.profile-button {
+  margin: 0px;
+  width: 60px;
+  height: 30px;
+  background-color: #222;
+  color: white;
+  display: inline-block;
+  text-align: center;
+  line-height: 30px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
 }
