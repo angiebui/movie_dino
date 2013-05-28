@@ -30,12 +30,11 @@ describe 'Outings', :js => true do
     end
 
     it 'allows you to select a movie' do
-      debugger
-      
+      find('label').click
     end
 
     it 'allows you to select multiple movies' do
-      pending
+      
     end
 
     it 'allows you to search through movies' do
