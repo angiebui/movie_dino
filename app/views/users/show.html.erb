@@ -1,1 +1,40 @@
-<%= current_user.first_name %>
+<div class='profile-container'>
+  <div class='profile'>
+    <h3> Created Events </h3>
+
+    <% @events = show_created_events %>
+
+    <div>
+      <ul>
+        <h4>Selection</h4>
+        <% @events.each do |event| %>
+          <li> <%= event[0] %> </li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <h4>Theater</h4>
+        <% @events.each do |event| %>
+          <li> <%= event[1] %> </li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <h4>Time</h4>
+        <% @events.each do |event| %>
+          <li> <%= event[2] %> </li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <h4>Created On</h4>
+        <% @events.each do |event| %>
+          <li> <%= event[1] %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

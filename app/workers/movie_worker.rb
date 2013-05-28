@@ -5,4 +5,5 @@ class MovieWorker
     movie = Movie.where(id: movie_id).first
     movie.sync_with_rotten_api
   end
+  
 end

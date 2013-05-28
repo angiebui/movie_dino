@@ -1,10 +1,11 @@
+
 class Movie < ActiveRecord::Base
   ROTTEN_ADDRESS = 'http://api.rottentomatoes.com/api/public/v1.0'
   ROTTEN_API = ENV['ROTTEN_APP_ID']
 
   after_commit :sync_after_create, :on => :create
 
-  attr_accessible :title, :poster_large, :poster_med, :runtime, :mpaa_rating, :critics_score, :audience_score
+  attr_accessible :title, :poster_large, :poster_med, :runtime, :mpaa_rating, :critics_score, :audience_score, :poster
   has_many :showtimes
   has_many :theaters, :through => :showtimes
   has_many :selections
@@ -13,6 +14,11 @@ class Movie < ActiveRecord::Base
 
   def display_title
     self.title.titleize
+  end
+
+  def fetch_movie_count(count_request)
+    movies_json = uri_to_json(count_request)
+    movies_json['total']
   end
 
   def sync_after_create
@@ -38,11 +44,22 @@ class Movie < ActiveRecord::Base
                            :mpaa_rating    => matched_result['mpaa_rating'],
                            :critics_score  => matched_result['ratings']['critics_score'],
                            :audience_score => matched_result['ratings']['audience_score'])
+    store_image(self.poster_large)
   end
 
-  def fetch_movie_count(count_request)
-    movies_json = uri_to_json(count_request)
-    movies_json['total']
+  def store_image(img_url)
+    bucket = AWS::S3.new.buckets['moviedino']
+    image = MiniMagick::Image.open(img_url)
+    image.resize('400')
+    obj = bucket.objects[self.filename]
+    obj.write(acl: :public_read, single_requiest: true, content_type: 'image/gif', data: image.to_blob)
+    self.update_attributes(poster: obj.public_url.to_s)
+  end
+
+
+
+  def filename
+    self.title.gsub(/ /,'-')
   end
 
   def uri_to_json(url)
@@ -50,4 +67,5 @@ class Movie < ActiveRecord::Base
     request = Net::HTTP::get(uri)
     movies_json = JSON.parse(request)
   end
+  
 end
