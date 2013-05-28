@@ -7,6 +7,9 @@ MovieDino::Application.routes.draw do
 
   root to: 'pages#index'
 
+  match '/loading', to: 'outings#loading', as: 'loading'
+  match '/status', to: 'outings#status', as: 'status'
+
   match '/start',                  to: 'outings#cache'
   match 'auth/:provider/callback', to: 'sessions#create'
   match '/profile',                to: 'users#show'

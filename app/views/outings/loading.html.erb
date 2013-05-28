@@ -1,0 +1,63 @@
+
+<h3 class='loading-status'>We're preparing your showtimes, watch a trailer while you wait!</h3>
+<%= @jid %>
+<div id="player"></div>
+
+<script src="http://www.youtube.com/player_api"></script>
+
+<script>
+
+  var jobState = false;
+
+  function addReadyMessage(){
+    $('.loading-status').html('All ready! Click <%= link_to "HERE", new_outing_path %>.')
+  }
+
+  function longPoll(){
+    var i = setInterval(function(){
+      var jid = '<%= @jid %>'
+      if(jid != ""){
+        $.post('/status', {jid: jid})
+        .done(function(data){
+          console.log(data)
+          if(data.status === 'complete'){
+            clearInterval(i);
+            jobState = true;
+            addReadyMessage();
+          }
+        }).fail(function(){
+          console.log('something went wrong');
+        })
+      }
+    },1000)
+  }
+
+  longPoll();
+
+  // create youtube player
+  var player;
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('player', {
+      height: '390',
+      width: '640',
+      videoId: 'wArmHSPIvlQ',
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  // autoplay video
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  // when video ends
+  function onPlayerStateChange(event) {
+    if(event.data === 0 && jobState === true) {
+      window.location = "<%= new_outing_path %>"
+    }
+  }
+
+</script>
