@@ -11,6 +11,8 @@ class AttendeesController < ApplicationController
     if @attendee.save
       selections = convert_to_id(params[:selections])
       selections.each {|id| @attendee.selections << Selection.find(id) }
+
+      redirect_to root_path
     else
       # show errors 
     end

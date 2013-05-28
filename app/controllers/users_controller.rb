@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+  include UsersHelper
+
   def show
     @user = current_user
-    @outings = current_user.outings
+    @outings = created_outings_data
   end
+
 end
