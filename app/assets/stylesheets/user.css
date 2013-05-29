@@ -10,6 +10,7 @@
   padding: 20px;
   width: 900px;
   display: inline-block;
+  color: #222;
 }
 
 .profile-container .profile .header-container {
@@ -27,18 +28,20 @@
   text-shadow: none;
 }
 
-.info-box {
+.profile .info-box {
   display: inline-block;
   border: 2px solid #222;
   padding: 20px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  color: #222;
-
 }
 
-.outing-info {
+.profile .info-box h5 {
+  color: #222;
+}
+
+.profile .outing-info {
   width: 200px;
   float: left;
 }
@@ -48,25 +51,24 @@
   list-style-type: none;
 }
 
-.attendee-list {
+.profile .attendee-list {
   text-align: right;
   padding-right: 12px;
 }
 
-.outing-box {
+.profile .outing-box {
   margin: 20px auto;
 }
 
-.profile-button {
+.profile .profile-button {
   margin: 0px;
   width: 60px;
   height: 30px;
   background-color: #222;
-  color: #0dbf84;
+  color: #1f7f5f;
   display: inline-block;
   text-align: center;
   line-height: 30px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-
 }
