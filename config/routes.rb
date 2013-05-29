@@ -6,6 +6,7 @@ MovieDino::Application.routes.draw do
   resources :attendees
 
   root to: 'pages#index'
+  get '/outings:id/form', to: 'attendees#new'
 
   match '/loading', to: 'outings#loading', as: 'loading'
   match '/status', to: 'outings#status', as: 'status'

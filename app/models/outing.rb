@@ -35,8 +35,8 @@ class Outing < ActiveRecord::Base
     self.selections.order('time').first.time
   end
 
-  def random_poster
-    self.movies.sample.poster_med
+  def posters
+    self.movies.uniq[0..2].map {|movie| movie.poster_med}
   end
 
   def save_result_date

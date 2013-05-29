@@ -4,8 +4,7 @@ class UserMailer < ActionMailer::Base
   def outing_invite(user_id, outing_id)
     @user = User.find(user_id)
     @outing = Outing.find(outing_id)
-    @movie_poster = @outing.random_poster
-
+    @movie_posters = @outing.posters
     email_with_name = "#{@user.first_name} <#{@user.email}>"
 
     mail(to: email_with_name, subject: "Share your Movie Dino event with friends!")
