@@ -1,14 +1,14 @@
-<hr>
-
-<div class="row">
-  <div class="large-12 columns">
-    <div id="select">
-      <h2>SELECT A MOVIE</h2>
+<div id="select-movie">
+  <div class="row">
+    <div class="large-12 columns">
+      <div id="select">
+        <h2>SELECT A MOVIE</h2>
+      </div>
     </div>
   </div>
 </div>
 
-<div id="dino-form" class="row">
+<div class="row">
   <div class="large-12 columns">
     <%= form_for @outing, :html => {:class => "marquee"} do |f| %>
       <div id="movie-marquee-wrapper">
@@ -112,34 +112,84 @@
           <% end %>
 
           </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <div class="row">
-    <div class="large-12 columns">
-      <div id="select">
-        <h3>SELECT A DAY AND TIME</h3>
-      </div>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div id="day-time">
-      <%= render 'outings/time_selects' %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class='large-12 columns'>
-      <div id="create">
-        <span id='login-errors'></span>
-        <%= hidden_field_tag(:time_zone, @time_zone) %>
-        <%= f.submit "CREATE EVENT", :class => "button" %>
+        </div>
       </div>
     </div>
   </div>
 
-  <% end %>
-</div>
+  <div id="day-time-container">
+    <div class="row">
+      <div class="large-12 columns">
+        <div id="select">
+          <h2>SELECT A DAY AND TIME</h2>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div id="day-time">
+        <%= render 'outings/time_selects' %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class='large-12 columns'>
+        <div id="create">
+          <span id='login-errors'></span>
+          <%= hidden_field_tag(:time_zone, @time_zone) %>
+          <%= f.submit "CREATE EVENT", :class => "button" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+<script>
+  jQuery( document ).ready( function ( $ ) {
+
+    $(document).click(function() {
+      $('.wrapper-dropdown').removeClass('active');
+    });
+
+    function DropDown( el, select ) {
+      this.dd = el;
+      this.sel = select;
+      this.placeholder = this.dd.children( 'span' );
+      this.opts = this.dd.find( 'ul.dropdown > li' );
+      console.log( this.opts );
+      this.val = '';
+      this.index = 1;
+      this.initEvents();
+    }
+
+    DropDown.prototype = {
+      initEvents : function() {
+        var obj = this;
+ 
+        obj.dd.on('click', function(event){
+            $(this).toggleClass('active');
+            return false;
+        });
+ 
+        obj.opts.on('click',function(){
+          var opt = $(this);
+          obj.val = opt.text();
+          obj.index = opt.index();
+          obj.placeholder.text( obj.val );
+          obj.sel.val(obj.index);
+        });
+      },
+      getValue : function() {
+        return this.val;
+      },
+      getIndex : function() {
+        return this.index;
+      }
+    }
+
+    var day = new DropDown( $( '#day-dd' ), $( '#day' ) );
+    var start = new DropDown( $( '#start-dd' ), $( '#start_time' ) );
+    var end = new DropDown( $( '#end-dd' ), $( '#end_time' ) );
+
+  });
+</script>

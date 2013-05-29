@@ -201,20 +201,58 @@ p {
  */
 
 /*
- * MARQUEE
+ * TIME SELECT
  */
 
-#dino-form .button {
-  position: relative;
-  margin-top: 20px;
+#select-movie {
+  margin-top: 25px;
 }
 
 #select h2,
 #select h3 {
-  color: #ccc;
-  font-weight: 100;
+  color: #777;
+  font-weight: 900;
   margin: 0;
+  margin-bottom: 15px;
   padding: 0;
+}
+
+#day-time-container {
+  background: #eee;
+  padding-top: 185px;
+  margin-top: -165px;
+}
+
+#day-time {
+}
+
+#day-time .showing {
+  color: #ccc;
+  font-size: 25px;
+  font-weight: 900;
+  text-shadow: 1px 1px #fff;
+}
+
+#day-time .between {
+  color: #ccc;
+  font-size: 25px;
+  font-weight: 900;
+  text-align: center;
+  text-shadow: 1px 1px #fff;
+}
+
+/*
+ * MARQUEE
+ */
+
+#new_outing {
+  padding: 0;
+  margin: 0;
+}
+
+#dino-form .button {
+  position: relative;
+  margin-top: 20px;
 }
 
 #movie-marquee .panel {
@@ -334,15 +372,6 @@ p {
   position: relative;
 }
 
-#day-time div {
-  text-align: center;
-}
-
-#day-time .between {
-  font-weight: 900;
-  text-shadow: 1px 1px #fff;
-}
-
 #create {
   text-align: right;
   margin: 20px 0px;
@@ -416,6 +445,94 @@ p {
   text-shadow: 5px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
+/*
+ * SELECT DROPDOWN
+ */
+
+ #day {
+  display: none;
+ }
+
+ #start_time {
+  display: none;
+ }
+
+ #end_time {
+  display: none;
+ }
+
+.wrapper-dropdown {
+  position: relative;
+  width: 100%;
+  padding: 5px;
+  margin: 0 auto;
+  background: #1f7f5f;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  list-style: none;
+  z-index: 999;
+}
+
+.wrapper-dropdown:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  margin-top: -6px;
+  border-width: 6px 0 6px 6px;
+  border-style: solid;
+  border-color: transparent #fff;    
+}
+
+.wrapper-dropdown .dropdown {
+  position: absolute;
+  max-height: 200px;
+  overflow: scroll;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #222;
+  font-weight: normal;
+  opacity: 0;
+  pointer-events: none;
+  list-style: none;
+}
+
+.wrapper-dropdown .dropdown li {
+  height: 25px;
+}
+
+.wrapper-dropdown .dropdown li a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  line-height: 25px;
+  padding-left: 10px;
+}
+ 
+.wrapper-dropdown .dropdown li:hover a {
+  background: #2f2f2f;
+}
+
+.wrapper-dropdown.active .dropdown {
+  opacity: 1;
+  pointer-events: auto;
+}
+ 
+.wrapper-dropdown.active:after {
+  border-color: #fff transparent;
+  border-width: 6px 6px 0 6px ;
+  margin-top: -3px;
+}
+ 
+.wrapper-dropdown.active {
+  background: #3d9d7d;
+}           
 
 /*
  * FOOTER
