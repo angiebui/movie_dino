@@ -11,51 +11,38 @@ function getJSonObject(value) {
   return $.parseJSON(value.replace(/&quot;/ig, '"'));
 };
 
-function chart() {
-  require([
-    "dojox/charting/Chart",
-    "dojox/charting/plot2d/Pie",
-    "dojox/charting/action2d/Tooltip",
-    "dojox/charting/action2d/MoveSlice",
-    "dojox/charting/themes/PlotKit/cyan",
-    "dojo/domReady!"
-  ], function(Chart, Pie, Tooltip, MoveSlice, PlotKitCyan){
+function generateCharts() {
+  $.each(attendeejson, function(index, element) {
+    var attendeeList = []
+    $.each(element, function(i, e) {
+      attendeeList.push(e[1])
+    });
 
-      var pieChart = new Chart("pieChartNode0");
-      pieChart.setTheme(PlotKitCyan);
-      pieChart.addPlot("default", {
-          type: "Pie",
-          fontColor: "#000"
-      });
-      pieChart.addSeries('Movie Chart', [4,4,1]);
-      new MoveSlice(pieChart,"default");
-      new Tooltip(pieChart,"default");
-      pieChart.render();
-  });
-  require([
-    "dojox/charting/Chart",
-    "dojox/charting/plot2d/Pie",
-    "dojox/charting/action2d/Tooltip",
-    "dojox/charting/action2d/MoveSlice",
-    "dojox/charting/themes/PlotKit/cyan",
-    "dojo/domReady!"
-  ], function(Chart, Pie, Tooltip, MoveSlice, PlotKitCyan){
+    require([
+      "dojox/charting/Chart",
+      "dojox/charting/plot2d/Pie",
+      "dojox/charting/action2d/Tooltip",
+      "dojox/charting/action2d/MoveSlice",
+      "dojox/charting/themes/PlotKit/cyan",
+      "dojo/domReady!"
+    ], function(Chart, Pie, Tooltip, MoveSlice, PlotKitCyan){
 
-      var pieChart = new Chart("pieChartNode1");
-      pieChart.setTheme(PlotKitCyan);
-      pieChart.addPlot("default", {
-          type: "Pie",
-          fontColor: "#000"
-      });
-      pieChart.addSeries('Movie Chart', [2,2,1,23,5,3,6]);
-      new MoveSlice(pieChart,"default");
-      new Tooltip(pieChart,"default");
-      pieChart.render();
+        var pieChart = new Chart('pieChartNode' + index);
+        pieChart.setTheme(PlotKitCyan);
+        pieChart.addPlot("default", {
+            type: "Pie",
+            fontColor: "#000"
+        });
+        pieChart.addSeries('Movie Chart ' + index, attendeeList);
+        new MoveSlice(pieChart,"default");
+        new Tooltip(pieChart,"default");
+        pieChart.render();
+    });
   });
 };
 
 $(document).ready(function() {
   tabbing();
-  chart();
+  generateCharts();
 });
 
