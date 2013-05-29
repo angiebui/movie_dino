@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529180748) do
+ActiveRecord::Schema.define(:version => 20130529184644) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -20,16 +20,18 @@ ActiveRecord::Schema.define(:version => 20130529180748) do
     t.string   "name"
   end
 
+  add_index "attendees", ["outing_id"], :name => "index_attendees_on_outing_id"
+
   create_table "movies", :force => true do |t|
     t.string   "title"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "poster_large"
     t.string   "poster_med"
     t.integer  "runtime"
     t.string   "mpaa_rating"
-    t.integer  "critics_score"
-    t.integer  "audience_score"
+    t.integer  "critics_score",  :default => 0
+    t.integer  "audience_score", :default => 0
     t.string   "poster"
     t.text     "synopsis"
   end
@@ -41,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20130529180748) do
     t.string   "link"
     t.datetime "result_date"
   end
+
+  add_index "outings", ["user_id"], :name => "index_outings_on_user_id"
 
   create_table "selecteds", :force => true do |t|
     t.integer "attendee_id"
@@ -88,17 +92,6 @@ ActiveRecord::Schema.define(:version => 20130529180748) do
 
   add_index "theaters_zipcodes", ["zipcode_id", "theater_id"], :name => "index_theaters_zipcodes_on_zipcode_id_and_theater_id", :unique => true
   add_index "theaters_zipcodes", ["zipcode_id"], :name => "index_theaters_zipcodes_on_zipcode_id"
-
-  create_table "trigrams", :force => true do |t|
-    t.string  "trigram",     :limit => 3
-    t.integer "score",       :limit => 2
-    t.integer "owner_id"
-    t.string  "owner_type"
-    t.string  "fuzzy_field"
-  end
-
-  add_index "trigrams", ["owner_id", "owner_type", "fuzzy_field", "trigram", "score"], :name => "index_for_match"
-  add_index "trigrams", ["owner_id", "owner_type"], :name => "index_by_owner"
 
   create_table "users", :force => true do |t|
     t.string   "provider"
