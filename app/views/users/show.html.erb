@@ -1,6 +1,7 @@
 <div class='profile-container'>
   <div class='profile'>
-    <h2>Events you've created</h2>
+
+    <div class='header-container'><h2 class='outings-header'>Outings you've created</h2></div>
     <% @outings.each do |outing|%>
       <div class='outing-box'>
         <h3>Outing on <%= outing[:date] %></h3>
@@ -34,10 +35,12 @@
           </div>
           <div class='outing-info'>
             <ul>
-              <h5>Number of Attendees</h5>
+              <div class='attendee-list'>
+              <h5 >Number of Attendees</h5>
               <% outing[:selections].each do |selection| %>
                 <li> <%= selection[:attendees_num] %> </li>
               <% end %>
+                </div>
             </ul>
           </div>
         </div>

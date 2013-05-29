@@ -4,13 +4,29 @@
   text-align: center;
 }
 
-.profile {
+.profile-container .profile {
   text-align: left;
   margin: 20px auto;
   padding: 20px;
   width: 900px;
   display: inline-block;
 }
+
+.profile-container .profile .header-container {
+  width: 100%;
+  height: 60px;
+  border-radius: 8px;
+  background-color: #222;
+  text-align: center;
+}
+
+.profile-container .profile .outings-header {
+  margin-bottom: 0;
+  line-height: 60px;
+  color: #1f7f5f;
+  text-shadow: none;
+}
+
 .info-box {
   display: inline-block;
   border: 2px solid #222;
@@ -18,6 +34,7 @@
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
+  color: #222;
 
 }
 
@@ -31,8 +48,13 @@
   list-style-type: none;
 }
 
+.attendee-list {
+  text-align: right;
+  padding-right: 12px;
+}
+
 .outing-box {
-  margin: 60px auto;
+  margin: 20px auto;
 }
 
 .profile-button {
@@ -40,7 +62,7 @@
   width: 60px;
   height: 30px;
   background-color: #222;
-  color: white;
+  color: #0dbf84;
   display: inline-block;
   text-align: center;
   line-height: 30px;
