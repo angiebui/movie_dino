@@ -11,7 +11,6 @@ class Movie < ActiveRecord::Base
   has_many :theaters, :through => :showtimes
   has_many :selections
 
-  fuzzily_searchable :title
 
   def display_title
     self.title.titleize

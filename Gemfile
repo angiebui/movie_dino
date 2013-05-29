@@ -24,7 +24,6 @@ gem 'sidekiq-status'
 # time
 gem 'tzip'
 gem 'chronic' #for time parsing
-gem 'fuzzily'
 
 group :production do
   gem 'newrelic_rpm'
