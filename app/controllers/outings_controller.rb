@@ -41,6 +41,7 @@ class OutingsController < ApplicationController
                                  theater: showtime.theater)
       end
       outing.save_result_date
+      outing.outing_emails!
       redirect_to outing
     end
   end

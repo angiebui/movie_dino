@@ -43,11 +43,19 @@ class Outing < ActiveRecord::Base
     datetime = self.earliest_showtime - 6.hours
     self.result_date = datetime
     self.save
+  end
+
+  def outing_emails!
     schedule_result_email
+    send_invite_email
   end
 
   def schedule_result_email
     EmailWorker.perform_at(self.result_date, self.user_id, self.id, 'result')
+  end
+
+  def send_invite_email
+    EmailWorker.perform_async(self.user_id, self.id, 'invite')
   end
 
   private
