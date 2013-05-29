@@ -36,15 +36,29 @@
 
       $( '#main' ).css( 'minHeight', ( windowHeight - 346 ) + 'px' );
 
-      $(".movie-marquee input[type='checkbox']").change(function() {
-        if($(this).is(':checked')) {
-          $(this).next('label').addClass('checked');
+      $( "#movie-marquee input[type='checkbox']" ).change( function() {
+        if( $( this ).is( ':checked' ) ) {
+          $( this ).next( '.panel' ).addClass( 'checked' );
+          $(this).siblings('span').show();
         } else {
-          $(this).next('label').removeClass('checked');
+          $( this ).next( '.panel' ).removeClass( 'checked' );
+          $(this).siblings('span').hide();
         }
       });
 
       $( '#movie-marquee' ).movieMarquee();
+
+      $('.poster').hover(function() {
+        var $posters = $(this).siblings('div');
+        $.each($posters, function() {
+          $(this).css('opacity', '0.5');
+        });
+      }, function() {
+        var $posters = $(this).siblings('div');
+        $.each($posters, function() {
+          $(this).css('opacity', '1');
+        });
+      });
 
     });
   </script>
