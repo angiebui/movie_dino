@@ -8,10 +8,10 @@
         <span class='profile-button'>Info</span>
         <span class='profile-button'>Graphs</span>
         <div class='info-box'>
-          <h5>Total Responses: <%= outing[:total_responses] %></h5>
+          <h4>Total Responses: <%= outing[:total_responses] %></h4>
           <div class='outing-info'>
             <ul>
-              <h5>Movie</h5>
+              <h5 class='first-title'>Movie</h5>
               <% outing[:selections].each do |selection| %>
                 <li> <%= selection[:movie].title.upcase %> </li>
               <% end %>
@@ -36,7 +36,7 @@
           <div class='outing-info'>
             <ul>
               <div class='attendee-list'>
-              <h5>Number of Attendees</h5>
+              <h5 class='last-title'>Number of Attendees</h5>
               <% outing[:selections].each do |selection| %>
                 <li> <%= selection[:attendees_num] %> </li>
               <% end %>

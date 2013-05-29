@@ -24,7 +24,7 @@
 .profile-container .profile .outings-header {
   margin-bottom: 0;
   line-height: 60px;
-  color: #1f7f5f;
+  color: white;
   text-shadow: none;
 }
 
@@ -38,16 +38,31 @@
 }
 
 .profile .info-box h5 {
-  color: #222;
+  color: white;
+  background-color: #222;
+  text-shadow: none;
+  padding: 10px;
+}
+
+.profile .info-box .first-title {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px; 
+}
+
+.profile .info-box .last-title {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px; 
 }
 
 .profile .outing-info {
   width: 200px;
   float: left;
+  margin: 10px 0;
 }
 
 .profile li {
   margin: 10px 0;
+  padding: 0 10px;
   list-style-type: none;
 }
 
