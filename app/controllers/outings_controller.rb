@@ -46,7 +46,7 @@ class OutingsController < ApplicationController
 
   def link_show
     @outing = Outing.find_by_link(params[:link])
-    render 'show'
+    redirect_to "/outings/#{@outing.id}/form"
   end
 
   def loading
@@ -71,7 +71,6 @@ class OutingsController < ApplicationController
 
   def status
     status = Sidekiq::Status::status(params[:jid])
-    p status
     render :json => {status: status.to_s}
   end
 
