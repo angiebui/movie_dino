@@ -4,21 +4,96 @@
   text-align: center;
 }
 
-.profile {
+.profile-container .profile {
   text-align: left;
   margin: 20px auto;
   padding: 20px;
   width: 900px;
-  /*height: 400px;*/
   display: inline-block;
+  color: #222;
 }
 
-.profile div {
+.profile-container .profile .header-container {
+  width: 100%;
+  height: 60px;
+  border-radius: 8px;
+  background-color: #222;
+}
+
+.profile-container .profile .outings-header {
+  margin-bottom: 0;
+  line-height: 60px;
+  color: white;
+  text-shadow: none;
+  text-align: center;
+}
+
+
+.profile .outing-box {
+  margin: 20px 0;
+}
+
+.profile .profile-button {
+  margin: 0px;
+  width: 60px;
+  height: 30px;
+  background-color: #222;
+  color: #1f7f5f;
+  display: inline-block;
+  text-align: center;
+  line-height: 30px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.profile .box {
+  width: 100%;
+  display: inline-block;
+  border: 2px solid #222;
+  padding: 20px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.profile .info-box h5 {
+  color: white;
+  background-color: #222;
+  text-shadow: none;
+  padding: 10px;
+}
+
+.profile .info-box .first-title {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px; 
+}
+
+.profile .info-box .last-title {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px; 
+}
+
+.profile .graph-box  {
+  display: none;
+}
+
+.profile .outing-info {
   width: 200px;
   float: left;
+  margin: 10px 0;
+}
+
+.profile .outing-info-first {
+  margin-left: 12px;
 }
 
 .profile li {
   margin: 10px 0;
+  padding: 0 10px;
   list-style-type: none;
+}
+
+.profile .attendee-list {
+  text-align: right;
+  padding-right: 12px;
 }
