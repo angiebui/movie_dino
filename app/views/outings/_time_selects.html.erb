@@ -5,11 +5,11 @@
   <span class="between">STARTING BETWEEN</span>
 </div>
 <div class='large-2 columns'>
-  <%= select_tag(:start_time, options_for_select(@time_ranges)) %>
+  <%= select_tag(:start_time, options_for_select(time_range)) %>
 </div>
 <div class='large-2 columns'>
   <span class="between">AND</span>
 </div>
 <div class='large-2 columns'>
-  <%= select_tag(:end_time, options_for_select(@time_ranges)) %>
+  <%= select_tag(:end_time, options_for_select(time_range)) %>
 </div>

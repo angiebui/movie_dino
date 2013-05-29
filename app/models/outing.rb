@@ -1,4 +1,5 @@
 class Outing < ActiveRecord::Base
+  attr_reader :showtimes
   attr_accessible :user, :user_id, :result_date, :selections
 
   has_many :selections
@@ -7,8 +8,9 @@ class Outing < ActiveRecord::Base
   has_many :theaters, through: :selections
   has_many :movies, through: :selections
   has_many :times, through: :selections
-  belongs_to :user
 
+  belongs_to :user
+  before_create :save_result_date, :outing_emails!, :create_selections
   before_validation :generate_link, on: :create
 
   validates_uniqueness_of :link
@@ -42,7 +44,6 @@ class Outing < ActiveRecord::Base
   def save_result_date
     datetime = self.earliest_showtime - 6.hours
     self.result_date = datetime
-    self.save
   end
 
   def outing_emails!
@@ -61,6 +62,15 @@ class Outing < ActiveRecord::Base
   private
   def generate_link
     self.link = SecureRandom.hex(3)
+  end
+
+  def create_selections
+    showtimes.each do |showtime|
+      self.selections.build(showtime: showtime,
+                               movie: showtime.movie,
+                               time: showtime.time,
+                               theater: showtime.theater)
+    end
   end
 
 end

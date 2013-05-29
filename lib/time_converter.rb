@@ -4,8 +4,8 @@ module TimeConverter
             "2:00p","3:00p","4:00p","5:00p", "6:00p", "7:00p",
             "8:00p","9:00p","10:00p","11:00p","12:00a" ]
 
-  def current_timezone_string
-    ActiveSupport::TimeZone.find_by_zipcode(current_zipcode)
+  def current_timezone_string(zipcode=current_zipcode)
+    ActiveSupport::TimeZone.find_by_zipcode(zipcode)
   end
 
   def day_range(time_zone)
@@ -28,5 +28,12 @@ module TimeConverter
   def time_range
     values = (8..24).to_a
     TIMES.zip(values)
+  end
+
+  def start_and_end_times(params)
+    time_zone = current_timezone_string params[:time_zone]
+    start_time = datetime_in_utc(params[:day], params[:start_time], time_zone)
+    end_time = datetime_in_utc(params[:day], params[:end_time], time_zone)
+    [start_time, end_time]
   end
 end

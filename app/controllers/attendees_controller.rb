@@ -8,13 +8,12 @@ class AttendeesController < ApplicationController
 
   def create
     @attendee = Attendee.new(params[:attendee])
+    selections = Selection.where :id => convert_to_id(params[:selections])
+    @attendee.selections << selections
     if @attendee.save
-      selections = convert_to_id(params[:selections])
-      selections.each {|id| @attendee.selections << Selection.find(id) }
-
       redirect_to root_path
     else
-      # show errors 
+      render :new
     end
   end
 

@@ -68,7 +68,7 @@
     <div class='large-12 columns'>
       <div id="create">
         <span id='login-errors'></span>
-        <%= hidden_field_tag(:time_zone, @time_zone) %>
+        <%= hidden_field_tag(:time_zone, current_timezone_string) %>
         <%= f.submit "CREATE EVENT", :class => "button" %>
       </div>
     </div>

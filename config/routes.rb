@@ -17,7 +17,7 @@ MovieDino::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
   match '/users', to: 'pages#index'
-  match '/outings/:id/form' , to: 'attendees#new'
+  match '/outings/:id/form' , to: 'attendees#new', :as => 'outings_form'
   match '/:provider/auth', to: 'sessions#create'
 
   ###################################

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include TimeConverter
+  include OutingShowtime
 
   private
 
@@ -12,16 +13,16 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def set_current_zipcode(zipcode)
+    session[:zipcode] = zipcode
+  end
+
   def current_zipcode
     session[:zipcode]
   end
 
   def fetch_jid
     session.delete(:jid)
-  end
-
-  def valid_outing?
-    params[:movies] && params[:end_time] != params[:start_time]
   end
 
   helper_method :current_user, :time_range, :day_range, :get_datetime,
