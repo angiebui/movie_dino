@@ -4,10 +4,9 @@
   <br>
   <h3>Share your movie event with friends: <%= link_to outings_form_url(@outing.link),outings_form_url(@outing.link) %></h3>
   <br>
-  <p> Result will be sent: <%= @outing.showtimes %></p>
-  
-  <p> Note: Dash will email you the top movie showtimes picked by you and your friends <strong>6 hours</strong> before your earliest possible showtime</p>
+  <% if @outing.result_date %>
+    <p>Dash will send you results on <strong><%= @outing.result_date %></strong></p>
+    <p>Be sure to poll your friends before then!</p>
+  <% end %>
+
 </div>
-
-
-

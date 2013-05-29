@@ -16,6 +16,7 @@ module TimeConverter
     days = ["Today", "Tomorrow"]+ name_days
     days.zip((0..7).to_a)
   end
+
   def datetime_in_utc(day, time, time_zone)
     local = time_zone.at(day.to_i.days.from_now).change(:hour => time.to_i)
     local.utc

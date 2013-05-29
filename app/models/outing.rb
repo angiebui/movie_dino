@@ -45,8 +45,10 @@ class Outing < ActiveRecord::Base
     time = time_until_earliest_showtime
     if time > 6
       self.result_date = self.earliest_showtime - 6.hours
+      self.save
     elsif time <= 6 and time > 3
       self.result_date = self.earliest_showtime - 3.hours
+      self.save
     end
   end
 
@@ -64,6 +66,10 @@ class Outing < ActiveRecord::Base
 
   def top_selections
     self.selections.order('selected_count DESC').limit(3)
+  end
+
+  def zipcode
+    self.showtime.first
   end
 
   private
