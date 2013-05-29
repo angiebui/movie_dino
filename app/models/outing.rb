@@ -41,6 +41,15 @@ class Outing < ActiveRecord::Base
     self.movies.uniq[0..2].map {|movie| movie.poster_med}
   end
 
+  def result_date_in_timezone
+    theater_id = self.selections.first.theater_id
+
+    zipcode = Zipcode.joins(:theaters).where('theaters.id = ?', theater_id).first.zipcode
+    string_timezone = ActiveSupport::TimeZone.find_by_zipcode(zipcode)
+
+    self.result_date.in_time_zone(string_timezone).strftime('%A, %b %d %-l:%M%P')
+  end
+
   def save_result_date
     time = time_until_earliest_showtime
     if time > 6
@@ -66,10 +75,6 @@ class Outing < ActiveRecord::Base
 
   def top_selections
     self.selections.order('selected_count DESC').limit(3)
-  end
-
-  def zipcode
-    self.showtime.first
   end
 
   private

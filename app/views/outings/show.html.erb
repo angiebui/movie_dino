@@ -5,7 +5,7 @@
   <h3>Share your movie event with friends: <%= link_to outings_form_url(@outing.link),outings_form_url(@outing.link) %></h3>
   <br>
   <% if @outing.result_date %>
-    <p>Dash will send you results on <strong><%= @outing.result_date %></strong></p>
+    <p>Dash will send you results on <strong><%= @outing.result_date_in_timezone %></strong></p>
     <p>Be sure to poll your friends before then!</p>
   <% end %>
 
