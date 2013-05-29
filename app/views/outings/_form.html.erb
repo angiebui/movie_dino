@@ -9,43 +9,106 @@
 </div>
 
 <div id="dino-form" class="row">
-  <%= form_for @outing, :html => {:class => "marquee"} do |f| %>
-    <div id="movie-marquee-wrapper">
-      <div id="movie-marquee" class="movie-marquee">
-        <ul>
-        <% @movies.each_with_index do |movie, index| %>
-          <% index += 1 %>
-          <% checkbox = check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
-          <% if index <= 8 %>
-            <% label = label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster})", :data => {:image_url => movie.poster}) %>
-          <% else %>
-            <% label = label_tag(movie.title, nil, :class => 'panel', :data => {:image_url => movie.poster}) %>
-          <% end %>
-          <% if (index) % 4 == 1 %>
-            <li>
-              <div class='large-3 columns'>
+  <div class="large-12 columns">
+    <%= form_for @outing, :html => {:class => "marquee"} do |f| %>
+      <div id="movie-marquee-wrapper">
+        <div id="movie-marquee" class="movie-marquee">
+          <ul>
+          <% @movies.each_with_index do |movie, index| %>
+            <% index += 1 %>
+            <% checkbox = check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
+            <% if index <= 8 %>
+              <% label = label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster})", :data => {:image_url => movie.poster}) %>
+            <% else %>
+              <% label = label_tag(movie.title, nil, :class => 'panel', :data => {:image_url => movie.poster}) %>
+            <% end %>
+            <% if (index) % 4 == 1 %>
+              <li>
+                <div class='poster'>
+                  <span class="check"><i class="icon-ok"></i></span>
+                  <%= checkbox %>
+                  <%= label %>
+                  <div class="movie-info-tool-tip tool-tip-right">
+                    <div class="movie-info-wrapper">
+                      <div>
+                        <%= movie.title %>
+                      </div>
+                      <div>
+                        <%= movie.mpaa_rating %>
+                      </div>
+                      <div>
+                        <%= movie.runtime %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <% elsif (index) % 4 == 0 %>
+              <div class='poster'>
+                <span class="check"><i class="icon-ok"></i></span>
                 <%= checkbox %>
                 <%= label %>
+                <div class="movie-info-tool-tip tool-tip-left">
+                  <div class="movie-info-wrapper">
+                    <div>
+                      <%= movie.title %>
+                    </div>
+                    <div>
+                      <%= movie.mpaa_rating %>
+                    </div>
+                    <div>
+                      <%= movie.runtime %>
+                    </div>
+                  </div>
+                </div>
               </div>
-          <% elsif (index) % 4 == 0 %>
-            <div class='large-3 columns'>
-              <%= checkbox %>
-              <%= label %>
-            </div>
-          </li>
-          <% else %>
-            <div class='large-3 columns'>
-              <%= checkbox %>
-              <%= label %>
-            </div>
+            </li>
+            <% elsif (index) % 4 == 3 %>
+              <div class='poster'>
+                <span class="check"><i class="icon-ok"></i></span>
+                <%= checkbox %>
+                <%= label %>
+                <div class="movie-info-tool-tip tool-tip-left">
+                  <div class="movie-info-wrapper">
+                    <div>
+                      <%= movie.title %>
+                    </div>
+                    <div>
+                      <%= movie.mpaa_rating %>
+                    </div>
+                    <div>
+                      <%= movie.runtime %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% elsif (index) % 4 == 2 %>
+              <div class='poster'>
+                <span class="check"><i class="icon-ok"></i></span>
+                <%= checkbox %>
+                <%= label %>
+                <div class="movie-info-tool-tip tool-tip-right">
+                  <div class="movie-info-wrapper">
+                    <div>
+                      <%= movie.title %>
+                    </div>
+                    <div>
+                      <%= movie.mpaa_rating %>
+                    </div>
+                    <div>
+                      <%= movie.runtime %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
 
-        <% if @movies.length % 4 == 0 %>
-          </li>
-        <% end %>
+          <% if @movies.length % 4 == 0 %>
+            </li>
+          <% end %>
 
-        </ul>
+          </ul>
+      </div>
     </div>
   </div>
 </div>
