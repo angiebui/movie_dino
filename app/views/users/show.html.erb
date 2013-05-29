@@ -45,11 +45,18 @@
               </ul>
             </div>
           </div>
+
           <div class='graphs-box box'>
             <div id='pieChartNode<%= i %>'></div>
           </div>
 
       </div>
     <% end %>
+
+    <!-- This is so hacky... I'm ashamed -->
+    <script type='text/javascript'>
+        var attendeejson = getJSonObject('<%= @attendeeJS %>');
+    </script>
+
   </div>
 </div>

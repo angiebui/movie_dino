@@ -7,6 +7,10 @@ function tabbing() {
   });
 };
 
+function getJSonObject(value) {
+  return $.parseJSON(value.replace(/&quot;/ig, '"'));
+};
+
 function chart() {
   require([
     "dojox/charting/Chart",
