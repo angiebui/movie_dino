@@ -354,14 +354,22 @@ p {
   visibility: hidden;
   position: absolute;
   opacity: 0;
-  background: #1f7f5f;
+  color: #777;
+  text-align: left;
+  background: #f8f8f8;
+  padding: 10px;
   z-index: 1000;
- /* box-shadow: 0px 0px 20px #222;
-  border-radius: 4px;*/
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
   -webkit-transition: all 0.2s ease-out;
      -moz-transition: all 0.2s ease-out;
       -ms-transition: all 0.2s ease-out;
        -o-transition: all 0.2s ease-out;
+}
+
+#movie-marquee .movie-info-tool-tip h4 {
+  color: #222;
+  text-transform: uppercase;
 }
 
 #movie-marquee .movie-info-tool-tip.tool-tip-right {
@@ -391,15 +399,21 @@ p {
 }
 
 #movie-marquee .movie-info-wrapper .arrow-left {
+  font-size: 60px;
+  color: #f8f8f8;
   position: absolute;
-  top: 50%;
-  left: -30px;
+  top: 25%;
+  left: -28px;
+  text-shadow: -5px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 #movie-marquee .movie-info-wrapper .arrow-right {
+  font-size: 60px;
+  color: #f8f8f8;
   position: absolute;
-  top: 50%;
-  right: -30px;
+  top: 25%;
+  right: -28px;
+  text-shadow: 5px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 
