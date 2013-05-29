@@ -14,10 +14,10 @@
       <div class="user-nav">
         <ul class="nav">
           <li id="search">
-            <%= form_for :outing, url: start_path, method: 'get' do |f|  %>
+            <%= form_for :outing, url: start_path, method: 'get', :html => {id: 'zipcode_form'} do |f|  %>
               <button type="button" name="search_button" id="search_button"><i class="icon-ticket"></i></button>
-              <%= text_field_tag 'zipcode', nil, maxlength: 5, id: 'search_text', placeholder: 'ZIP CODE' %>
-              <!-- <input type="text" name="search_text" id="search_text" placeholder="ZIP CODE"/> -->
+              <%= text_field_tag 'zipcode', nil, pattern: '\d{5}', required: true, id: 'search_text', maxlength: 5, placeholder: 'ZIP CODE' %>
+              <%= f.submit "I'm hidden", style: "display:none" %>
             <% end %>
           </li>
           <li id="options">
