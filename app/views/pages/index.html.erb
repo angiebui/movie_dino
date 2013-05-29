@@ -1,11 +1,6 @@
 <div class="row">
   <div class="large-12 columns">
     <div class="panel">
-      <%= form_for @outing, url: start_path, method: 'get' do |f|  %>
-        <%= label_tag :zipcode %>
-        <%= text_field_tag 'zipcode', nil, maxlength: 5 %><br>
-        <%= f.submit "START AN EVENT", class: 'button' %>
-      <% end %>
     </div>
   </div>
 </div>

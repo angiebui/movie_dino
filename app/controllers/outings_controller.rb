@@ -33,6 +33,7 @@ class OutingsController < ApplicationController
       flash[:notice]="Sorry, there were no showtimes available for that selection."
       return redirect_to new_outing_path
     else
+      outing.save
       showtimes.each do |showtime|
         outing.selections.create(showtime: showtime,
                                  movie: showtime.movie,
