@@ -1,11 +1,12 @@
 $(document).ready(function() {
   $('.graphs').on('click', function(){
-    $('.info-box').hide();
-    $('.graph-box').show();
+    console.log($(this).siblings('.graph-box'))
+    $(this).siblings('.info-box').hide();
+    $(this).siblings('.graph-box').show();
   });
 
   $('.info').on('click', function(){
-    $('.graph-box').hide();
-    $('.info-box').show();
+    $(this).siblings('.info-box').show();
+    $(this).siblings('.graph-box').hide();
   });
 });
