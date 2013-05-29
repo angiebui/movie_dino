@@ -29,9 +29,9 @@ class OutingsController < ApplicationController
     showtimes = Showtime.possible_times(start_time: start_time,
                                         end_time: end_time, movie_ids: movies,
                                         zipcode: current_zipcode)
-    if showtimes.empty
+    if showtimes.empty?
       flash[:notice]="Sorry, there were no showtimes available for that selection."
-      redirect_to new_outing_path if showtimes.empty
+      return redirect_to new_outing_path
     else
       showtimes.each do |showtime|
         outing.selections.create(showtime: showtime,
