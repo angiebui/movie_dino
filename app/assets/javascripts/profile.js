@@ -3,16 +3,15 @@ $(document).ready(function() {
 });
 
 function tabbing() {
-  $infoBox = $(this).siblings('.info-box');
-  $graphBox= $(this).siblings('.graph-box');
 
   $('.graphs').on('click', function(){
-    $infoBox.hide();
-    $graphBox.show();
+    console.log('')
+    $(this).siblings('.info-box').hide();
+    $(this).siblings('.graph-box').show();
   });
 
   $('.info').on('click', function(){
-    $graphBox.hide();
-    $infoBox.show();
+    $(this).siblings('.graph-box').hide();
+    $(this).siblings('.info-box').show();
   });
 };
