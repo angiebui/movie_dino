@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   def outing_invite(user_id, outing_id)
     @user = User.find(user_id)
     @outing = Outing.find(outing_id)
-    @movies = @outing.movies.get_three
+    @movie_poster = @outing.random_poster
 
     email_with_name = "#{@user.first_name} <#{@user.email}>"
 

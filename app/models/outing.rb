@@ -35,6 +35,10 @@ class Outing < ActiveRecord::Base
     self.selections.order('time').first.time
   end
 
+  def random_poster
+    self.movies.sample.poster_med
+  end
+
   def save_result_date
     datetime = self.earliest_showtime - 6.hours
     self.result_date = datetime
