@@ -6,6 +6,7 @@ MovieDino::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   #
 
+  config.action_mailer.default_url_options = { :host => 'localhost' }
 
   config.paperclip_defaults = {
     :storage => :s3,
@@ -43,6 +44,8 @@ MovieDino::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+
+
 
   # Expands the lines which load the assets
   config.assets.debug = true
