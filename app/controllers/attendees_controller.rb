@@ -1,7 +1,7 @@
 class AttendeesController < ApplicationController
   def new
     @attendee = Attendee.new
-    
+
     if params[:link]
       @outing = Outing.find_by_link(params[:link])
     else
@@ -22,6 +22,6 @@ class AttendeesController < ApplicationController
       render :new
     end
   end
-
+  
 end
 
