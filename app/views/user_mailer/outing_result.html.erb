@@ -46,35 +46,36 @@
                 </table>
               </td>
             </tr>
-            <tr>
-              <td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateColumns" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #F4F4F4;border-top: 1px solid #FFFFFF;border-bottom: 1px solid #CCCCCC;border-collapse: collapse;">
-                  <tr mc:repeatable>
-                    <td align="center" valign="top" class="templateColumnContainer" style="padding-top: 20px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 200px;">
-                      <table border="0" cellpadding="20" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;">
-                        <tr>
-                          <td class="leftColumnContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 0;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
-                            <img src=<%= @selections[0].movie.poster_med %> style="max-width: 160px;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;display: inline;" class="columnImage" mc:label="left_column_image" mc:edit="left_column_image">
-                          </td>
-                        </tr>
-                        <tr>
-                          <td valign="top" class="leftColumnContent" mc:edit="left_column_content" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 0;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
-                            <h3 style="display: block;font-family: Helvetica;font-size: 16px;font-style: italic;font-weight: normal;line-height: 100%;letter-spacing: normal;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;text-align: left;color: #606060;">#1. <%= @selections[0].movie.title.titleize %> at <%= @selections[0].showtime.time_in_timezone %></h3>
-                            <br>
-                            <br>
-                            <%= @selections[0].theater.name %>
-                            <br>
-                            <%= @selections[0].theater.address %>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                    <% if @selections[1] %>
+            <div style="width: 600px; display: block; text-align: center; margin-left: auto; margin-right: auto;">
+              <tr>
+                <td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateColumns" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #F4F4F4;border-top: 1px solid #FFFFFF;border-bottom: 1px solid #CCCCCC;border-collapse: collapse;">
+                    <tr mc:repeatable>
+                      <td align="center" valign="top" class="templateColumnContainer" style="padding-top: 20px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 200px;">
+                        <table border="0" cellpadding="20" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;">
+                          <tr>
+                            <td class="leftColumnContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 0;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
+                              <img src=<%= @selections[0].movie.poster_med %> style="max-width: 160px;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;display: inline-block;" class="columnImage" mc:label="left_column_image" mc:edit="left_column_image">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="top" class="leftColumnContent" mc:edit="left_column_content" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 0;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
+                              <h3 style="display: block;font-family: Helvetica;font-size: 16px;font-style: italic;font-weight: normal;line-height: 100%;letter-spacing: normal;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;text-align: left;color: #606060;">#1. <%= @selections[0].movie.title.titleize %> at <%= @selections[0].showtime.time_in_timezone %></h3>
+                              <br>
+                              <br>
+                              <%= @selections[0].theater.name %>
+                              <br>
+                              <%= @selections[0].theater.address %>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                      <% if @selections[1] %>
                       <td align="center" valign="top" class="templateColumnContainer" style="padding-top: 20px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 200px;">
                         <table border="0" cellpadding="20" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;">
                           <tr>
                             <td class="centerColumnContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 0;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
-                              <img src=<%= @selections[1].movie.poster_med %> style="max-width: 160px;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;" class="columnImage" mc:label="center_column_image" mc:edit="center_column_image">
+                              <img src=<%= @selections[1].movie.poster_med %> style="max-width: 160px;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none; display:inline-block" class="columnImage" mc:label="center_column_image" mc:edit="center_column_image">
                             </td>
                           </tr>
                           <tr>
@@ -89,13 +90,13 @@
                           </tr>
                         </table>
                       </td>
-                    <% end %>
-                    <% if @selections[2] %>
+                      <% end %>
+                      <% if @selections[2] %>
                       <td align="center" valign="top" class="templateColumnContainer" style="padding-top: 20px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 200px;">
                         <table border="0" cellpadding="20" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;">
                           <tr>
                             <td class="rightColumnContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 0;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
-                              <img src=<%= @selections[2].movie.poster_med %> class="columnImage" mc:label="right_column_image" mc:edit="right_column_image" style="max-width: 160px;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;display: inline;max-width: 260px;">
+                              <img src=<%= @selections[2].movie.poster_med %> class="columnImage" mc:label="right_column_image" mc:edit="right_column_image" style="max-width: 160px;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;display:inline=-block;max-width: 260px;">
                             </td>
                           </tr>
                           <tr>
@@ -113,8 +114,9 @@
                     </tr>
                   </table>
                 </td>
-              <% end %>
-            </tr>
+                <% end %>
+              </tr>
+            </div>
             <tr>
               <td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateFooter" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #F4F4F4;border-top: 1px solid #FFFFFF;border-collapse: collapse;">

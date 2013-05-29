@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528184502) do
+ActiveRecord::Schema.define(:version => 20130529180748) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20130528184502) do
     t.integer  "critics_score"
     t.integer  "audience_score"
     t.string   "poster"
+    t.text     "synopsis"
   end
 
   create_table "outings", :force => true do |t|
@@ -108,8 +109,9 @@ ActiveRecord::Schema.define(:version => 20130528184502) do
     t.string   "image"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "admin",            :default => false, :null => false
   end
 
   create_table "zipcodes", :force => true do |t|

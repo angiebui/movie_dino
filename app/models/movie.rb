@@ -5,7 +5,8 @@ class Movie < ActiveRecord::Base
 
   after_commit :sync_after_create, :on => :create
 
-  attr_accessible :title, :poster_large, :poster_med, :runtime, :mpaa_rating, :critics_score, :audience_score, :poster
+  attr_accessible :title, :poster_large, :poster_med, :runtime, :mpaa_rating,
+    :critics_score, :audience_score, :poster, :synopsis
   has_many :showtimes
   has_many :theaters, :through => :showtimes
   has_many :selections
@@ -40,6 +41,7 @@ class Movie < ActiveRecord::Base
 
     raise "Empty results from RT API" unless matched_result
     self.update_attributes(:poster_large   => matched_result['posters']['original'],
+                           :synopsis       => matched_result['synopsis'],
                            :poster_med     => matched_result['posters']['profile'],
                            :runtime        => matched_result['runtime'],
                            :mpaa_rating    => matched_result['mpaa_rating'],
