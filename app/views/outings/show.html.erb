@@ -1,3 +1,13 @@
-<h2> Possible Showtimes </h2>
+<div class="thank-you">
+  <br>
+  <h2>Event created!</h2>
+  <br>
+  <h3>Share your movie event with friends: <a href='http://moviedino.com/<%=@outing.link %>'>movedino.com/<%=@outing.link %></a></h3>
+  <br>
+  <p> Result will be sent: <%= @outing.showtimes %></p>
+  
+  <p> Note: Dash will email you the top movie showtimes picked by you and your friends <strong>6 hours</strong> before your earliest possible showtime</p>
+</div>
 
-<%= render 'shared/theater'  %>
+
+
