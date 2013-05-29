@@ -19,7 +19,11 @@ namespace :times do
   desc 'Refresh random theater times'
   task :refresh_random => :environment do
     outdated = Zipcode.find_stale.sample
-    MovieTime.fetch!(zip: outdated.sample.zipcodes.first)
-    puts "Refreshed #{outdated.zipcodes.first}."
+    if outdated
+      MovieTime.fetch!(zip: outdated.zipcode)
+      puts "Refreshed #{outdated.zipcode}."
+    else
+      puts "Nothing to refresh"
+    end
   end
 end
