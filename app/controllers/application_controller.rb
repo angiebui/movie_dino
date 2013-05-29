@@ -2,15 +2,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include TimeConverter
   include OutingShowtime
+  include Authentication
 
   private
 
   def convert_to_id(hash)
     hash.values.map {|movie| movie.to_i}
-  end
-
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def set_current_zipcode(zipcode)
