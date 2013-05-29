@@ -8,8 +8,7 @@ class Selected < ActiveRecord::Base
   private
 
   def update_selection_cache
-    picked = self.selection
-    picked.update_attributes(selected_count: picked.selected_count + 1)
+    picked.update_attributes(selected_count: self.selection.selected_count + 1)
   end
-  
+
 end

@@ -24,9 +24,7 @@ class Outing < ActiveRecord::Base
   end
 
   def top_selections
-    top = []
-    self.selections.order('selected_count DESC').limit(3).each {|selected| top << selected}
-    top
+    self.selections.order('selected_count DESC').limit(3)
   end
 
   def date
@@ -42,8 +40,7 @@ class Outing < ActiveRecord::Base
   end
 
   def save_result_date
-    datetime = self.earliest_showtime - 6.hours
-    self.result_date = datetime
+    self.result_date = self.earliest_showtime - 6.hours
   end
 
   def outing_emails!

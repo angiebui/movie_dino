@@ -12,9 +12,7 @@ class Selection < ActiveRecord::Base
   scope :top_picks, order('selected_count DESC')
 
   def fetch_attendee_list
-    attendee_list = []
-    self.attendees.each {|attendee| attendee_list << attendee.name}
-    attendee_list
+    self.attendees.inject([]) {|list, attendee| list << attendee; list}
   end
 
 end
