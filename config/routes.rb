@@ -1,3 +1,6 @@
+require 'sidekiq/web'
+require 'admin_constraint'
+
 MovieDino::Application.routes.draw do
 
   resources :sessions, defaults: { format: 'json'}
@@ -20,6 +23,7 @@ MovieDino::Application.routes.draw do
   match '/outings/:id/form' , to: 'attendees#new'
   match '/:provider/auth', to: 'sessions#create'
 
+  mount Sidekiq::Web, at: "/admin/sidekiq", :constraints => AdminConstraint.new
   ###################################
   #please dont move this, it's greedy.
   #maybe we use /m/:link instead?
