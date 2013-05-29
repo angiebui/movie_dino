@@ -31,7 +31,7 @@ module TimeConverter
   end
 
   def start_and_end_times(params)
-    time_zone = current_timezone_string params[:time_zone]
+    time_zone = ActiveSupport::TimeZone.new(current_timezone_string(current_zipcode))
     start_time = datetime_in_utc(params[:day], params[:start_time], time_zone)
     end_time = datetime_in_utc(params[:day], params[:end_time], time_zone)
     [start_time, end_time]

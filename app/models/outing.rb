@@ -1,6 +1,6 @@
 class Outing < ActiveRecord::Base
-  attr_reader :showtimes
-  attr_accessible :user, :user_id, :result_date, :selections
+  attr_accessor :showtimes
+  attr_accessible :user, :user_id, :result_date, :selections, :showtimes
 
   has_many :selections
   has_many :attendees
@@ -10,7 +10,8 @@ class Outing < ActiveRecord::Base
   has_many :times, through: :selections
 
   belongs_to :user
-  before_create :save_result_date, :outing_emails!, :create_selections
+  before_create :create_selections
+  after_create :save_result_date, :outing_emails!
   before_validation :generate_link, on: :create
 
   validates_uniqueness_of :link
