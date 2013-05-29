@@ -46,7 +46,7 @@
   border-top-right-radius: 8px;
 }
 
-.profile .info-box {
+.profile .box {
   width: 100%;
   display: inline-block;
   border: 2px solid #222;
@@ -71,6 +71,10 @@
 .profile .info-box .last-title {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px; 
+}
+
+.profile .graph-box  {
+  display: none;
 }
 
 .profile .outing-info {
