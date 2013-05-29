@@ -19,13 +19,10 @@ module  OutingShowtime
   def available_showtimes
     if !valid_outing?
       flash[:notice] = "Sorry, that wasn't a valid selection"
-      return redirect_to new_outing_path
-    end
-    if showtimes = showtimes(params) and showtimes.present?
-      return showtimes
+    elsif showtimes = showtimes(params) and showtimes.present?
+      showtimes
     else
       flash[:notice] = "Sorry, there were no showtimes available for that selection."
-      return redirect_to new_outing_path
     end
   end
 

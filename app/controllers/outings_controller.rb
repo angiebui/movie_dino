@@ -17,12 +17,18 @@ class OutingsController < ApplicationController
 
   def create
     showtimes = available_showtimes
-    outing = Outing.new(user: current_user, :showtimes => showtimes)
-    if outing.save
-      redirect_to outing
-    else
-      render :new
+    p flash[:notice]
+    
+    if flash[:notice]
+      return redirect_to new_outing_path
     end
+
+    # outing = Outing.new(user: current_user, :showtimes => showtimes)
+    # if outing.save
+    #   redirect_to outing
+    # else
+    #   render :new
+    # end
   end
 
   def link_show
