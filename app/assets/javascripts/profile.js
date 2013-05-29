@@ -28,7 +28,7 @@ function chart() {
       new Tooltip(pieChart,"default");
       pieChart.render();
   });
-    require([
+  require([
     "dojox/charting/Chart",
     "dojox/charting/plot2d/Pie",
     "dojox/charting/action2d/Tooltip",
