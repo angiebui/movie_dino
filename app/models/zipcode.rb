@@ -3,7 +3,7 @@ class Zipcode < ActiveRecord::Base
 
   has_many :theaters, through: :theaters_zipcodes
   has_many :theaters_zipcodes
-  has_many :movies, through: :theaters, uniq: true, order: 'title'
+  has_many :movies, through: :theaters, uniq: true, order: 'audience_score DESC'
   has_many :showtimes, through: :theaters
 
   validates_presence_of :zipcode
@@ -15,6 +15,10 @@ class Zipcode < ActiveRecord::Base
   def stale?
     return true if self.cache_date.nil?
     (Time.now - self.cache_date) > 3.days
+  end
+
+  def self.find_stale
+    Zipcode.where('cache_date < ?', Time.at(3.days.ago))
   end
 
 end

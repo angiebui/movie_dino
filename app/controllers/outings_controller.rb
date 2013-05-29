@@ -15,7 +15,11 @@ class OutingsController < ApplicationController
   end
 
   def create
-    outing = Outing.create(user_id: current_user.id)
+    if !valid_outing?
+      flash[:notice] = "Sorry, that wasn't a valid selection"
+      return redirect_to new_outing_path
+    end
+    outing = Outing.new(user_id: current_user.id)
     time_zone = ActiveSupport::TimeZone.new(params[:time_zone])
     start_time = datetime_in_utc(params[:day], params[:start_time], time_zone)
     end_time = datetime_in_utc(params[:day], params[:end_time], time_zone)
@@ -25,12 +29,19 @@ class OutingsController < ApplicationController
     showtimes = Showtime.possible_times(start_time: start_time,
                                         end_time: end_time, movie_ids: movies,
                                         zipcode: current_zipcode)
-    showtimes.each {|showtime| outing.selections.create(showtime: showtime,
-                                                        movie: showtime.movie,
-                                                        time: showtime.time,
-                                                        theater: showtime.theater)}
-    outing.save_result_date
-    redirect_to outing
+    if showtimes.empty?
+      flash[:notice]="Sorry, there were no showtimes available for that selection."
+      return redirect_to new_outing_path
+    else
+      showtimes.each do |showtime|
+        outing.selections.create(showtime: showtime,
+                                 movie: showtime.movie,
+                                 time: showtime.time,
+                                 theater: showtime.theater)
+      end
+      outing.save_result_date
+      redirect_to outing
+    end
   end
 
   def link_show

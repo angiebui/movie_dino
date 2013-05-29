@@ -28,7 +28,7 @@ class Outing < ActiveRecord::Base
   end
 
   def date
-    date = self.selections.order('time DESC').last.time.to_date.to_formatted_s(:long_ordinal)
+    self.selections.order('time DESC').last.time.to_date.to_formatted_s(:long_ordinal)
   end
 
   def earliest_showtime
@@ -51,7 +51,6 @@ class Outing < ActiveRecord::Base
   end
 
   private
-  
   def generate_link
     self.link = SecureRandom.hex(3)
   end
