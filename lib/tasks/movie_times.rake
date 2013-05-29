@@ -15,4 +15,11 @@ namespace :times do
 
     puts "Refreshed #{outdated.count} theatre records"
   end
+
+  desc 'Refresh random theater times'
+  task :refresh_random => :environment do
+    outdated = Zipcode.find_stale.sample
+    MovieTime.fetch!(zip: outdated.sample.zipcodes.first)
+    puts "Refreshed #{outdated.zipcodes.first}."
+  end
 end

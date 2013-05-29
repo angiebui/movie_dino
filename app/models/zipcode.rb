@@ -17,4 +17,8 @@ class Zipcode < ActiveRecord::Base
     (Time.now - self.cache_date) > 3.days
   end
 
+  def self.find_stale
+    Zipcode.where('cache_date < ?', Time.at(3.days.ago))
+  end
+
 end
