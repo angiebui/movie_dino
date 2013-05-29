@@ -49,8 +49,15 @@ class ApplicationController < ActionController::Base
     values = (8..24).to_a
     TIMES.zip(values)
   end
-  
-  helper_method :current_user, :time_range, :day_range, :get_datetime, 
-    :display_time, :current_timezone_string
+
+  def valid_outing?
+    if params[:movies] && (params[:end_time] != params[:start_time])
+      true
+    else
+      false
+    end
+  end
+  helper_method :current_user, :time_range, :day_range, :get_datetime,
+    :display_time, :current_timezone_string, :valid_outing?
 
 end

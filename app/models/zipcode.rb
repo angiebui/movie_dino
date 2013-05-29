@@ -3,7 +3,7 @@ class Zipcode < ActiveRecord::Base
 
   has_many :theaters, through: :theaters_zipcodes
   has_many :theaters_zipcodes
-  has_many :movies, through: :theaters, uniq: true, order: 'title'
+  has_many :movies, through: :theaters, uniq: true, order: 'audience_score DESC'
   has_many :showtimes, through: :theaters
 
   validates_presence_of :zipcode
