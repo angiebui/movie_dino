@@ -54,14 +54,13 @@
       this.old = 0;
       // check if the list is currently moving
       this.isAnimating = false;
-      // the list (ul) will have a width of 100% x itemsCount
-      this.$list.css( 'width', 1030 * this.itemsCount + 'px' );
+      // the list (ul) will have a width of 970 x itemsCount
+      this.$list.css( 'width', 970 * this.itemsCount + 'px' );
       // apply the transition
       if( this.support ) {
         this.$list.css( 'transition', this.transformName + ' 500ms ease' );
       }
-      // each item will have a width of 100 / itemsCount
-      this.$items.css( 'width', '1030px' );
+      this.$items.css( 'width', '970px' );
       // add navigation arrows if there is more than 1 item
       if( this.itemsCount > 1 ) {
         // add navigation arrows (the previous arrow is not shown initially):
