@@ -9,7 +9,6 @@ MovieDino::Application.routes.draw do
   resources :attendees
 
   root to: 'pages#index'
-  get '/outings:id/form', to: 'attendees#new'
 
   match '/loading', to: 'outings#loading', as: 'loading'
   match '/status', to: 'outings#status', as: 'status'
@@ -20,12 +19,12 @@ MovieDino::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
   match '/users', to: 'pages#index'
-  match '/outings/:id/form' , to: 'attendees#new', :as => 'outings_form'
+  match '/outings/:id/form' , to: 'attendees#new'
   match '/:provider/auth', to: 'sessions#create'
 
   mount Sidekiq::Web, at: "/admin/sidekiq", :constraints => AdminConstraint.new
   ###################################
   #please dont move this, it's greedy.
   #maybe we use /m/:link instead?
-  match '/:link', to: 'outings#link_show'
+  match '/:link', to: 'attendees#new', :as => 'outings_form'
 end

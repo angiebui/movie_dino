@@ -2,7 +2,7 @@
   <br>
   <h2>Event created!</h2>
   <br>
-  <h3>Share your movie event with friends: <a href='http://moviedino.com/<%=@outing.link %>'>movedino.com/<%=@outing.link %></a></h3>
+  <h3>Share your movie event with friends: <%= link_to outings_form_url(@outing.link),outings_form_url(@outing.link) %></h3>
   <br>
   <p> Result will be sent: <%= @outing.showtimes %></p>
   

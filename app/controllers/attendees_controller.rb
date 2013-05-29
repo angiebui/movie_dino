@@ -1,7 +1,13 @@
 class AttendeesController < ApplicationController
   def new
     @attendee = Attendee.new
-    @outing = Outing.find(params[:id])
+    
+    if params[:link]
+      @outing = Outing.find_by_link(params[:link])
+    else
+      @outing = Outing.find(params[:id])
+    end
+
     @movies = @outing.get_movies
     @theaters = @outing.get_theaters
   end
