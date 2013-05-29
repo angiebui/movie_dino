@@ -1,0 +1,13 @@
+function remindUserToLogin(){
+  $('#login-errors').html('Please <a href="/auth/facebook" id="sign_in" rel="external">login</a> first!');
+}
+
+$(document).ready(function(){
+  $('#new_outing').on('submit', function(event){
+    var current_user = $('#current_user').text();
+    if(current_user == ""){
+      event.preventDefault()
+      remindUserToLogin();
+    }
+  });
+})

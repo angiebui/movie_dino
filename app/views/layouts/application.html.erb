@@ -29,6 +29,11 @@
 
       $(document).foundation();
 
+      var windowWidth = $( window ).width(),
+      windowHeight =  $( window ).height();
+
+      $( '#main' ).css( 'minHeight', ( windowHeight - 346 ) + 'px' );
+
       $(".movie-marquee input[type='checkbox']").change(function() {
         if($(this).is(':checked')) {
           $(this).next('label').addClass('checked');
