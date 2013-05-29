@@ -1,5 +1,11 @@
 $(document).ready(function() {
-  $('.profile').on('click', function(){
-    console.log('clicked!')
+  $('.graphs').on('click', function(){
+    $('.info-box').hide();
+    $('.graph-box').show();
+  });
+
+  $('.info').on('click', function(){
+    $('.graph-box').hide();
+    $('.info-box').show();
   });
 });
