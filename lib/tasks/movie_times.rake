@@ -9,17 +9,10 @@ namespace :times do
   desc 'Refresh current theatre times'
   task :refresh => :environment do
     outdated = Theater.outdated
-    cities, states = outdated.map(&:city), outdated.map(&:state)
-    city_state_pairs = cities.zip(states)
-    city_state_pairs.uniq.each do |city, state|
-      MovieTime.fetch!(city: city, state: state)
+    outdated.each do |theater|
+      MovieTime.fetch!(zip: theater.zipcodes.first)
     end
 
-    puts "Refreshed #{city_state_pairs.uniq.count} theatre records"
-  end
-
-  desc 'Seed San Francisco Times'
-  task :seed => :environment do
-    MovieTime.fetch!(zip: '94108')
+    puts "Refreshed #{outdated.count} theatre records"
   end
 end
