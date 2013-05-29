@@ -15,13 +15,17 @@ window.fbAsyncInit = function() {
   });
 
 
-  $('#sign_in').click(function(e) {
+   $(document).on('click','#sign_in',function(e) {
     e.preventDefault();
     FB.login(function(response) {
       if (response.authResponse) {
         $.getJSON('/facebook/auth', response.authResponse)
       .done(function(data){
           $('header').html(data.header)
+          if(window.location.pathname === '/outings/new'){
+            $('#new_outing').submit()
+            $('#login-errors').html('Thank you')
+          }
         })
         .fail(function(){
           console.log('failure');
