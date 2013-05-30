@@ -170,7 +170,7 @@
         obj.opts.on('click',function(){
           var opt = $(this);
           obj.val = opt.text();
-          // Index starts at 8, this must start at 8
+          // Index starts at 8, so this must start at 8
           obj.index = opt.index() + 8;
           obj.placeholder.text( obj.val );
           obj.sel.val(obj.index);
