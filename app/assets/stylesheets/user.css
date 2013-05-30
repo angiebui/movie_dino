@@ -28,14 +28,13 @@
   text-align: center;
 }
 
-
 .profile .outing-box {
   margin: 20px 0;
 }
 
 .profile .profile-button {
   margin: 0px;
-  width: 60px;
+  width: 120px;
   height: 30px;
   background-color: #222;
   color: #1f7f5f;
@@ -58,10 +57,17 @@
   width: 100%;
   display: inline-block;
   border: 2px solid #222;
-  padding: 20px;
+  padding: 0px;
+}
+
+.profile .box, .profile .graphs-box svg {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
+}
+
+.profile .info-box {
+  padding: 20px;
 }
 
 .profile .info-box h5 {
@@ -81,8 +87,18 @@
   border-bottom-right-radius: 8px; 
 }
 
-.profile .graphs-box  {
-  display: none;
+
+.profile .chart {
+  width: 100%;
+  height: 400px;
+  z-index: -100;
+}
+
+.profile #pieChartNode {
+  background-color: pink;
+  width: 200px;
+  height:600px;
+  text-align: center;
 }
 
 .profile .outing-info {
