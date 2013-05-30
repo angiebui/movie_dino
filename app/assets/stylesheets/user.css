@@ -140,8 +140,9 @@
 }
 
 .profile .attendee-num{
-  float:right;
-  padding-right: 30px;
+  /*float:right;*/
+  text-align: center;
+  /*padding-right: 30px;*/
 }
 
 .profile .attendee-list {
