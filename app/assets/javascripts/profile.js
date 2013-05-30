@@ -3,8 +3,13 @@ function tabbing() {
     if (!$(this).hasClass('active')){
       $(this).siblings().removeClass('active');
       $(this).addClass('active');
-      $(this).siblings('.box').slideUp(600);
-      $(this).siblings('.' + ($(this).attr('id')) + '-box').delay(800).slideDown(600);
+      $(this).siblings('.box').fadeOut(600);
+      $(this).siblings('.' + ($(this).attr('id')) + '-box').stop(true, true)
+                                                           .delay(600)
+                                                           .animate({
+                                                             height: 'toggle',
+                                                             opacity: 'toggle'
+                                                           }, 600);
     };
   });
 };
