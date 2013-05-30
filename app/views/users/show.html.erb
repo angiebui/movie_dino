@@ -3,8 +3,11 @@
     <div class='header-container'><h2 class='outings-header'>Created Outings</h2></div>
     <% @outings.each_with_index do |outing, i|%>
       <div class='outing-box'>
-        <h3>Outing on <%= outing[:date] %></h3>
-
+        <div class='outing-title'>
+          <h3>Outing on <%= outing[:date] %></h3>
+          <span>Share</span>
+        </div>
+        
         <span class='profile-button active' id='graphs'>Chart</span>
         <span class='profile-button' id='info'>Overview</span>
         <span class='profile-button' id='details'>Attendee List</span>

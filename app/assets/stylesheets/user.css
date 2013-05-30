@@ -36,6 +36,24 @@
   margin: 30px 10px 15px 10px;
 }
 
+.profile .outing-title {
+  display: inline-block;
+  height: 50px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.profile .outing-title h3 {
+  margin: 0;
+  float: left;
+  line-height: 50px
+}
+
+.profile .outing-title span {
+  float: right;
+  line-height: 50px;
+}
+
 .profile .profile-button {
   margin: 0px;
   width: 120px;
