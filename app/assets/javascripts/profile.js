@@ -30,19 +30,20 @@ function generateCharts(attendees) {
         pieChart.setTheme(Minty);
         pieChart.addPlot('default', {
             type: 'Pie',
-            fontColor: '#222',
+            fontColor: '#666',
             font: 'normal normal 12pt Oswald',
             radius: 175,
             labelOffset: -45,
-            startAngle: 45,
-            labelWiring: "grey"
-            // htmlLabels: true
+            startAngle: 45
+            // labelWiring: "grey"
         });
-        pieChart.addSeries('Movie Chart ' + index, dojo.map(element, function(pair){
-          return {y: pair[1], text: pair[0], tooltip: 'test'};
-        }));
         new MoveSlice(pieChart,'default');
-        new Tooltip(pieChart,'default');
+        // new Tooltip(pieChart,'default');
+
+        pieChart.addSeries('movieChart_' + index, dojo.map(element, function(pair){
+          return {y: pair[1], text: pair[0]};
+        }));
+
         pieChart.render();
 
     });
