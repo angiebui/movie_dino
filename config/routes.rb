@@ -9,6 +9,7 @@ MovieDino::Application.routes.draw do
   resources :users
   resources :outings
   resources :attendees
+  
   match '/outings/:id/form', to: 'attendees#new'
   match '/profile',          to: 'users#show', as: 'profile'
   match '/loading',          to: 'outings#loading', as: 'loading'
