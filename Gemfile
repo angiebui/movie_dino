@@ -20,6 +20,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # async stuffs
 gem 'sidekiq'
 gem 'sidekiq-status'
+gem 'sidekiq-failures'
 
 # time
 gem 'tzip'
