@@ -2,14 +2,13 @@ class MovieTime
   attr_reader :page, :increment, :agent, :time_zone
   attr_accessor :theater, :movie
 
-  def initialize(location)
+  def initialize(location, increment)
     @zipcode = Zipcode.find_or_create_by_zipcode(location)
-    @google_address = "http://www.google.com/movies?hl=en&near=#{location}&date=#{increment}"
     @agent = Mechanize.new
     @time_zone = find_time_zone
-
+    @increment = increment
     @location = location
-    open_page(@location)
+    open_page
 
     fetch_times!
   end
@@ -24,7 +23,7 @@ class MovieTime
     else
       raise ArgumentError
     end
-    MovieTime.new(location)
+    MovieTime.new(location, location_data[:increment])
   end
 
   def find_time_zone
@@ -32,21 +31,20 @@ class MovieTime
     ActiveSupport::TimeZone.new(tz_string)
   end
 
-  def fetch_posters!
-
+  def google_address
+    "http://www.google.com/movies?hl=en&near=#{@location}&date=#{@increment}"
   end
 
-  def open_page(location, increment = 0)
-    @uri = URI(@google_address)
-    @increment = increment
+  def open_page
+    @uri = URI(google_address)
     @page = @agent.get @uri
   end
 
   def fetch_times!
     fetch_and_save_theatres!
-    increment = increment
-    click_next_page
-    next_day
+    #increment = increment
+    #click_next_page
+    #next_day
   end
 
   def fetch_and_save_theatres!
@@ -133,11 +131,11 @@ class MovieTime
   end
 
   def datetime(increment, time)
-    # Chronic.parse("#{increment} days from now at #{time}")
     base = time_zone.at(increment.days.from_now)
     hour, min = time.scan(/\d{1,2}/)
     if time =~ /am/
       if time =~ /12:/
+        base = time_zone.at((increment+1).days.from_now)
         time = base.change :hour => '00', :min => min
       else
         time = base.change :hour => hour, :min => min
