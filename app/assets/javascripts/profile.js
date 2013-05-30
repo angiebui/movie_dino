@@ -13,10 +13,6 @@ function getJSonObject(value) {
 
 function generateCharts(attendees) {
   $.each(getJSonObject(attendees), function(index, element) {
-    var attendeeList = []
-    $.each(element, function(i, e) {
-      attendeeList.push(e[1])
-    });
 
     require([
       'dojox/charting/Chart',
@@ -36,8 +32,12 @@ function generateCharts(attendees) {
             type: 'Pie',
             fontColor: '#000',
             radius: 175,
+            labelOffset: -30,
+            startAngle: 45
         });
-        pieChart.addSeries('Movie Chart ' + index, attendeeList);
+        pieChart.addSeries('Movie Chart ' + index, dojo.map(element, function(pair){
+          return {y: pair[1], text: pair[0]};
+        }));
         new MoveSlice(pieChart,'default');
         new Tooltip(pieChart,'default');
         
