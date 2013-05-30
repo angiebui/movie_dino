@@ -14,20 +14,17 @@
 
   function longPoll(){
     var i = setInterval(function(){
-      var jid = '<%= @jid %>'
-      if(jid != ""){
-        $.post('/status', {jid: jid})
-        .done(function(data){
-          console.log(data)
-          if(data.status === 'complete'){
-            clearInterval(i);
-            jobState = true;
-            addReadyMessage();
-          }
-        }).fail(function(){
-          console.log('something went wrong');
-        })
-      }
+      $.post('/status')
+      .done(function(data){
+        console.log(data)
+        if(data.status === 'true'){
+          clearInterval(i);
+          jobState = true;
+          addReadyMessage();
+        }
+      }).fail(function(){
+        console.log('something went wrong');
+      })
     },5000)
   }
 

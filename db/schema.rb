@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529184644) do
+ActiveRecord::Schema.define(:version => 20130530040936) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "outing_id"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(:version => 20130529184644) do
     t.string   "poster"
     t.text     "synopsis"
   end
+
+  add_index "movies", ["title"], :name => "index_movies_on_title", :unique => true
 
   create_table "outings", :force => true do |t|
     t.integer  "user_id"
@@ -82,6 +84,8 @@ ActiveRecord::Schema.define(:version => 20130529184644) do
     t.string   "city"
     t.string   "state"
   end
+
+  add_index "theaters", ["street", "name", "city", "state", "phone_number"], :name => "uniqueness_index", :unique => true
 
   create_table "theaters_zipcodes", :force => true do |t|
     t.integer  "zipcode_id"

@@ -5,6 +5,13 @@ namespace :times do
     outdated.delete_all
     puts "Deleted #{outdated.count} records."
   end
+  
+  desc 'Seed initial movies'
+  task :slow_fetch => :environment do
+    8.times do |increment|
+      MovieTime.fetch!(zip: '94108', increment: increment)
+    end
+  end
 
   desc 'Refresh current theatre times'
   task :refresh => :environment do

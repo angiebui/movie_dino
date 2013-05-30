@@ -15,15 +15,16 @@ module RottenApi
 
     matched_result = good_results.last
 
-    raise "Empty results from RT API" unless matched_result
-    self.update_attributes(:poster_large   => matched_result['posters']['original'],
-                           :synopsis       => matched_result['synopsis'],
-                           :poster_med     => matched_result['posters']['profile'],
-                           :runtime        => matched_result['runtime'],
-                           :mpaa_rating    => matched_result['mpaa_rating'],
-                           :critics_score  => matched_result['ratings']['critics_score'],
-                           :audience_score => matched_result['ratings']['audience_score'])
+    if matched_result
+      self.update_attributes(:poster_large   => matched_result['posters']['original'],
+                             :synopsis       => matched_result['synopsis'],
+                             :poster_med     => matched_result['posters']['profile'],
+                             :runtime        => matched_result['runtime'],
+                             :mpaa_rating    => matched_result['mpaa_rating'],
+                             :critics_score  => matched_result['ratings']['critics_score'],
+                             :audience_score => matched_result['ratings']['audience_score'])
     store_image(self.poster_large)
+    end
   end
 
   def fetch_movie_count(count_request)
@@ -33,6 +34,6 @@ module RottenApi
   def uri_to_json(url)
     uri = URI(url)
     request = Net::HTTP::get(uri)
-    movies_json = JSON.parse(request)
+    response = JSON.parse(request)
   end
 end

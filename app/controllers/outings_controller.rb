@@ -12,7 +12,7 @@ class OutingsController < ApplicationController
     @zipcode = Zipcode.find_by_zipcode(current_zipcode)
     @movies = @zipcode.movies
     @days = day_range(current_timezone_string)
- end
+  end
 
 
   def create
@@ -31,7 +31,6 @@ class OutingsController < ApplicationController
   end
 
   def loading
-    @jid = fetch_jid
   end
 
   def show
@@ -40,8 +39,15 @@ class OutingsController < ApplicationController
   end
 
   def status
-    status = Sidekiq::Status::status(params[:jid])
-    render :json => {status: status.to_s}
+    if session[:jids]
+      @jids = session[:jids]
+      completed = @jids.all?{ |jid| Sidekiq::Status.status(jid) == :complete}
+      session[:jids].clear if completed
+      Zipcode.where(:zipcode => session[:zipcode]).first.update_cache_date!
+      render :json => {status: completed.to_s}
+    else
+      render :json => {status: completed.to_s}
+    end
   end
 end
 
