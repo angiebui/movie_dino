@@ -64,7 +64,7 @@ class MovieTime
 
   def store_time!(one_time)
     count = 0
-    time = datetime(increment,one_time)
+    time = datetime(one_time)
     begin
       Showtime.where(theater_id: theater.id,
                     movie_id: movie.id,
@@ -138,7 +138,7 @@ class MovieTime
     end
   end
 
-  def datetime(increment, time)
+  def datetime(time)
     base = time_zone.at(increment.days.from_now)
     hour, min = time.scan(/\d{1,2}/)
     if time =~ /am/
