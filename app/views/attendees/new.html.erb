@@ -23,7 +23,7 @@
        <% @movies.each do |movie| %>
        <div>
         <%= check_box_tag(movie.title, movie.id, checked = true, name: "movies[#{movie.title}]", :data => {movie_id: "#{movie.id}", movie_title: "#{movie.title}"}) %>
-        <%= label_tag(movie.title, nil, :class => 'checked panel', :style => "background-image: url(#{movie.poster_large})")%>
+        <%= label_tag(movie.title, nil, :class => 'checkgit ed panel', :style => "background-image: url(#{movie.poster_large})")%>
         </div>
         <% end %>
       </div>
