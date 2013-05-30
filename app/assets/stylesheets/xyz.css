@@ -212,11 +212,11 @@ header {
 
 .hero {
   background: #1f7f5f;
-  background-image: url('/assets/ticket_dino.png');
+  background-image: url('/assets/film.svg');
   background-repeat: no-repeat;
-  background-position: 130% 21%;
-  padding: 25px 0px;
-  margin-bottom: 25px;
+  background-position: 100% 50%;
+  background-size: 42%;
+  padding: 20px 0px;
 }
 
 .hero h1 {
@@ -229,17 +229,42 @@ header {
   font-weight: 100;
 }
 
-.hero .row .large-12 {
-
+.sub-hero {
+  color: #777;
+  font-weight: 100;
+  background: #eee;
+  padding: 20px 0px;
+  margin-bottom: 25px;
 }
+
+.sub-hero p {
+  padding: 0;
+  margin: 0;
+}
+
+.wheel-1 {
+  background: url("/assets/wheel-1.svg");
+  top: -47px;
+  left: 628px;
+  width: 125px;
+  height: 125px;
+  background-size: 100%;
+  position: absolute;
+}
+
+
+.wheel-1, .wheel-2 {
+  -webkit-animation-name: wheel-rotate;
+  -webkit-animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes wheel-rotate{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(-360deg)}}
 
 /*
  * TIME SELECT
  */
-
-#select-movie {
-  margin-top: 25px;
-}
 
 #select h2,
 #select h3 {
@@ -585,6 +610,24 @@ header {
 #attendees-submit {
   background: #eee;
   padding: 25px 0px;
+}
+
+.movie {
+  -webkit-transition: all 0.2s ease-out;
+     -moz-transition: all 0.2s ease-out;
+      -ms-transition: all 0.2s ease-out;
+       -o-transition: all 0.2s ease-out;
+}
+
+#select-movie {
+  margin-top: 25px;
+}
+
+.theater {
+  -webkit-transition: all 0.2s ease-out;
+     -moz-transition: all 0.2s ease-out;
+      -ms-transition: all 0.2s ease-out;
+       -o-transition: all 0.2s ease-out;
 }
 
 .theater ul {
