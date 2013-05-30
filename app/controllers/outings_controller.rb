@@ -12,7 +12,7 @@ class OutingsController < ApplicationController
     @zipcode = Zipcode.find_by_zipcode(current_zipcode)
     @movies = @zipcode.movies
     @days = day_range(current_timezone_string)
-  end
+ end
 
 
   def create
@@ -41,7 +41,6 @@ class OutingsController < ApplicationController
     status = Sidekiq::Status::status(params[:jid])
     render :json => {status: status.to_s}
   end
-
 end
 
 
