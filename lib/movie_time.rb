@@ -9,7 +9,6 @@ class MovieTime
     @increment = increment
     @location = location
     open_page
-
     fetch_times!
   end
 
