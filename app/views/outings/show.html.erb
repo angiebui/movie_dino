@@ -1,6 +1,8 @@
 <div class="thank-you">
   <br>
-  <h2>Event created!</h2>
+  <h1>Movie Event Created!</h1>
+  <br>
+  <h3>Your event is scheduled for <%= @outing.weekday_date %></h3>
   <br>
   <h3>Share your movie event with friends: <%= link_to outings_form_url(@outing.link),outings_form_url(@outing.link) %></h3>
   <br>

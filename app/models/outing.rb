@@ -56,6 +56,7 @@ class Outing < ActiveRecord::Base
 
   def save_result_date
     time = time_until_earliest_showtime
+    debugger
     if time > 6
       self.result_date = self.earliest_showtime - 6.hours
       self.save
@@ -63,6 +64,7 @@ class Outing < ActiveRecord::Base
       self.result_date = self.earliest_showtime - 3.hours
       self.save
     end
+
   end
 
   def schedule_result_email
@@ -74,7 +76,7 @@ class Outing < ActiveRecord::Base
   end
 
   def time_until_earliest_showtime
-    (self.earliest_showtime - Time.now) / 3600
+    (self.earliest_showp e.now) / 3600
   end
 
   def top_selections
