@@ -5,7 +5,7 @@
       <div class='outing-box'>
         <div class='outing-title'>
           <h3>Outing on <%= outing[:date] %></h3>
-          <span class='share'><input type="hidden" value='asfasf' id='link'>Share</span>
+          <span class='share'><input type="hidden" value='<%= "http://#{request.host}/#{outing[:info].link}" %>' id='link'>Share</span>
         </div>
         
         <span class='profile-button active' id='graphs'>Chart</span>
