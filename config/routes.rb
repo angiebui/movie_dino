@@ -9,11 +9,11 @@ MovieDino::Application.routes.draw do
   resources :users
   resources :outings
   resources :attendees
-  match '/outings/:id/form' , to: 'attendees#new'
-  match '/profile',                to: 'users#show', as: 'profile'
-  match '/loading', to: 'outings#loading', as: 'loading'
-  match '/status', to: 'outings#status', as: 'status'
-  match '/start',                  to: 'outings#cache'
+  match '/outings/:id/form', to: 'attendees#new'
+  match '/profile',          to: 'users#show', as: 'profile'
+  match '/loading',          to: 'outings#loading', as: 'loading'
+  match '/status',           to: 'outings#status', as: 'status'
+  match '/start',            to: 'outings#cache'
 
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
