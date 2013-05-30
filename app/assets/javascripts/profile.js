@@ -23,20 +23,24 @@ function generateCharts(attendees) {
       'dojox/charting/plot2d/Pie',
       'dojox/charting/action2d/Tooltip',
       'dojox/charting/action2d/MoveSlice',
-      'dojox/charting/themes/PlotKit/cyan',
+      'dojox/charting/themes/Minty',
       'dojo/domReady!'
-    ], function(Chart, Pie, Tooltip, MoveSlice, PlotKitCyan){
+    ], function(Chart, Pie, Tooltip, MoveSlice, Minty){
+
+        Minty.chart.fill= '#F8F8F8';
+        Minty.plotarea.fill = '#F8F8F8';
 
         var pieChart = new Chart('pieChartNode' + index);
-        pieChart.setTheme(PlotKitCyan);
+        pieChart.setTheme(Minty);
         pieChart.addPlot('default', {
             type: 'Pie',
             fontColor: '#000',
-            radius: 175
+            radius: 175,
         });
         pieChart.addSeries('Movie Chart ' + index, attendeeList);
         new MoveSlice(pieChart,'default');
         new Tooltip(pieChart,'default');
+        
         pieChart.render();
 
     });
