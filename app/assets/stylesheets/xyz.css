@@ -331,7 +331,7 @@ header {
 }
 
 #movie-marquee .panel.checked {
-  border: 5px solid #1f7f5f;
+  border: 5px solid #FF9900;
 }
 
 #movie-marquee .poster {
