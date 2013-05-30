@@ -1,62 +1,63 @@
 <div class='profile-container'>
   <div class='profile'>
-
     <div class='header-container'><h2 class='outings-header'>Created Outings</h2></div>
     <% @outings.each_with_index do |outing, i|%>
       <div class='outing-box'>
         <h3>Outing on <%= outing[:date] %></h3>
+
         <span class='profile-button active' id='graphs'>Chart</span>
-        <span class='profile-button' id='info'>Details</span>
+        <span class='profile-button' id='info'>Overview</span>
+        <span class='profile-button' id='details'>Details</span>
 
-          <div class='info-box box'>
-            <h4>Total Responses: <%= outing[:total_responses] %></h4>
-            <div class='outing-info outing-info-first'>
-              <ul>
-                <h5 class='first-title'>Movie</h5>
-                <% outing[:selections].each do |selection| %>
-                  <li> <%= selection[:movie].title.upcase %> </li>
-                <% end %>
-              </ul>
-            </div>
-            <div class='outing-info'>
-              <ul>
-                <h5>Theater</h5>
-                <% outing[:selections].each do |selection| %>
-                  <li> <%= selection[:theater].name %> </li>
-                <% end %>
-              </ul>
-            </div>
-            <div class='outing-info'>
-              <ul>
-                <h5>Showtime</h5>
-                <% outing[:selections].each do |selection| %>
-                  <li> <%= selection[:showtime] %> </li>
-                <% end %>
-              </ul>
-            </div>
-            <div class='outing-info'>
-              <ul>
-                <div class='attendee-list'>
-                <h5 class='last-title'>Number of Attendees</h5>
-                <% outing[:selections].each do |selection| %>
-                  <li> <%= selection[:attendees_num] %> </li>
-                <% end %>
-                  </div>
-              </ul>
-            </div>
+        <div class='info-box box'>
+          <h4>Total Responses: <%= outing[:total_responses] %></h4>
+          <div class='outing-info outing-info-first'>
+            <ul>
+              <h5 class='first-title'>Movie</h5>
+              <% outing[:selections].each do |selection| %>
+                <li> <%= selection[:movie].title.upcase %> </li>
+              <% end %>
+            </ul>
           </div>
-
-          <div class='graphs-box box'>
-            <div id='pieChartNode<%= i %>' class='chart'></div>
+          <div class='outing-info'>
+            <ul>
+              <h5>Theater</h5>
+              <% outing[:selections].each do |selection| %>
+                <li> <%= selection[:theater].name %> </li>
+              <% end %>
+            </ul>
           </div>
+          <div class='outing-info'>
+            <ul>
+              <h5>Showtime</h5>
+              <% outing[:selections].each do |selection| %>
+                <li> <%= selection[:showtime] %> </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class='outing-info'>
+            <ul>
+              <div class='attendee-list'>
+              <h5 class='last-title'>Comfirmed Attendees</h5>
+              <% outing[:selections].each do |selection| %>
+                <li> <%= selection[:attendees_num] %> </li>
+              <% end %>
+                </div>
+            </ul>
+          </div>
+        </div>
 
+        <div class='graphs-box box'>
+          <div id='pieChartNode<%= i %>' class='chart'></div>
+        </div>
+
+        <div class='details-box box'>
+
+        </div>        
       </div>
     <% end %>
-
-    <!-- This is so hacky... I'm ashamed -->
     <script type='text/javascript'>
        generateCharts('<%= @attendeeJS %>');
     </script>
-
   </div>
 </div>

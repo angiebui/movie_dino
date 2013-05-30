@@ -5,7 +5,7 @@ function tabbing() {
       $(this).addClass('active');
       $(this).siblings('.box').fadeOut(600);
       $(this).siblings('.' + ($(this).attr('id')) + '-box').stop(true, true)
-                                                           .delay(600)
+                                                           .delay(550)
                                                            .animate({
                                                              height: 'toggle',
                                                              opacity: 'toggle'
@@ -20,7 +20,6 @@ function getJSonObject(value) {
 
 function generateCharts(attendees) {
   $.each(getJSonObject(attendees), function(index, element) {
-
     require([
       'dojox/charting/Chart',
       'dojox/charting/plot2d/Pie',
@@ -50,9 +49,7 @@ function generateCharts(attendees) {
         pieChart.addSeries('movieChart_' + index, dojo.map(element, function(pair){
           return {y: pair[1], text: pair[0]};
         }));
-
         pieChart.render();
-
     });
   });
 };
@@ -61,10 +58,10 @@ function initialise() {
   $('.profile').hide();
   $('.profile').fadeIn(1500);
   $('.profile .info-box').hide();
+  $('.profile .details-box').hide();
 };
 
 $(document).ready(function() {
   initialise();
   tabbing();
 });
-
