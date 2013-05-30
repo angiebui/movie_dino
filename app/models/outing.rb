@@ -16,6 +16,10 @@ class Outing < ActiveRecord::Base
 
   validates_uniqueness_of :link
 
+  def date
+    self.selections.order('time DESC').last.time.to_date.to_formatted_s(:long_ordinal)
+  end
+
   def get_movies
     self.movies.uniq
   end
@@ -24,29 +28,37 @@ class Outing < ActiveRecord::Base
     self.theaters.uniq
   end
 
-  def top_selections
-    self.selections.order('selected_count DESC').limit(3)
-  end
-
-  def date
-    self.selections.order('time DESC').last.time.to_date.to_formatted_s(:long_ordinal)
-  end
-
   def earliest_showtime
     self.selections.order('time').first.time
+  end
+
+  def outing_emails!
+    schedule_result_email unless self.result_date == nil
+    send_invite_email
   end
 
   def posters
     self.movies.uniq[0..2].map {|movie| movie.poster_med}
   end
 
-  def save_result_date
-    self.result_date = self.earliest_showtime - 6.hours
+  def result_date_in_timezone
+    theater_id = self.selections.first.theater_id
+
+    zipcode = Zipcode.joins(:theaters).where('theaters.id = ?', theater_id).first.zipcode
+    string_timezone = ActiveSupport::TimeZone.find_by_zipcode(zipcode)
+
+    self.result_date.in_time_zone(string_timezone).strftime('%A, %b %d %-l:%M%P')
   end
 
-  def outing_emails!
-    schedule_result_email
-    send_invite_email
+  def save_result_date
+    time = time_until_earliest_showtime
+    if time > 6
+      self.result_date = self.earliest_showtime - 6.hours
+      self.save
+    elsif time <= 6 and time > 3
+      self.result_date = self.earliest_showtime - 3.hours
+      self.save
+    end
   end
 
   def schedule_result_email
@@ -55,6 +67,14 @@ class Outing < ActiveRecord::Base
 
   def send_invite_email
     EmailWorker.perform_async(self.user_id, self.id, 'invite')
+  end
+
+  def time_until_earliest_showtime
+    (self.earliest_showtime - Time.now) / 3600
+  end
+
+  def top_selections
+    self.selections.order('selected_count DESC').limit(3)
   end
 
   private
@@ -70,5 +90,4 @@ class Outing < ActiveRecord::Base
                                theater: showtime.theater)
     end
   end
-
 end

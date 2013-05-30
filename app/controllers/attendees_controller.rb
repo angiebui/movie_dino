@@ -1,19 +1,28 @@
 class AttendeesController < ApplicationController
   def new
     @attendee = Attendee.new
-    @outing = Outing.find(params[:id])
+
+    if params[:link]
+      @outing = Outing.find_by_link(params[:link])
+    else
+      @outing = Outing.find(params[:id])
+    end
+
     @movies = @outing.get_movies
     @theaters = @outing.get_theaters
   end
 
   def create
-    @attendee = Attendee.new(params[:attendee])
-    selections = Selection.where :id => convert_to_id(params[:selections])
-    @attendee.selections << selections
+    @attendee = Attendee.new params[:attendee]
+    @outing = @attendee.outing
+
     if @attendee.save
-      redirect_to root_path
+      selections = Selection.where :id => convert_to_id(params[:selections])
+      @attendee.selections << selections
+      render :thank_you
     else
-      render :new
+      flash[:notice] = "Please select at least one showtime."
+      redirect_to outings_form_path(@outing.link)
     end
   end
 

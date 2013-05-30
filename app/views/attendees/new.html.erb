@@ -1,7 +1,7 @@
 <div class='movie-marquee' id='movie-marquee'>
   <%= form_for @attendee do |f| %>
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, required: true %>
     <%= f.hidden_field :outing_id, value: @outing.id %>
 
     <div class='movie-filter'>
