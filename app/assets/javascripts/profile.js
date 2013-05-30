@@ -32,7 +32,7 @@ function generateCharts(attendees) {
         pieChart.addPlot('default', {
             type: 'Pie',
             fontColor: '#000',
-            radius: 150
+            radius: 175
         });
         pieChart.addSeries('Movie Chart ' + index, attendeeList);
         new MoveSlice(pieChart,'default');
