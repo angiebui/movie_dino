@@ -74,6 +74,10 @@
   border-radius: 8px;
 }
 
+.profile .outing-title a {
+  color: #F8F8F8;
+}
+
 .profile .profile-button {
   margin: 0px;
   width: 120px;
