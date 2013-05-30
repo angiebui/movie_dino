@@ -1,26 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The change you wanted was rejected (422)</title>
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+  <title>Blast! Page doesn't exist. </title>
   <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+  body {
+    font-family: 'Oswald', sans-serif;
+    background: #222;
+    text-align: center;
+  }
+
+  div.dialog {
+    width: 50%;
+    min-height: 500px;
+    min-width: 450px;
+    padding: 0 4em;
+    margin: 4em auto 0 auto;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-right-color: #999;
+    border-bottom-color: #999;
+  }
+
+  div.content {
+    font-size: 20px;
+  }
+
+  h1 { 
+    color: #1f7f5f; 
+    line-height: 1.5em; 
+    font-family: 'Oswald', sans-serif;
+    text-shadow: 1px 1px #fff;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #3299BB;
+  }
+
+  img {
+    max-height: 500px;
+  }
+
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/422.html -->
   <div class="dialog">
-    <h1>The change you wanted was rejected.</h1>
-    <p>Maybe you tried to change something you didn't have access to.</p>
+    <img src="http://i.imgur.com/lBuZyQv.png">
+    <h1>Hey, what did you try to do there?</h1>
+    <div class="content">
+      <p>The changes you wanted was rejected. Maybe you tried to change something you didn't have access to.</p>
+    </div>
   </div>
 </body>
 </html>

@@ -1,26 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+  <title>Blast! Page doesn't exist. </title>
   <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
+    body {
+      font-family: 'Oswald', sans-serif;
+      background: #222;
+      text-align: center;
+    }
+
     div.dialog {
-      width: 25em;
+      width: 50%;
+      min-height: 500px;
+      min-width: 450px;
       padding: 0 4em;
       margin: 4em auto 0 auto;
       border: 1px solid #ccc;
+      background-color: #fff;
       border-right-color: #999;
       border-bottom-color: #999;
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+
+    div.content {
+      font-size: 20px;
+    }
+
+    h1 { 
+      color: #1f7f5f; 
+      line-height: 1.5em; 
+      font-family: 'Oswald', sans-serif;
+      text-shadow: 1px 1px #fff;
+      padding: 0;
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #3299BB;
+    }
+
+    img {
+      max-height: 500px;
+    }
+
   </style>
 </head>
-
 <body>
-  <!-- This file lives in public/404.html -->
   <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-</body>
+    <img src="http://i.imgur.com/6X7P6fI.png">
+    <h1>Blast! The page you were looking for doesn't exist.</h1>
+      <div class="content">
+        <p>You may have mistyped the address or the page may have moved.</p>
+        <p>I'll make you an offer you can't refuse, how about going back to our <a href='/'>homepage?</a>. Afterall, there's no place like home...</p>
+      </div>
+    </div>
+  </body>
 </html>
