@@ -47,9 +47,9 @@
 }
 
 .profile .active {
-  background-color: #F8F8F8;
+  background-color: #1f7f5f;
   border: 2px solid #222;
-  color: #222;
+  color: #F8F8F8;
   border-bottom: #F8F8F8;
 }
 
