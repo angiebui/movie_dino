@@ -31,6 +31,16 @@ module TimeConverter
     TIMES.zip(values)
   end
 
+  def hours_minutes(minutes)
+    if minutes
+      num_hours = minutes / 60
+      num_mins = minutes % 60 
+      "#{num_hours}hr #{num_mins}min"
+    else
+      "N/A"
+    end
+  end
+
   def start_and_end_times(params)
     time_zone = ActiveSupport::TimeZone.new(current_timezone_string(current_zipcode))
     start_time = datetime_in_utc(params[:day], params[:start_time], time_zone)
