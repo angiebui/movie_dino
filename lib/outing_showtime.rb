@@ -18,7 +18,7 @@ module  OutingShowtime
 
   def available_showtimes
     if !valid_outing?
-      flash[:notice] = "Sorry, that wasn't a valid selection"
+      params[:movies] ? (flash[:notice] = "Please enter a valid time range") : (flash[:notice] = "Please select at least one movie")
     elsif showtimes = showtimes(params) and showtimes.present?
       showtimes
     else
