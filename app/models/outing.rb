@@ -21,7 +21,7 @@ class Outing < ActiveRecord::Base
   end
 
   def weekday_date
-    self.selections.order('time DESC').last.time.to_date
+    self.selections.order('time DESC').last.time.strftime('%A, %b %d')
   end
 
   def get_movies
