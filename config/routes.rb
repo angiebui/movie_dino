@@ -6,19 +6,21 @@ MovieDino::Application.routes.draw do
   root to: 'pages#index'
 
   resources :sessions, defaults: { format: 'json'}
-  resources :users
+  resources :users, except: [:show]
   resources :outings
-  resources :attendees
-  match '/outings/:id/form' , to: 'attendees#new'
-  match '/profile',                to: 'users#show', as: 'profile'
+  resources :attendees, except: [:new]
+
+  match '/profile', to: 'users#show',      as: 'profile'
   match '/loading', to: 'outings#loading', as: 'loading'
-  match '/status', to: 'outings#status', as: 'status'
-  match '/start',                  to: 'outings#cache'
+  match '/status',  to: 'outings#status',  as: 'status'
+  match '/start',   to: 'outings#cache'
 
   match 'auth/:provider/callback', to: 'sessions#create'
-  match 'auth/failure', to: redirect('/')
-  match 'signout', to: 'sessions#destroy', as: 'signout'
-  match '/:provider/auth', to: 'sessions#create'
+  match 'auth/failure',            to: redirect('/')
+  match 'signout',                 to: 'sessions#destroy', as: 'signout'
+  match '/:provider/auth',         to: 'sessions#create'
+
+  match '/about', to: 'pages#about', as: 'about'
 
   mount Sidekiq::Web, at: "/admin/sidekiq", :constraints => AdminConstraint.new
   ###################################

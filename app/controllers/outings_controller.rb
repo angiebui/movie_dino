@@ -26,14 +26,19 @@ class OutingsController < ApplicationController
     else
       render :new
     end
-  end  
+  end
 
   def loading
   end
 
   def show
     @outing = Outing.find(params[:id])
-    @showtimes = @outing.showtimes
+    if @outing.user == current_user
+      @showtimes = @outing.showtimes
+      render 'show'
+    else
+      redirect_to root_path
+    end
   end
 
   def status
