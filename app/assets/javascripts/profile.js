@@ -2,8 +2,8 @@ function tabbing() {
   $('.outing-box').on('click', '.profile-button', function(){
     $(this).siblings().removeClass('active');
     $(this).addClass('active');
-    $(this).siblings('.box').hide();
-    $(this).siblings('.' + ($(this).attr('id')) + '-box').show();
+    $(this).siblings('.box').slideUp(600);
+    $(this).siblings('.' + ($(this).attr('id')) + '-box').delay(600).slideDown(600);
   });
 };
 
@@ -50,8 +50,14 @@ function generateCharts(attendees) {
   });
 };
 
-$(document).ready(function() {
-  tabbing();
+function initialise() {
+  $('.profile .graphs-box').hide();
+  $('.profile .graphs-box').slideDown(1200);
   $('.profile .info-box').hide();
+};
+
+$(document).ready(function() {
+  initialise();
+  tabbing();
 });
 
