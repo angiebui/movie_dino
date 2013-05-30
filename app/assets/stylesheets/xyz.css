@@ -241,6 +241,17 @@ header {
   margin-top: 25px;
 }
 
+#select h1 {
+  color: #1f7f5f;
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+}
+
+#select p {
+  color: #777;
+}
+
 #select h2,
 #select h3 {
   color: #777;
