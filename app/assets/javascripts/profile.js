@@ -1,9 +1,11 @@
 function tabbing() {
   $('.outing-box').on('click', '.profile-button', function(){
-    $(this).siblings().removeClass('active');
-    $(this).addClass('active');
-    $(this).siblings('.box').slideUp(600);
-    $(this).siblings('.' + ($(this).attr('id')) + '-box').delay(800).slideDown(600);
+    if (!$(this).hasClass('active')){
+      $(this).siblings().removeClass('active');
+      $(this).addClass('active');
+      $(this).siblings('.box').slideUp(600);
+      $(this).siblings('.' + ($(this).attr('id')) + '-box').delay(800).slideDown(600);
+    };
   });
 };
 

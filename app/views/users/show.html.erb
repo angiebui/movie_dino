@@ -5,8 +5,8 @@
     <% @outings.each_with_index do |outing, i|%>
       <div class='outing-box'>
         <h3>Outing on <%= outing[:date] %></h3>
-        <span class='profile-button active' id='graphs'>Graph</span>
-        <span class='profile-button' id='info'>Table</span>
+        <span class='profile-button active' id='graphs'>Chart</span>
+        <span class='profile-button' id='info'>Details</span>
 
           <div class='info-box box'>
             <h4>Total Responses: <%= outing[:total_responses] %></h4>
