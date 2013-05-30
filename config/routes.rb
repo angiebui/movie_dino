@@ -16,9 +16,9 @@ MovieDino::Application.routes.draw do
   match '/start',            to: 'outings#cache'
 
   match 'auth/:provider/callback', to: 'sessions#create'
-  match 'auth/failure', to: redirect('/')
-  match 'signout', to: 'sessions#destroy', as: 'signout'
-  match '/:provider/auth', to: 'sessions#create'
+  match 'auth/failure',            to: redirect('/')
+  match 'signout',                 to: 'sessions#destroy', as: 'signout'
+  match '/:provider/auth',         to: 'sessions#create'
 
   mount Sidekiq::Web, at: "/admin/sidekiq", :constraints => AdminConstraint.new
   ###################################
