@@ -54,6 +54,16 @@ function generateCharts(attendees) {
   });
 };
 
+function share() {
+  $('.share').on('click', function(){
+    copyToClipboard($(this).children('#link').val());
+  });
+};
+
+function copyToClipboard(text) {
+  window.prompt ("Copy to clipboard: Ctrl+C, Enter", text);
+};
+
 function initialise() {
   $('.profile').hide();
   $('.profile').fadeIn(1500);
@@ -64,4 +74,5 @@ function initialise() {
 $(document).ready(function() {
   initialise();
   tabbing();
+  share();
 });
