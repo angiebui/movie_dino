@@ -11,6 +11,7 @@
 
 <div class="row">
   <div class="large-9 columns">
+    <%= form_for @attendee do |f| %>
     <%= render 'shared/theater_selection' %>
   </div>
 
@@ -19,7 +20,6 @@
     <div class="sticky">
       <div class='movie-filter'>
        <h4> Movies </h4>
-       <%= form_for @attendee do |f| %>
        <% @movies.each do |movie| %>
        <div>
         <%= check_box_tag(movie.title, movie.id, checked = true, name: "movies[#{movie.title}]", :data => {movie_id: "#{movie.id}", movie_title: "#{movie.title}"}) %>
