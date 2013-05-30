@@ -1,7 +1,6 @@
 class Movie < ActiveRecord::Base
   include RottenApi
 
-  after_commit :sync_after_create, :on => :create
 
   attr_accessible :title, :poster_large, :poster_med, :runtime, :mpaa_rating,
     :critics_score, :audience_score, :poster, :synopsis
@@ -9,6 +8,9 @@ class Movie < ActiveRecord::Base
   has_many :theaters, :through => :showtimes
   has_many :selections
 
+  validates_uniqueness_of :title
+
+  after_commit :sync_after_create, :on => :create
 
   def display_title
     self.title.titleize

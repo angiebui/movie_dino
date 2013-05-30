@@ -1,5 +1,6 @@
 class EmailWorker
   include Sidekiq::Worker
+  sidekiq_options retry: 3
 
   def perform(user_id, outing_id, email_type)
     if email_type == "invite"

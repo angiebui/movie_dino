@@ -4,7 +4,7 @@ module  OutingShowtime
   end
 
   def fetch_new_show_times(zipcode)
-    session[:jid] = zipcode.fetch_times!
+    session[:jids] = zipcode.fetch_times!
     redirect_to loading_path
   end
 
