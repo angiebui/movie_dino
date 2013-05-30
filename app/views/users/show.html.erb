@@ -37,12 +37,13 @@
           </div>
           <div class='outing-info'>
             <ul>
-              <div class='attendee-list'>
-              <h5 class='last-title'>Comfirmed Attendees</h5>
-              <% outing[:selections].each do |selection| %>
-                <li> <%= selection[:attendees_num] %> </li>
-              <% end %>
-                </div>
+                <h5 class='last-title'>Comfirmed Attendees</h5>
+              <div class='attendee-num'>
+
+                <% outing[:selections].each do |selection| %>
+                  <li> <%= selection[:attendees_num] %> </li>
+                <% end %>
+              </div>
             </ul>
           </div>
         </div>
@@ -54,7 +55,16 @@
         <div class='details-box box'>
           <% outing[:selections].each do |selection| %>
             <div class='attendee-list'>
-              <h5><%= selection[:movie].title.upcase %></h5>
+              <h4><%= selection[:movie].title.upcase %></h4>
+              <h6><%= selection[:theater].name %></h6>
+              <h6><%= selection[:showtime] %></h6>
+              <br>
+              <br>
+              <ul>
+              <% selection[:attendees].sort.each do |attendee| %>
+                <li><%= attendee %></li>
+              <% end %>
+              </ul>
             </div>
           <% end %>
         </div>
