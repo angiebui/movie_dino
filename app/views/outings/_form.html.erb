@@ -2,7 +2,9 @@
   <div class="row">
     <div class="large-12 columns">
       <div id="select">
-        <h2>SELECT A MOVIE</h2>
+      <!--   <h1>CREATE A MOVIE EVENT</h1> -->
+        <p> DISPLAYING MOVIES FOR ZIPCODE: <%= current_zipcode %></p>
+        <h2>STEP 1. SELECT A MOVIE</h2>
       </div>
     </div>
   </div>
@@ -16,11 +18,13 @@
           <ul>
           <% @movies.each_with_index do |movie, index| %>
             <% index += 1 %>
+            <% movie_poster = movie.poster || default_poster %> 
+            <!-- default poster is a helper method -->
             <% checkbox = check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
             <% if index <= 8 %>
-              <% label = label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster})", :data => {:image_url => movie.poster}) %>
+              <% label = label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie_poster})", :data => {:image_url => movie_poster}) %>
             <% else %>
-              <% label = label_tag(movie.title, nil, :class => 'panel', :data => {:image_url => movie.poster}) %>
+              <% label = label_tag(movie.title, nil, :class => 'panel', :data => {:image_url => movie_poster}) %>
             <% end %>
             <% if (index) % 4 == 1 %>
               <li>
@@ -89,7 +93,7 @@
     <div class="row">
       <div class="large-12 columns">
         <div id="select">
-          <h2>SELECT A DAY AND TIME</h2>
+          <h2>STEP 2. SELECT A DAY AND TIME</h2>
         </div>
       </div>
     </div>
