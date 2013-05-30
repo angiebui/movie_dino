@@ -129,11 +129,14 @@
   border-bottom-right-radius: 8px; 
 }
 
-
 .profile .chart {
   width: 100%;
   height: 400px;
   z-index: -100;
+}
+
+.profile .chart span {
+  font-size: 12px;
 }
 
 .profile .outing-info {

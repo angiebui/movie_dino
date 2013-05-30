@@ -39,15 +39,15 @@ function generateCharts(attendees) {
             fontColor: '#666',
             font: 'normal normal 12pt Oswald',
             radius: 175,
-            labelOffset: -45,
+            labelOffset: -60,
             startAngle: 45
             // labelWiring: "grey"
         });
         new MoveSlice(pieChart,'default');
         // new Tooltip(pieChart,'default');
 
-        pieChart.addSeries('movieChart_' + index, dojo.map(element, function(pair){
-          return {y: pair[1], text: pair[0]};
+        pieChart.addSeries('movieChart_' + index, dojo.map(element, function(gData){
+          return {y: gData[1], text: gData[0] + '<br>' + '<span>' + gData[2] + '</span>'};
         }));
         pieChart.render();
     });
