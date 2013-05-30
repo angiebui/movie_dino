@@ -21,7 +21,7 @@ class AttendeesController < ApplicationController
       @attendee.selections << selections
       render :thank_you
     else
-      flash[:notice] = "Please select a least one showtime!"
+      flash[:notice] = "Please select at least one showtime."
       redirect_to outings_form_path(@outing.link)
     end
   end
