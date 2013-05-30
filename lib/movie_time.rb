@@ -1,5 +1,5 @@
 class MovieTime
-  EXCEPTIONS = [ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique]
+  EXCEPTIONS = [ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, PG::Error]
   attr_reader :increment, :agent, :time_zone, :zipcode
   attr_accessor :theater, :movie, :page
 
@@ -69,7 +69,7 @@ class MovieTime
       Showtime.where(theater_id: theater.id,
                     movie_id: movie.id,
                     time: time).first_or_create
-    rescue *[ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, PG::Error]
+    rescue *EXCEPTIONS
       raise "big problems" if count > 2
       count += 1
       Showtime.where(theater_id: theater.id,
