@@ -26,11 +26,7 @@ class OutingsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def link_show
-    
-  end
+  end  
 
   def loading
     @jid = fetch_jid

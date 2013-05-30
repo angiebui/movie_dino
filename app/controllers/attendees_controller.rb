@@ -13,14 +13,15 @@ class AttendeesController < ApplicationController
   end
 
   def create
-    @attendee = Attendee.new(params[:attendee])
+    @attendee = Attendee.new params[:attendee]
     selections = Selection.where :id => convert_to_id(params[:selections])
     @attendee.selections << selections
     if @attendee.save
       @outing = @attendee.outing
-      render 'thank_you'
+      render :thank_you
     else
-      render :new
+      flash[:notice] = "Please select a least one showtime!"
+      render :thank_you
     end
   end
 
