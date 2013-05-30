@@ -1,31 +1,83 @@
-<div class='movie-marquee' id='movie-marquee'>
-  <%= form_for @attendee do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.hidden_field :outing_id, value: @outing.id %>
+<div class="hero">
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="">
+        <h1>Clever girl.</h1>
+        <p>Not a clue what to write here... Perhaps Angie can help.
+      </div>
+    </div>
+  </div>
+</div>
 
-    <div class='movie-filter'>
-     <h4> Movies </h4>
-      <% @movies.each do |movie| %>
-        <div class="large-3 columns">
-          <%= check_box_tag(movie.title, movie.id, checked = true, name: "movies[#{movie.title}]", :data => {movie_id: "#{movie.id}", movie_title: "#{movie.title}"}) %>
-          <%= label_tag(movie.title, nil, :class => 'checked panel', :style => "background-image: url(#{movie.poster_large})")%>
+<div class="row">
+  <div class="large-9 columns">
+    <%= render 'shared/theater_selection' %>
+  </div>
+
+
+  <div class="large-3 columns sticky-container">
+    <div class="sticky">
+      <div class='movie-filter'>
+       <h4> Movies </h4>
+       <%= form_for @attendee do |f| %>
+       <% @movies.each do |movie| %>
+       <div>
+        <%= check_box_tag(movie.title, movie.id, checked = true, name: "movies[#{movie.title}]", :data => {movie_id: "#{movie.id}", movie_title: "#{movie.title}"}) %>
+        <%= label_tag(movie.title, nil, :class => 'checked panel', :style => "background-image: url(#{movie.poster_large})")%>
         </div>
+        <% end %>
+      </div>
+      <div class='theater-filter'>
+        <h4> Theaters </h4>
+        <% @theaters.each do |theater| %>
+        <%= check_box_tag(theater.name, theater.id, checked = true, name: "theaters[#{theater.name}]", :data => {theater_id: "#{theater.id}", theater_name: "#{theater.name}"}) %><%= theater.name %><br>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="attendees-submit">
+  <div class="row">
+    <div class="large-6 columns">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="large-6 columns">
+      <%= f.hidden_field :outing_id, value: @outing.id %>
+      <%= f.submit 'ATTEND', class: 'button large' %>
       <% end %>
     </div>
   </div>
+</div>
 
-  <div class='theater-filter'>
-    <h4> Theaters </h4>
-      <% @theaters.each do |theater| %>
-        <%= check_box_tag(theater.name, theater.id, checked = true, name: "theaters[#{theater.name}]", :data => {theater_id: "#{theater.id}", theater_name: "#{theater.name}"}) %><%= theater.name %><br>
-      <% end %>
-  </div>
-  <hr>
+<script>
+  $(function() {
+ 
+    var stickyTop = $('.sticky').offset().top;
+    var stickyHeight = $( '.sticky' ).height();
+    var container = $( '.large-9' ).height();
+   
+    $(window).scroll(function(){
+   
+      var windowTop = $(window).scrollTop();
+      var nick = stickyHeight + windowTop;
+      var elodeon = stickyTop + container;
 
-    <h4> Which showtimes are you interested in? </h4>
-      <%= render 'shared/theater_selection' %>
-  <%= f.submit 'Submit' %>
-<% end %>
+      if ( (stickyHeight + windowTop) > (stickyTop + container) ) {
+        console.log('here')
+        var stickStickly = container - stickyHeight;
+        console.log(stickStickly);
+        $('.sticky').css({ position: 'absolute', top: stickStickly, width: 220 + 'px' });
+        // $('.sticky').removeClass('top-zero').addClass('bottom-zero');
+      } else if ( stickyTop < windowTop ) {
+        $('.sticky').css({ position: 'fixed', top: 0, width: 220 + 'px' });
+        // $('.sticky').removeClass('bottom-zero').addClass('top-zero');
+      } else {
+        $('.sticky').css('position','static');
+      }
 
-
+    });
+   
+  });
+</script>
