@@ -28,7 +28,10 @@ module UsersHelper
     outings.each do |outing|
       outing_pair = []
       outing[:selections].each do |selection|
-        outing_pair << [ selection[:movie].title.upcase, selection[:attendees_num] ]
+        outing_pair << [ selection[:movie].title.upcase,
+                         selection[:attendees_num],
+                         selection[:showtime],
+                         selection[:theater].name ]
       end
       attendees << outing_pair
     end

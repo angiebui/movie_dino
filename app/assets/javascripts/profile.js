@@ -30,17 +30,19 @@ function generateCharts(attendees) {
         pieChart.setTheme(Minty);
         pieChart.addPlot('default', {
             type: 'Pie',
-            fontColor: '#000',
+            fontColor: '#222',
+            font: 'normal normal 12pt Oswald',
             radius: 175,
-            labelOffset: -30,
-            startAngle: 45
+            labelOffset: -45,
+            startAngle: 45,
+            labelWiring: "grey"
+            // htmlLabels: true
         });
         pieChart.addSeries('Movie Chart ' + index, dojo.map(element, function(pair){
-          return {y: pair[1], text: pair[0]};
+          return {y: pair[1], text: pair[0], tooltip: 'test'};
         }));
         new MoveSlice(pieChart,'default');
         new Tooltip(pieChart,'default');
-        
         pieChart.render();
 
     });
