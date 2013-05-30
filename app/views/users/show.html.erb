@@ -6,7 +6,7 @@
         <div class='outing-title'>
           <h3>Outing on <%= outing[:date] %></h3>
           <span class='share'>Share</span>
-          <span class='link'><%= "#{request.host}/#{outing[:info].link}" %></span>
+          <span class='link'><%= link_to "#{request.host}/#{outing[:info].link}", "#{outing[:info].link}"%></span>
         </div>
         
         <span class='profile-button active' id='graphs'>Overview</span>
