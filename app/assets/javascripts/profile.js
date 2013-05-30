@@ -61,7 +61,7 @@ function share() {
 };
 
 function copyToClipboard(text) {
-  window.prompt ("Copy to clipboard: Ctrl+C, Enter", text);
+  window.prompt ('Copy to clipboard: Ctrl+C, Enter', text);
 };
 
 function initialise() {
