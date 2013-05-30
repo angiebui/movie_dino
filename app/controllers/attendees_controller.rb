@@ -17,11 +17,12 @@ class AttendeesController < ApplicationController
     selections = Selection.where :id => convert_to_id(params[:selections])
     @attendee.selections << selections
     if @attendee.save
-      redirect_to root_path
+      @outing = @attendee.outing
+      render 'thank_you'
     else
       render :new
     end
   end
-  
+
 end
 
