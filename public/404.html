@@ -8,7 +8,6 @@
       font-family: 'Oswald', sans-serif;
       background: #222;
       text-align: center;
-      font-size: ;
     }
 
     div.dialog {
@@ -20,6 +19,11 @@
       border-right-color: #999;
       border-bottom-color: #999;
     }
+
+    div.content {
+      font-size: 20px;
+    }
+    
     h1 { 
       color: #1f7f5f; 
       line-height: 1.5em; 
@@ -29,16 +33,21 @@
       margin: 0;
     }
 
+    a {
+      text-decoration: none;
+      color: #3299BB;
+    }
+
   </style>
 </head>
-
 <body>
-  <!-- This file lives in public/404.html -->
   <div class="dialog">
     <img src="http://i.imgur.com/6X7P6fI.png">
     <h1>Blast! The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-    <p>I'll make you an offer you can't refuse, how about going back to our <a href='/'>homepage?</a>. Afterall, there's no place like home...</p>
-  </div>
-</body>
+      <div class="content">
+        <p>You may have mistyped the address or the page may have moved.</p>
+        <p>I'll make you an offer you can't refuse, how about going back to our <a href='/'>homepage?</a>. Afterall, there's no place like home...</p>
+      </div>
+    </div>
+  </body>
 </html>
