@@ -11,6 +11,8 @@ h5,
 h6 {
   font-family: 'Oswald', sans-serif;
   text-shadow: 1px 1px #fff;
+  padding: 0;
+  margin: 0;
 }
 
 p {
@@ -32,6 +34,10 @@ p {
 /*
  * NAV
  */
+
+header {
+  background: #222;
+}
 
 .nav {
   background: #222;
@@ -201,6 +207,33 @@ p {
  */
 
 /*
+ * HERO
+ */
+
+.hero {
+  background: #1f7f5f;
+  background-image: url('/assets/ticket_dino.png');
+  background-repeat: no-repeat;
+  background-position: 130% 21%;
+  padding: 25px 0px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  color: white;
+  text-shadow: 1px 1px #3d9b7d;
+}
+
+.hero p {
+  color: white;
+  font-weight: 100;
+}
+
+.hero .row .large-12 {
+
+}
+
+/*
  * TIME SELECT
  */
 
@@ -241,6 +274,18 @@ p {
   text-shadow: 1px 1px #fff;
 }
 
+.top-zero {
+  position: fixed;
+  top: 0;
+  width: 220px;
+}
+
+.bottom-zero {
+  position: fixed;
+  bottom: 0;
+  width: 220px;
+}
+
 /*
  * MARQUEE
  */
@@ -252,7 +297,6 @@ p {
 
 #dino-form .button {
   position: relative;
-  margin-top: 20px;
 }
 
 #movie-marquee .panel {
@@ -532,7 +576,24 @@ p {
  
 .wrapper-dropdown.active {
   background: #3d9d7d;
-}           
+}
+
+/*
+ * ATTENDEES FORM
+ */
+
+#attendees-submit {
+  background: #eee;
+  padding: 25px 0px;
+}
+
+.theater ul {
+  list-style: none;
+}
+
+.theater ul li {
+  display: inline;
+}      
 
 /*
  * FOOTER

@@ -1,20 +1,21 @@
+<h4> Which showtimes are you interested in? </h4>
 <% @outing.get_theaters.each do |theater|  %>
 <div class='theater' data-theater-id='<%= theater.id %>'>
   <h2><%= theater.name %></h2>
   <% @theater_selections = @outing.selections.where(:theater_id => theater.id) %>
   <ul>
     <% @outing.get_movies.each do |movie|  %>
-      <% @theater_movies = @theater_selections.where(movie_id: movie.id) %>
-      <% unless @theater_movies.empty? %>
-        <li class='movie' data-movie-id='<%= movie.id %>'><h6><%= movie.display_title %></h6>
-          <ul>
-          <% @theater_movies.each do |selection| %>
-            <li class='showtime-checkbox' data-selection-id='<%= selection.id %>'><%= check_box_tag(selection.movie.title, selection.id,
-             checked = false, name: "selections[#{selection.movie.title}_#{selection.id}]") %><%=display_time selection.time %></li>
-          <% end %>
-        </ul>
-        </li>
-      <% end %>
+    <% @theater_movies = @theater_selections.where(movie_id: movie.id) %>
+    <% unless @theater_movies.empty? %>
+    <li class='movie' data-movie-id='<%= movie.id %>'><h6><%= movie.display_title %></h6>
+      <ul>
+        <% @theater_movies.each do |selection| %>
+        <li class='showtime-checkbox' data-selection-id='<%= selection.id %>'><%= check_box_tag(selection.movie.title, selection.id,
+        checked = false, name: "selections[#{selection.movie.title}_#{selection.id}]") %><%=display_time selection.time %></li>
+        <% end %>
+      </ul>
+    </li>
+    <% end %>
     <% end %>
   </ul>
 </div>
