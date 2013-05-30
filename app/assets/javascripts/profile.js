@@ -56,12 +56,9 @@ function generateCharts(attendees) {
 
 function share() {
   $('.share').on('click', function(){
-    copyToClipboard($(this).children('#link').val());
+    $(this).hide();
+    $(this).siblings('.link').fadeIn(600);
   });
-};
-
-function copyToClipboard(text) {
-  window.prompt ('Copy to clipboard: Ctrl+C, Enter', text);
 };
 
 function initialise() {

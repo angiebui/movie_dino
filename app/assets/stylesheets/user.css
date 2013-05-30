@@ -49,11 +49,24 @@
   line-height: 50px;
 }
 
-.profile .outing-title span {
+.profile .outing-title .share {
   margin: 10px 20px;
   float: left;
   height: 30px;
   width: 80px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #1f7f5f;
+  color: #F8F8F8;
+  border-radius: 8px;
+}
+
+.profile .outing-title .link {
+  display: none;
+  margin: 10px 20px;
+  padding: 0 10px;
+  float: left;
+  height: 30px;
   line-height: 30px;
   text-align: center;
   background-color: #1f7f5f;
@@ -140,8 +153,7 @@
 }
 
 .profile .attendee-num{
-  float:right;
-  padding-right: 30px;
+  text-align: center;
 }
 
 .profile .attendee-list {
