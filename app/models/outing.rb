@@ -20,6 +20,10 @@ class Outing < ActiveRecord::Base
     self.selections.order('time DESC').last.time.to_date.to_formatted_s(:long_ordinal)
   end
 
+  def weekday_date
+    self.selections.order('time DESC').last.time.strftime('%A, %b %d')
+  end
+
   def get_movies
     self.movies.uniq
   end
