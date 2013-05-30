@@ -334,6 +334,11 @@ header {
   border: 5px solid #FF9900;
 }
 
+#movie-marquee .poster label {
+  color: rgba(255, 255, 255, 0);
+  text-shadow: none;
+}
+
 #movie-marquee .poster {
   position: relative;
   float: left;
