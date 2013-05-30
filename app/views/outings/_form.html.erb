@@ -153,9 +153,8 @@
       this.sel = select;
       this.placeholder = this.dd.children( 'span' );
       this.opts = this.dd.find( 'ul.dropdown > li' );
-      console.log( this.opts );
       this.val = '';
-      this.index = 1;
+      this.index = -1;
       this.initEvents();
     }
 
@@ -171,7 +170,8 @@
         obj.opts.on('click',function(){
           var opt = $(this);
           obj.val = opt.text();
-          obj.index = opt.index();
+          // Index starts at 8, so this must start at 8
+          obj.index = opt.index() + 8;
           obj.placeholder.text( obj.val );
           obj.sel.val(obj.index);
         });

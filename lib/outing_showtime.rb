@@ -10,6 +10,7 @@ module  OutingShowtime
 
   def showtimes(params)
     start_time, end_time = start_and_end_times(params)
+
     Showtime.possible_times(start_time: start_time,
                                         end_time: end_time,
                                         movie_ids: convert_to_id(params[:movies]),

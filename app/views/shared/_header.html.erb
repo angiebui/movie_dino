@@ -7,7 +7,7 @@
             <a href="/" id="logo">DINO</a>
           </li>
           <li>
-            <a href="#">ABOUT</a>
+            <%= link_to 'ABOUT', about_path %>
           </li>
         </ul>
       </div>
@@ -24,8 +24,7 @@
           <% if current_user %>
             <a href="#" id='current_user'><%= current_user.first_name %></a>
             <ul class="subnav">
-              <li><a href="#"><i class="icon-calendar"></i>My Events</a></li>
-              <li><a href="#"><i class="icon-user"></i>Profile</a></li>
+              <li><a href="/profile"><i class="icon-calendar"></i>My Events</a></li>
               <li><%= link_to "SIGN OUT", signout_path, id: "sign_out" %></li>
             </ul>
           <% else %>
