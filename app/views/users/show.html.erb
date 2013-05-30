@@ -3,11 +3,14 @@
     <div class='header-container'><h2 class='outings-header'>Created Outings</h2></div>
     <% @outings.each_with_index do |outing, i|%>
       <div class='outing-box'>
-        <h3>Outing on <%= outing[:date] %></h3>
-
+        <div class='outing-title'>
+          <h3>Outing on <%= outing[:date] %></h3>
+          <span class='share'><input type='hidden' value='<%= "http://#{request.host}/#{outing[:info].link}" %>' id='link'>Share</span>
+        </div>
+        
         <span class='profile-button active' id='graphs'>Chart</span>
         <span class='profile-button' id='info'>Overview</span>
-        <span class='profile-button' id='details'>Details</span>
+        <span class='profile-button' id='details'>Attendee List</span>
 
         <div class='info-box box'>
           <h4>Total Responses: <%= outing[:total_responses] %></h4>
@@ -37,12 +40,13 @@
           </div>
           <div class='outing-info'>
             <ul>
-              <div class='attendee-list'>
-              <h5 class='last-title'>Comfirmed Attendees</h5>
-              <% outing[:selections].each do |selection| %>
-                <li> <%= selection[:attendees_num] %> </li>
-              <% end %>
-                </div>
+                <h5 class='last-title'>Comfirmed Attendees</h5>
+              <div class='attendee-num'>
+
+                <% outing[:selections].each do |selection| %>
+                  <li> <%= selection[:attendees_num] %> </li>
+                <% end %>
+              </div>
             </ul>
           </div>
         </div>
@@ -52,9 +56,21 @@
         </div>
 
         <div class='details-box box'>
-          <h3>placeholder</h3>
-          <%= outing[:selections].first[:attendees].first%>
-        </div>        
+          <% outing[:selections].each do |selection| %>
+            <div class='attendee-list'>
+              <h4><%= selection[:movie].title.upcase %></h4>
+              <h6><%= selection[:theater].name %></h6>
+              <h6><%= selection[:showtime] %></h6>
+              <br>
+              <ul>
+              <% selection[:attendees].sort.each do |attendee| %>
+                <li><%= attendee %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+
       </div>
     <% end %>
     <script type='text/javascript'>
