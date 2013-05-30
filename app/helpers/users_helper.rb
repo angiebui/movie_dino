@@ -23,4 +23,16 @@ module UsersHelper
       compiled_selections
   end
 
+  def fetch_attendee_data(outings)
+    attendees = []
+    outings.each do |outing|
+      outing_pair = []
+      outing[:selections].each do |selection|
+        outing_pair << [ selection[:movie].title.upcase, selection[:attendees_num] ]
+      end
+      attendees << outing_pair
+    end
+    attendees
+  end
+
 end

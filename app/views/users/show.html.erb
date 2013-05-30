@@ -5,8 +5,8 @@
     <% @outings.each_with_index do |outing, i|%>
       <div class='outing-box'>
         <h3>Outing on <%= outing[:date] %></h3>
-        <span class='profile-button active' id='info'>Info</span>
-        <span class='profile-button' id='graphs'>Graphs</span>
+        <span class='profile-button active' id='graphs'>Graph</span>
+        <span class='profile-button' id='info'>Table</span>
 
           <div class='info-box box'>
             <h4>Total Responses: <%= outing[:total_responses] %></h4>
@@ -45,11 +45,18 @@
               </ul>
             </div>
           </div>
+
           <div class='graphs-box box'>
-            <div id='pieChartNode<%= i %>'></div>
+            <div id='pieChartNode<%= i %>' class='chart'></div>
           </div>
 
       </div>
     <% end %>
+
+    <!-- This is so hacky... I'm ashamed -->
+    <script type='text/javascript'>
+       generateCharts('<%= @attendeeJS %>');
+    </script>
+
   </div>
 </div>

@@ -7,51 +7,48 @@ function tabbing() {
   });
 };
 
-function chart() {
-  require([
-    "dojox/charting/Chart",
-    "dojox/charting/plot2d/Pie",
-    "dojox/charting/action2d/Tooltip",
-    "dojox/charting/action2d/MoveSlice",
-    "dojox/charting/themes/PlotKit/cyan",
-    "dojo/domReady!"
-  ], function(Chart, Pie, Tooltip, MoveSlice, PlotKitCyan){
+function getJSonObject(value) {
+  return $.parseJSON(value.replace(/&quot;/ig, '"'));
+};
 
-      var pieChart = new Chart("pieChartNode0");
-      pieChart.setTheme(PlotKitCyan);
-      pieChart.addPlot("default", {
-          type: "Pie",
-          fontColor: "#000"
-      });
-      pieChart.addSeries('Movie Chart', [4,4,1]);
-      new MoveSlice(pieChart,"default");
-      new Tooltip(pieChart,"default");
-      pieChart.render();
-  });
-  require([
-    "dojox/charting/Chart",
-    "dojox/charting/plot2d/Pie",
-    "dojox/charting/action2d/Tooltip",
-    "dojox/charting/action2d/MoveSlice",
-    "dojox/charting/themes/PlotKit/cyan",
-    "dojo/domReady!"
-  ], function(Chart, Pie, Tooltip, MoveSlice, PlotKitCyan){
+function generateCharts(attendees) {
+  $.each(getJSonObject(attendees), function(index, element) {
+    var attendeeList = []
+    $.each(element, function(i, e) {
+      attendeeList.push(e[1])
+    });
 
-      var pieChart = new Chart("pieChartNode1");
-      pieChart.setTheme(PlotKitCyan);
-      pieChart.addPlot("default", {
-          type: "Pie",
-          fontColor: "#000"
-      });
-      pieChart.addSeries('Movie Chart', [2,2,1,23,5,3,6]);
-      new MoveSlice(pieChart,"default");
-      new Tooltip(pieChart,"default");
-      pieChart.render();
+    require([
+      'dojox/charting/Chart',
+      'dojox/charting/plot2d/Pie',
+      'dojox/charting/action2d/Tooltip',
+      'dojox/charting/action2d/MoveSlice',
+      'dojox/charting/themes/Minty',
+      'dojo/domReady!'
+    ], function(Chart, Pie, Tooltip, MoveSlice, Minty){
+
+        Minty.chart.fill= '#F8F8F8';
+        Minty.plotarea.fill = '#F8F8F8';
+
+        var pieChart = new Chart('pieChartNode' + index);
+        pieChart.setTheme(Minty);
+        pieChart.addPlot('default', {
+            type: 'Pie',
+            fontColor: '#000',
+            radius: 175,
+        });
+        pieChart.addSeries('Movie Chart ' + index, attendeeList);
+        new MoveSlice(pieChart,'default');
+        new Tooltip(pieChart,'default');
+        
+        pieChart.render();
+
+    });
   });
 };
 
 $(document).ready(function() {
   tabbing();
-  chart();
+  $('.profile .info-box').hide();
 });
 
