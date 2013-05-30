@@ -5,7 +5,7 @@
       <div class='outing-box'>
         <div class='outing-title'>
           <h3>Outing on <%= outing[:date] %></h3>
-          <span class='share'>Share</span>
+          <span class='share'><input type="hidden" value='asfasf' id='link'>Share</span>
         </div>
         
         <span class='profile-button active' id='graphs'>Chart</span>
@@ -61,7 +61,6 @@
               <h4><%= selection[:movie].title.upcase %></h4>
               <h6><%= selection[:theater].name %></h6>
               <h6><%= selection[:showtime] %></h6>
-              <br>
               <br>
               <ul>
               <% selection[:attendees].sort.each do |attendee| %>

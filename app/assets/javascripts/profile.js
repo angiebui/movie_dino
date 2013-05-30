@@ -56,7 +56,8 @@ function generateCharts(attendees) {
 
 function share() {
   $('.share').on('click', function(){
-    copyToClipboard('this is aafagasgas');
+    console.log($(this).children('#link').val());
+    // copyToClipboard($(this).attr('quick-link'));
   });
 };
 
