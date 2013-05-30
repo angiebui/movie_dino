@@ -14,14 +14,15 @@ class AttendeesController < ApplicationController
 
   def create
     @attendee = Attendee.new params[:attendee]
-    selections = Selection.where :id => convert_to_id(params[:selections])
-    @attendee.selections << selections
+    @outing = @attendee.outing
+
     if @attendee.save
-      @outing = @attendee.outing
+      selections = Selection.where :id => convert_to_id(params[:selections])
+      @attendee.selections << selections
       render :thank_you
     else
       flash[:notice] = "Please select a least one showtime!"
-      render :thank_you
+      redirect_to outings_form_path(@outing.link)
     end
   end
 
