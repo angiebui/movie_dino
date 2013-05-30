@@ -7,7 +7,7 @@
 
         <span class='profile-button active' id='graphs'>Chart</span>
         <span class='profile-button' id='info'>Overview</span>
-        <span class='profile-button' id='details'>Details</span>
+        <span class='profile-button' id='details'>Attendee List</span>
 
         <div class='info-box box'>
           <h4>Total Responses: <%= outing[:total_responses] %></h4>
@@ -52,9 +52,13 @@
         </div>
 
         <div class='details-box box'>
-          <h3>placeholder</h3>
-          <%= outing[:selections].first[:attendees].first%>
-        </div>        
+          <% outing[:selections].each do |selection| %>
+            <div class='attendee-list'>
+              <h5><%= selection[:movie].title.upcase %></h5>
+            </div>
+          <% end %>
+        </div>
+
       </div>
     <% end %>
     <script type='text/javascript'>
