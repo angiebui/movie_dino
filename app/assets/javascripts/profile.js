@@ -3,7 +3,7 @@ function tabbing() {
     $(this).siblings().removeClass('active');
     $(this).addClass('active');
     $(this).siblings('.box').slideUp(600);
-    $(this).siblings('.' + ($(this).attr('id')) + '-box').delay(600).slideDown(600);
+    $(this).siblings('.' + ($(this).attr('id')) + '-box').delay(800).slideDown(600);
   });
 };
 
@@ -51,8 +51,8 @@ function generateCharts(attendees) {
 };
 
 function initialise() {
-  $('.profile .graphs-box').hide();
-  $('.profile .graphs-box').slideDown(1200);
+  $('.profile').hide();
+  $('.profile').fadeIn(1500);
   $('.profile .info-box').hide();
 };
 
