@@ -47,7 +47,7 @@ function generateCharts(attendees) {
         // new Tooltip(pieChart,'default');
 
         pieChart.addSeries('movieChart_' + index, dojo.map(element, function(gData){
-          return {y: gData[1], text: gData[0] + '<br>' + gData[2]};
+          return {y: gData[1], text: gData[0] + '<br>' + '<span>' + gData[2] + '</span>'};
         }));
         pieChart.render();
     });

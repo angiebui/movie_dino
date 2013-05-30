@@ -135,6 +135,10 @@
   z-index: -100;
 }
 
+.profile .chart span {
+  font-size: 12px;
+}
+
 .profile .outing-info {
   width: 200px;
   float: left;
