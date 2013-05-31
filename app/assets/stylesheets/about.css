@@ -11,7 +11,7 @@
 }
 
 .about-page .site-about{
-  margin: 60px auto 20px auto;
+  margin: 20px auto;
   height: 275px;
   width: 800px;
   padding: 20px;
@@ -39,6 +39,11 @@
 .about-page .profile-container {
   width: 1000px;
   height: 460px;
+  padding: 15px 0 0 0;
+}
+
+.about-page span {
+  display: block;
 }
 
 .about-page .i-profile {
@@ -61,17 +66,20 @@
 .about-page .name {
   margin: 20px auto;
   color: #222;
+  font-size: 18px;
 }
 
 .about-page .i-icon {
   margin: 0 5px;
-  font-size: 40px;
-}
-
-.about-page .i-profile a {
+  font-size: 45px;
   color: #222;
+
 }
 
-.about-page .i-profile a:hover {
-  color: #1f7f5f;
+.about-page .i-profile .icon-twitter:hover {
+  color: #3BDBFF;
+}
+
+.about-page .i-profile .icon-github:hover {
+  color: #FFC933;
 }
