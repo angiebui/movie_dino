@@ -8,34 +8,40 @@
           <span class='share'>Share</span>
           <span class='link'><%= link_to "#{request.host}/#{outing[:info].link}", "#{outing[:info].link}"%></span>
         </div>
+        <% if outing[:total_responses] == 0 %>
+          <div class='no-attendee-box'>
+            <h4>No attendee data - share and try again later</h4>
+            <div id='pieChartNode<%= i %>' class='chart'></div>
+          </div>
+        <% else %>
+          <span class='profile-button active' id='graphs'>Overview</span>
+          <span class='profile-button' id='details'>Details</span>
 
-        <span class='profile-button active' id='graphs'>Overview</span>
-        <span class='profile-button' id='details'>Details</span>
+          <div class='graphs-box box'>
+            <div id='pieChartNode<%= i %>' class='chart'></div>
+          </div>
 
-        <div class='graphs-box box'>
-          <div id='pieChartNode<%= i %>' class='chart'></div>
-        </div>
-
-        <div class='details-box box'>
-          <% outing[:selections].each do |selection| %>
-            <div class='attendee-list'>
-              <h4><%= selection[:movie].title.upcase %></h4>
-              <h5><%= selection[:theater].name %></h5>
-              <h6><%= selection[:showtime] %></h6>
-              <h6><%= "Confirmed: #{selection[:attendees_num]}" %></h6>
-              <br>
-              <ul>
-              <% if selection[:attendees].empty? %>
-                  <li>No Attendees</li>
-              <%  else %>
-                <% selection[:attendees].sort.each do |attendee| %>
-                  <li><%= attendee %></li>
+          <div class='details-box box'>
+            <% outing[:selections].each do |selection| %>
+              <div class='attendee-list'>
+                <h4><%= selection[:movie].title.upcase %></h4>
+                <h5><%= selection[:theater].name %></h5>
+                <h6><%= selection[:showtime] %></h6>
+                <h6><%= "Confirmed: #{selection[:attendees_num]}" %></h6>
+                <br>
+                <ul>
+                <% if selection[:attendees].empty? %>
+                    <li>No Attendees</li>
+                <%  else %>
+                  <% selection[:attendees].sort.each do |attendee| %>
+                    <li><%= attendee %></li>
+                  <% end %>
                 <% end %>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
-        </div>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     <% end %>
     <script type='text/javascript'>
