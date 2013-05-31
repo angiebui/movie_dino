@@ -50,10 +50,15 @@
   float: left;
   margin: 15px;
   width: 220px;
-  height: 330px;
+  height: 350px;
   padding: 20px 10px;
   background-color: #F8F8F8;
   border-radius: 8px;
+  border: 2px solid #F8F8F8;
+}
+
+.about-page .i-profile:hover {
+  border: 2px solid #1f7f5f;
 }
 
 .about-page .profile-image {
