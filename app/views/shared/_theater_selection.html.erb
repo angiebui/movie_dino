@@ -1,22 +1,41 @@
-<h4> Which showtimes are you interested in? </h4>
-<% @outing.get_theaters.each do |theater|  %>
-<div class='theater' data-theater-id='<%= theater.id %>'>
-  <h2><%= theater.name %></h2>
-  <% @theater_selections = @outing.selections.where(:theater_id => theater.id) %>
-  <ul>
-    <% @outing.get_movies.each do |movie|  %>
-    <% @theater_movies = @theater_selections.where(movie_id: movie.id) %>
-    <% unless @theater_movies.empty? %>
-    <li class='movie' data-movie-id='<%= movie.id %>'><h6><%= movie.display_title %></h6>
-      <ul>
-        <% @theater_movies.each do |selection| %>
-        <li class='showtime-checkbox' data-selection-id='<%= selection.id %>'><%= check_box_tag(selection.movie.title, selection.id,
-        checked = false, name: "selections[#{selection.movie.title}_#{selection.id}]") %><%=display_time selection.time %></li>
-        <% end %>
-      </ul>
-    </li>
-    <% end %>
-    <% end %>
-  </ul>
+<div class="theater-listing">
+  
+  <% @outing.get_theaters.each do |theater|  %>
+  
+  <div class='theater panel' data-theater-id='<%= theater.id %>'>
+    <h3><%= theater.name %></h3>
+    
+    <% @theater_selections = @outing.selections.where(:theater_id => theater.id) %>
+    
+    <ul class="movie-listings">
+      
+      <% @outing.get_movies.each do |movie|  %>
+      <% @theater_movies = @theater_selections.where(movie_id: movie.id) %>
+      <% unless @theater_movies.empty? %>
+      
+      <div class="row">
+        <li class='movie' data-movie-id='<%= movie.id %>' data-theater-id='<%= theater.id %>'>
+          <div class="large-2 columns">
+            <img src="<%= movie.poster_med %>" />
+            </div>
+            <div class="large-10 columns">
+            <h6><%= movie.display_title %></h6>
+            <ul>
+              <% @theater_movies.each do |selection| %>
+              <li class='showtime-checkbox' data-selection-id='<%= selection.id %>'><%= check_box_tag(selection.movie.title, selection.id,
+              checked = false, name: "selections[#{selection.movie.title}_#{selection.id}]") %><%=display_time selection.time %></li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      </div>
+
+      <% end %>
+      <% end %>
+
+    </ul>
+  </div>
+
+  <% end %>
+
 </div>
-<% end %>
