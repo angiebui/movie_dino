@@ -1,0 +1,90 @@
+.about-page-container {
+  width: 100%;
+  text-align: center;
+}
+
+.about-page {
+  margin: 20px auto;
+  height: 600px;
+  width: 1000px;
+  padding: 0;
+}
+
+.about-page .site-about{
+  margin: 20px auto;
+  height: 275px;
+  width: 800px;
+  padding: 20px;
+  text-align: left;
+  color: #222;
+}
+
+.about-page .about-image {
+  float: right;
+  margin: 10px 0 0 20px;
+  border-radius: 8px;
+  border: 1px solid #222
+}
+
+.about-page .site-about h2{
+  color: #222;
+  margin: 0 0 20px 0;
+}
+
+.about-page .site-about p{
+  font-size: 20px;
+  font-family: Oswald;
+}
+
+.about-page .profile-container {
+  width: 1000px;
+  height: 460px;
+  padding: 15px 0 0 0;
+}
+
+.about-page span {
+  display: block;
+}
+
+.about-page .i-profile {
+  float: left;
+  margin: 15px;
+  width: 220px;
+  height: 350px;
+  padding: 20px 10px;
+  background-color: #F8F8F8;
+  border-radius: 8px;
+  border: 2px solid #F8F8F8;
+}
+
+.about-page .i-profile:hover {
+  border: 2px solid #1f7f5f;
+}
+
+.about-page .profile-image {
+  height:200px;
+  width: 200px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+}
+
+.about-page .name {
+  margin: 20px auto;
+  color: #222;
+  font-size: 18px;
+}
+
+.about-page .i-icon {
+  margin: 0 5px;
+  font-size: 45px;
+  color: #222;
+
+}
+
+.about-page .i-profile .icon-twitter:hover {
+  color: #3BDBFF;
+}
+
+.about-page .i-profile .icon-github:hover {
+  color: #FFC933;
+}
