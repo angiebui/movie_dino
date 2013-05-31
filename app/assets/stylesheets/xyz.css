@@ -256,7 +256,7 @@ opacity: 1;
 
 .hero {
 background: #1f7f5f;
-background-image: url('/assets/ticket_dino.png');
+background-image: url('/assets/ticket-dino.png');
 background-repeat: no-repeat;
 background-position: 135% 22%;
 background-size: 75%;
@@ -465,6 +465,10 @@ position: absolute;
   display: block;
   text-align: center;
   outline: none;
+}
+
+#movie-marquee-wrapper {
+  margin-top: 25px;
 }
 
 #movie-marquee-wrapper nav span {
@@ -811,7 +815,7 @@ footer #date {
 footer #date .date {
   font-weight: bold;
   text-transform: uppercase;
-  color: #3299BB;
+  color: #1f7f5f;
 }
 
 footer #date .rating {
@@ -826,7 +830,7 @@ footer #date .twitter a {
 }
 
 footer #date .twitter a:hover {
-  color: #3299BB;
+  color: #1f7f5f;
 }
 
 .button {

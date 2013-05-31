@@ -8,6 +8,13 @@
   min-height: 1000px;  
 }
 */
+
+.poster .icon-ok {
+  color: #fff;
+  padding: 5px;
+  background: #ff9900;
+}
+
 #poster {
   opacity: 1;
   background: url('/assets/ticket-dino-alpha.png') 50% 0 no-repeat fixed;
