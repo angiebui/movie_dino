@@ -37,20 +37,24 @@ function generateCharts(attendees) {
         pieChart.addPlot('default', {
             type: 'Pie',
             fontColor: '#666',
-            font: 'normal normal 12pt Oswald',
+            font: 'normal normal 10pt Oswald',
             radius: 175,
-            labelOffset: -60,
-            startAngle: 45
+            labelOffset: -75,
+            startAngle: -45
         });
         new MoveSlice(pieChart,'default');
 
         pieChart.addSeries('movieChart_' + index, dojo.map(element, function(gData){
-          return {y: gData[1], text: gData[0] + '<br>' + '<span>' + gData[2] + '</span>'};
+          return {y: gData[1], text: truncate(gData[0]) + '<br>' + '<span>' + gData[2] + '</span>'};
         }));
         pieChart.render();
     });
   });
 };
+
+function truncate(string) {
+  return string.replace(': AN IMAX 3D EXPERIENCE', '').replace(' IN 3D', '').replace(' 3D', '');
+}
 
 function share() {
   $('.share').on('click', function(){
@@ -62,8 +66,12 @@ function share() {
 function initialise() {
   $('.profile').hide();
   $('.profile').fadeIn(1500);
-  $('.profile .info-box').hide();
   $('.profile .details-box').hide();
+
+  if ($('.no-attendee-box'))
+  {
+    $('.no-attendee-box').children('.chart').hide();
+  }
 };
 
 $(document).ready(function() {
