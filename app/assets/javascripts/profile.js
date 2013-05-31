@@ -62,7 +62,6 @@ function share() {
 function initialise() {
   $('.profile').hide();
   $('.profile').fadeIn(1500);
-  $('.profile .info-box').hide();
   $('.profile .details-box').hide();
 };
 
