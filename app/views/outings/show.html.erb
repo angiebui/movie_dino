@@ -1,14 +1,14 @@
 <div class="thank-you">
   <br>
-  <h1>Movie Event Created!</h1>
-  <br>
-  <h3>Your event is scheduled for <%= @outing.weekday_date %></h3>
-  <br>
-  <h3>Share your movie event with friends: <%= link_to outings_form_url(@outing.link),outings_form_url(@outing.link) %></h3>
+  <h1>Success!</h1>
+  <h3>We emailed you an invite to share with your friends.</h3>
+  <h4>Or if you prefer, share this link: <%= link_to outings_form_url(@outing.link),outings_form_url(@outing.link) %></h4>
   <br>
   <% if @outing.result_date %>
-    <p>Dash will send you results on <strong><%= @outing.result_date_in_timezone %></strong></p>
+    <p>We will send you results on <strong><%= @outing.result_date_in_timezone %></strong></p>
     <p>Be sure to poll your friends before then. Happy watching!</p>
   <% end %>
+    <br>
+  <h3> - Dash, The Movie Dino </h3>
 
 </div>

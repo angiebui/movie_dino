@@ -2,14 +2,12 @@
   <br>
   <h1>Thank you, <%= @attendee.name %>!</h1>
   <br>
-  <h3>Have other friends that might want to come? Share this link: <%= link_to outings_form_url(@outing.link), outings_form_url(@outing.link) %></h3>
   <br>
   <% if @outing.result_date %>
-    <p><%= @outing.user.first_name %> will find out what showtime works best for everyone on <strong><%= @outing.result_date_in_timezone %></strong></p>
+    <h2><%= @outing.user.first_name %> will find out what showtime works best for everyone on <strong><%= @outing.result_date_in_timezone %></strong></h2>
     </p>
   <% end %>
-
   <br>
-  <h4>Happy watching!</h4>
+  <h3>Happy watching!</h3>
 
 </div>
