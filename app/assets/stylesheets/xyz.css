@@ -19,6 +19,16 @@ p {
   line-height: 1;
 }
 
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 0;
+  margin: 0;
+}
+
 /*
  * HELPERS
  */
@@ -212,10 +222,10 @@ header {
 
 .hero {
   background: #1f7f5f;
-  background-image: url('/assets/film.svg');
+  background-image: url('/assets/ticket_dino.png');
   background-repeat: no-repeat;
-  background-position: 100% 50%;
-  background-size: 42%;
+  background-position: 135% 22%;
+  background-size: 75%;
   padding: 20px 0px;
 }
 
@@ -242,7 +252,7 @@ header {
   margin: 0;
 }
 
-.wheel-1 {
+/*.wheel-1 {
   background: url("/assets/wheel-1.svg");
   top: -47px;
   left: 628px;
@@ -250,7 +260,7 @@ header {
   height: 125px;
   background-size: 100%;
   position: absolute;
-}
+}*/
 
 
 .wheel-1, .wheel-2 {
@@ -607,6 +617,29 @@ header {
  * ATTENDEES FORM
  */
 
+.movie-listings img {
+  height: 60px;
+}
+
+.movie-listings li {
+  list-style: none;
+}
+
+.movie-listings .movie ul li {
+  display: inline;
+  list-style: none;
+}
+
+.movie-listings ul,
+.movie-listings .movie ul {
+  margin: 0;
+  padding: 0;
+}
+
+.switch:not(:checked) label {
+   background: #333;
+}
+
 /*.ff-container label {
   height: 25px;
   cursor: pointer;
@@ -659,14 +692,6 @@ header {
       -ms-transition: all 0.2s ease-out;
        -o-transition: all 0.2s ease-out;
 }
-
-.theater ul {
-  list-style: none;
-}
-
-.theater ul li {
-  display: inline;
-}      
 
 /*
  * FOOTER

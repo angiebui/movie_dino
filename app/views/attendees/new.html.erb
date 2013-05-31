@@ -114,14 +114,21 @@
       $('.movie-filter :checkbox').change(function(e){
         e.preventDefault();
         var movieId = $(this).data('movie-id');
-        var $movieCheckBoxes = $('.movie[data-movie-id=' + movieId + ']')
+        var $movieCheckBoxes = $('.movie[data-movie-id=' + movieId + ']');
 
         if($(this).attr('checked')) {
-          $movieCheckBoxes.hide();
+          $.each($movieCheckBoxes, function() {
+            
+          });
+
+          $($movieCheckBoxes).css('opacity', '0.2');
+          $($movieCheckBoxes).find('input').prop('disabled', true);
+
           $(this).removeAttr('checked');
           $movieCheckBoxes.find('.showtime-checkbox').children().removeAttr('checked');
         } else {
-          $movieCheckBoxes.show();
+          $($movieCheckBoxes).css('opacity', '1');
+          $($movieCheckBoxes).find('input').prop('disabled', false);
           $(this).attr('checked', 'checked');
         };
       });
