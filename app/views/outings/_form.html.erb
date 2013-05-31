@@ -2,7 +2,9 @@
   <div class="row">
     <div class="large-12 columns">
       <div id="select">
-        <h2>SELECT A MOVIE</h2>
+        <h1 style='text-align:center;'>CREATE A MOVIE EVENT</h1>
+        <p style='text-align:center;'>ZIPCODE: <%= current_zipcode %></p>
+        <h2>STEP 1. SELECT MOVIES</h2>
       </div>
     </div>
   </div>
@@ -16,11 +18,13 @@
           <ul>
           <% @movies.each_with_index do |movie, index| %>
             <% index += 1 %>
+            <% movie_poster = movie.poster || default_poster %> 
+            <!-- default poster is a helper method -->
             <% checkbox = check_box_tag(movie.title, movie.id, checked = false, name: "movies[#{movie.title}]") %>
             <% if index <= 8 %>
-              <% label = label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie.poster})", :data => {:image_url => movie.poster}) %>
+              <% label = label_tag(movie.title, nil, :class => 'panel', :style => "background-image: url(#{movie_poster})", :data => {:image_url => movie_poster}) %>
             <% else %>
-              <% label = label_tag(movie.title, nil, :class => 'panel', :data => {:image_url => movie.poster}) %>
+              <% label = label_tag(movie.title, nil, :class => 'panel', :data => {:image_url => movie_poster}) %>
             <% end %>
             <% if (index) % 4 == 1 %>
               <li>
@@ -30,15 +34,7 @@
                   <%= label %>
                   <div class="movie-info-tool-tip tool-tip-right">
                     <div class="movie-info-wrapper">
-                      <div>
-                        <h4><%= movie.title %></h4>
-                      </div>
-                      <div>
-                        <%= movie.mpaa_rating %>
-                      </div>
-                      <div>
-                        <%= movie.runtime %>
-                      </div>
+                    <%= render 'tooltip_info', movie: movie %>
                       <span class="arrow-left"><i class="icon-caret-left"></i></span>
                     </div>
                   </div>
@@ -50,15 +46,7 @@
                 <%= label %>
                 <div class="movie-info-tool-tip tool-tip-left">
                   <div class="movie-info-wrapper">
-                    <div>
-                      <h4><%= movie.title %></h4>
-                    </div>
-                    <div>
-                      <%= movie.mpaa_rating %>
-                    </div>
-                    <div>
-                      <%= movie.runtime %>
-                    </div>
+                   <%= render 'tooltip_info', movie: movie %>
                     <span class="arrow-right"><i class="icon-caret-right"></i></span>
                   </div>
                 </div>
@@ -71,15 +59,7 @@
                 <%= label %>
                 <div class="movie-info-tool-tip tool-tip-left">
                   <div class="movie-info-wrapper">
-                    <div>
-                      <h4><%= movie.title %></h4>
-                    </div>
-                    <div>
-                      <%= movie.mpaa_rating %>
-                    </div>
-                    <div>
-                      <%= movie.runtime %>
-                    </div>
+                    <%= render 'tooltip_info', movie: movie %>
                     <span class="arrow-right"><i class="icon-caret-right"></i></span>
                   </div>
                 </div>
@@ -91,15 +71,7 @@
                 <%= label %>
                 <div class="movie-info-tool-tip tool-tip-right">
                   <div class="movie-info-wrapper">
-                    <div>
-                      <h4><%= movie.title %></h4>
-                    </div>
-                    <div>
-                      <%= movie.mpaa_rating %>
-                    </div>
-                    <div>
-                      <%= movie.runtime %>
-                    </div>
+                    <%= render 'tooltip_info', movie: movie %>
                     <span class="arrow-left"><i class="icon-caret-left"></i></span>
                   </div>
                 </div>
@@ -121,7 +93,7 @@
     <div class="row">
       <div class="large-12 columns">
         <div id="select">
-          <h2>SELECT A DAY AND TIME</h2>
+          <h2>STEP 2. SELECT A DAY AND TIME</h2>
         </div>
       </div>
     </div>
@@ -148,14 +120,14 @@
       $('.wrapper-dropdown').removeClass('active');
     });
 
-    function DropDown( el, select ) {
+    function DropDown( el, select, indexStart) {
       this.dd = el;
       this.sel = select;
+      this.indexStart = indexStart
       this.placeholder = this.dd.children( 'span' );
       this.opts = this.dd.find( 'ul.dropdown > li' );
-      console.log( this.opts );
       this.val = '';
-      this.index = 1;
+      this.index = -1;
       this.initEvents();
     }
 
@@ -171,7 +143,8 @@
         obj.opts.on('click',function(){
           var opt = $(this);
           obj.val = opt.text();
-          obj.index = opt.index();
+          // Index starts at 8, so this must start at 8
+          obj.index = opt.index() + obj.indexStart;
           obj.placeholder.text( obj.val );
           obj.sel.val(obj.index);
         });
@@ -184,9 +157,9 @@
       }
     }
 
-    var day = new DropDown( $( '#day-dd' ), $( '#day' ) );
-    var start = new DropDown( $( '#start-dd' ), $( '#start_time' ) );
-    var end = new DropDown( $( '#end-dd' ), $( '#end_time' ) );
+    var day = new DropDown( $( '#day-dd' ), $( '#day' ), 0 );
+    var start = new DropDown( $( '#start-dd' ), $( '#start_time' ), 8 );
+    var end = new DropDown( $( '#end-dd' ), $( '#end_time' ), 8 );
 
   });
 </script>

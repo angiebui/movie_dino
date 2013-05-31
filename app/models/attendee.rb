@@ -4,5 +4,6 @@ class Attendee < ActiveRecord::Base
   has_many :selecteds
   has_many :selections, through: :selecteds
   belongs_to :outing
+  validates_presence_of :name
   
 end

@@ -1,3 +1,14 @@
-<h2> Possible Showtimes </h2>
+<div class="thank-you">
+  <br>
+  <h1>Movie Event Created!</h1>
+  <br>
+  <h3>Your event is scheduled for <%= @outing.weekday_date %></h3>
+  <br>
+  <h3>Share your movie event with friends: <%= link_to outings_form_url(@outing.link),outings_form_url(@outing.link) %></h3>
+  <br>
+  <% if @outing.result_date %>
+    <p>Dash will send you results on <strong><%= @outing.result_date_in_timezone %></strong></p>
+    <p>Be sure to poll your friends before then. Happy watching!</p>
+  <% end %>
 
-<%= render 'shared/theater'  %>
+</div>

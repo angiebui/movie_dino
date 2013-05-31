@@ -1,16 +1,15 @@
 class MovieTime
-  attr_reader :page, :increment, :agent, :time_zone
-  attr_accessor :theater, :movie
+  EXCEPTIONS = [ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, PG::Error]
+  attr_reader :increment, :agent, :time_zone, :zipcode
+  attr_accessor :theater, :movie, :page
 
-  def initialize(location)
+  def initialize(location, increment)
     @zipcode = Zipcode.find_or_create_by_zipcode(location)
-    @google_address = "http://www.google.com/movies?hl=en&near=#{location}&date=#{increment}"
     @agent = Mechanize.new
     @time_zone = find_time_zone
-
+    @increment = increment
     @location = location
-    open_page(@location)
-
+    open_page
     fetch_times!
   end
 
@@ -24,7 +23,7 @@ class MovieTime
     else
       raise ArgumentError
     end
-    MovieTime.new(location)
+    MovieTime.new(location, location_data[:increment])
   end
 
   def find_time_zone
@@ -32,35 +31,28 @@ class MovieTime
     ActiveSupport::TimeZone.new(tz_string)
   end
 
-  def fetch_posters!
-
+  def google_address
+    "http://www.google.com/movies?hl=en&near=#{@location}&date=#{@increment}"
   end
 
-  def open_page(location, increment = 0)
-    @uri = URI(@google_address)
-    @increment = increment
+  def open_page
+    @uri = URI(google_address)
     @page = @agent.get @uri
   end
 
   def fetch_times!
     fetch_and_save_theatres!
-    increment = increment
     click_next_page
-    next_day
   end
 
   def fetch_and_save_theatres!
-    @zipcode.update_attributes(:cache_date => Time.now) if increment == 7
     page.root.css('div.theater').each do |theater_doc|
       fetch_theater(theater_doc) # sets @theater
-      if theater.cache_date
-        next unless (Time.now - theater.cache_date) > 3.days
-      end
       theater_movies = theater_doc.css('div.showtimes').css('div.movie')
       theater_movies.each do |movie_doc|
         fetch_movie(movie_doc)
         times_doc = movie_doc.css('div.times')
-        times_doc.each do |time_doc| 
+        times_doc.each do |time_doc|
           sanitized = sanitize_time_doc(time_doc)
           sanitized.each do |one_time|
             store_time!(one_time)
@@ -71,10 +63,19 @@ class MovieTime
   end
 
   def store_time!(one_time)
-    time = datetime(increment,one_time)
-    Showtime.create(theater: theater, 
-                    movie: movie, 
-                    time: time)
+    count = 0
+    time = datetime(one_time)
+    begin
+      Showtime.where(theater_id: theater.id,
+                    movie_id: movie.id,
+                    time: time).first_or_create
+    rescue *EXCEPTIONS
+      raise "big problems" if count > 2
+      count += 1
+      Showtime.where(theater_id: theater.id,
+                    movie_id: movie.id,
+                    time: time).first_or_create
+    end
   end
 
   def sanitize_time_doc(time_doc)
@@ -105,16 +106,10 @@ class MovieTime
 
   def click_next_page
     page.links.each do |link|
-      if link.text =~ /Next/ && link.href =~ /movies\?near/
-        fetch_times!(link.click)
+      if link.text =~ /Next/ && link.href =~ /movies/
+        self.page = link.click
+        fetch_times!
       end
-    end
-  end
-
-  def next_day
-    if increment < 7
-      open_page(@location, increment+1)
-      fetch_times!
     end
   end
 
@@ -123,21 +118,32 @@ class MovieTime
     info = theater_doc.children.css('div.info').text.sub(/-/,'|').split('|').map(&:strip)
     address, phone = info
     street, city, state = address.split(', ')
-    @theater = Theater.where(name: name,
-      street: street,
-      city: city,
-      state: state,
-      phone_number: phone).first_or_create
-    theater.update_attributes(:cache_date => Time.now) if increment == 7
-    theater.zipcodes << @zipcode unless theater.zipcodes.include?(@zipcode)
+    begin
+      @theater = Theater.where(name: name,
+        street: street,
+        city: city,
+        state: state,
+        phone_number: phone).first_or_create
+    rescue *EXCEPTIONS
+      @theater = Theater.where(name: name,
+        street: street,
+        city: city,
+        state: state,
+        phone_number: phone).first
+    end
+    begin
+      TheatersZipcode.create(theater_id: theater.id, zipcode_id: zipcode.id)
+    rescue *EXCEPTIONS
+      return true
+    end
   end
 
-  def datetime(increment, time)
-    # Chronic.parse("#{increment} days from now at #{time}")
+  def datetime(time)
     base = time_zone.at(increment.days.from_now)
     hour, min = time.scan(/\d{1,2}/)
     if time =~ /am/
       if time =~ /12:/
+        base = time_zone.at((increment+1).days.from_now)
         time = base.change :hour => '00', :min => min
       else
         time = base.change :hour => hour, :min => min
@@ -154,6 +160,10 @@ class MovieTime
 
   def fetch_movie(movie_doc)
     title = movie_doc.css('div.name a').text.downcase.gsub('-', ' ')
-    self.movie = Movie.where(title: title).first_or_create
+    begin
+      self.movie = Movie.where(title: title).first_or_create
+    rescue *EXCEPTIONS
+      self.movie = Movie.where(title: title).first
+    end
   end
 end

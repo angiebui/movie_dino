@@ -17,6 +17,9 @@ class OutingsController < ApplicationController
 
   def create
     showtimes = available_showtimes
+    if flash[:notice]
+      return redirect_to new_outing_path
+    end
     outing = Outing.new(user: current_user, :showtimes => showtimes)
     if outing.save
       redirect_to outing
@@ -25,25 +28,30 @@ class OutingsController < ApplicationController
     end
   end
 
-  def link_show
-    @outing = Outing.find_by_link(params[:link])
-    redirect_to outings_form(@outing)
-  end
-
   def loading
-    @jid = fetch_jid
   end
 
   def show
     @outing = Outing.find(params[:id])
-    @showtimes = @outing.showtimes
+    if @outing.user == current_user
+      @showtimes = @outing.showtimes
+      render 'show'
+    else
+      redirect_to root_path
+    end
   end
 
   def status
-    status = Sidekiq::Status::status(params[:jid])
-    render :json => {status: status.to_s}
+    if session[:jids]
+      @jids = session[:jids]
+      completed = @jids.all?{ |jid| Sidekiq::Status.status(jid) == :complete}
+      session[:jids].clear if completed
+      Zipcode.where(:zipcode => session[:zipcode]).first.update_cache_date!
+      render :json => {status: completed.to_s}
+    else
+      render :json => {status: completed.to_s}
+    end
   end
-
 end
 
 

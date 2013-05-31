@@ -19,4 +19,8 @@ module ApplicationHelper
     end
   end
 
+  def default_poster
+    "https://s3-us-west-2.amazonaws.com/moviedino/default-poster.png"
+  end
+
 end

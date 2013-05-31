@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user, :time_range, :day_range, :get_datetime,
-    :display_time, :current_timezone_string, :valid_outing?
+  :display_time, :current_timezone_string, :valid_outing?, :hours_minutes, :current_zipcode
 
 end

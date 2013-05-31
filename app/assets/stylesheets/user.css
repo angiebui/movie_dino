@@ -28,14 +28,59 @@
   text-align: center;
 }
 
-
 .profile .outing-box {
   margin: 20px 0;
 }
 
+.profile .outing-box h3 {
+  margin: 30px 10px 15px 10px;
+}
+
+.profile .outing-title {
+  display: inline-block;
+  height: 50px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.profile .outing-title h3 {
+  margin: 0 0 0 10px;
+  float: left;
+  line-height: 50px;
+}
+
+.profile .outing-title .share {
+  margin: 10px 20px;
+  padding: 0 20px;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #1f7f5f;
+  color: #F8F8F8;
+  border-radius: 8px;
+}
+
+.profile .outing-title .link {
+  display: none;
+  margin: 10px 20px;
+  padding: 0 20px;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #1f7f5f;
+  color: #F8F8F8;
+  border-radius: 8px;
+}
+
+.profile .outing-title a {
+  color: #F8F8F8;
+}
+
 .profile .profile-button {
   margin: 0px;
-  width: 60px;
+  width: 120px;
   height: 30px;
   background-color: #222;
   color: #1f7f5f;
@@ -48,24 +93,31 @@
 }
 
 .profile .active {
-  background-color: #F8F8F8;
+  background-color: #1f7f5f;
   border: 2px solid #222;
-  color: #222;
-  border-bottom: #f8f8f8;
+  color: #F8F8F8;
+  border-bottom: #F8F8F8;
 }
 
 .profile .box {
   width: 100%;
   display: inline-block;
   border: 2px solid #222;
-  padding: 20px;
+  padding: 0px;
+}
+
+.profile .box, .profile .graphs-box svg {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
+.profile .info-box {
+  padding: 15px;
+}
+
 .profile .info-box h5 {
-  color: white;
+  color: #F8F8F8;
   background-color: #222;
   text-shadow: none;
   padding: 10px;
@@ -81,8 +133,14 @@
   border-bottom-right-radius: 8px; 
 }
 
-.profile .graphs-box  {
-  display: none;
+.profile .chart {
+  width: 100%;
+  height: 400px;
+  z-index: -100;
+}
+
+.profile .chart span {
+  font-size: 12px;
 }
 
 .profile .outing-info {
@@ -101,8 +159,16 @@
   list-style-type: none;
 }
 
-.profile .attendee-list {
-  text-align: right;
-  padding-right: 12px;
+.profile .attendee-num{
+  text-align: center;
 }
 
+.profile .attendee-list {
+  margin: 30px 20px 20px 20px;
+  float: left;
+  width: 27%;
+}
+
+.profile .attendee-list h4, .profile .attendee-list h6, .profile .attendee-list li{
+  text-align: center;
+}

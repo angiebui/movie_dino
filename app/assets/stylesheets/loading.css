@@ -1,0 +1,8 @@
+.loading-page {
+  text-align: center;
+}
+
+.loading-page .loading-status {
+  margin: 20px;
+  color: #222;
+}
