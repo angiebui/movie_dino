@@ -112,27 +112,6 @@
   border-bottom-left-radius: 8px;
 }
 
-.profile .info-box {
-  padding: 15px;
-}
-
-.profile .info-box h5 {
-  color: #F8F8F8;
-  background-color: #222;
-  text-shadow: none;
-  padding: 10px;
-}
-
-.profile .info-box .first-title {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px; 
-}
-
-.profile .info-box .last-title {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px; 
-}
-
 .profile .chart {
   width: 100%;
   height: 400px;
@@ -164,11 +143,12 @@
 }
 
 .profile .attendee-list {
-  margin: 30px 20px 20px 20px;
+  margin: 30px 12px 20px 12px;
   float: left;
-  width: 27%;
+  width: 30%;
 }
 
-.profile .attendee-list h4, .profile .attendee-list h6, .profile .attendee-list li{
+.profile .attendee-list h4, .profile .attendee-list h5, .profile .attendee-list h6, .profile .attendee-list li {
   text-align: center;
+  margin: 10px;
 }

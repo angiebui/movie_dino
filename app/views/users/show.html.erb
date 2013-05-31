@@ -8,52 +8,9 @@
           <span class='share'>Share</span>
           <span class='link'><%= link_to "#{request.host}/#{outing[:info].link}", "#{outing[:info].link}"%></span>
         </div>
-        
-        <span class='profile-button active' id='graphs'>Overview</span>
-        <span class='profile-button' id='info'>Details</span>
-        <span class='profile-button' id='details'>Attendee List</span>
 
-        <div class='info-box box'>
-          <h4>Total Responses: <%= outing[:total_responses] %></h4>
-          <div class='outing-info outing-info-first'>
-            <ul>
-              <h5 class='first-title'>Movie</h5>
-              <% outing[:selections].each do |selection| %>
-                <li> <%= selection[:movie].title.upcase %> </li>
-              <% end %>
-            </ul>
-          </div>
-          <div class='outing-info'>
-            <ul>
-              <h5>Theater</h5>
-              <% outing[:selections].each do |selection| %>
-                <li> <%= selection[:theater].name %> </li>
-              <% end %>
-            </ul>
-          </div>
-          <div class='outing-info'>
-            <ul>
-              <h5>Showtime</h5>
-              <% outing[:selections].each do |selection| %>
-                <li> <%= selection[:showtime] %> </li>
-              <% end %>
-            </ul>
-          </div>
-          <div class='outing-info'>
-            <ul>
-                <h5 class='last-title'>Comfirmed Attendees</h5>
-              <div class='attendee-num'>
-                <% outing[:selections].each do |selection| %>
-                  <% if selection[:attendees_num] == 0 %>
-                    <li>No Attendees</li>
-                  <% else %>
-                    <li> <%= selection[:attendees_num] %> </li>
-                  <% end %>
-                <% end %>
-              </div>
-            </ul>
-          </div>
-        </div>
+        <span class='profile-button active' id='graphs'>Overview</span>
+        <span class='profile-button' id='details'>Details</span>
 
         <div class='graphs-box box'>
           <div id='pieChartNode<%= i %>' class='chart'></div>
@@ -63,8 +20,9 @@
           <% outing[:selections].each do |selection| %>
             <div class='attendee-list'>
               <h4><%= selection[:movie].title.upcase %></h4>
-              <h6><%= selection[:theater].name %></h6>
+              <h5><%= selection[:theater].name %></h5>
               <h6><%= selection[:showtime] %></h6>
+              <h6><%= "Confirmed: #{selection[:attendees_num]}" %></h6>
               <br>
               <ul>
               <% if selection[:attendees].empty? %>
