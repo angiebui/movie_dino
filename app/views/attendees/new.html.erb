@@ -2,8 +2,8 @@
   <div class="row">
     <div class="large-12 columns">
       <div class="">
-        <h1>Clever girl.</h1>
-        <p>Not a clue what to write here... Perhaps Angie can help.</p>
+        <h1>WANT TO CATCH A MOVIE?</h1>
+        <p>Fill out the form below and join your friends.</p>
         <div class="wheel-1"></div>
       </div>
     </div>
@@ -14,7 +14,7 @@
   <div class="row">
     <div class="large-12 columns">
       <div class="">
-        <p>Which showtimes are you interested in?</p>
+        <h3>Showtimes that interest you. <small>(Check all that apply)</small></h3>
       </div>
     </div>
   </div>
@@ -30,14 +30,14 @@
   <div class="large-4 columns sticky-container">
     <div class="panel sticky">
       <div class='movie-filter'>
-       <h4> Movies </h4>
+       <h5>FILTER BY MOVIE</h5>
        <% @movies.each do |movie| %>
         <%= check_box_tag(movie.title, movie.id, checked = true, name: "movies[#{movie.title}]", :data => {movie_id: "#{movie.id}", movie_title: "#{movie.title}"}) %>
         <%= label_tag(movie.title, nil, :class => 'panel', :style => "")%>
         <% end %>
       </div>
       <div class='theater-filter'>
-        <h4> Theaters </h4>
+        <h5>FILTER BY THEATER</h5>
         <% @theaters.each do |theater| %>
         <%= check_box_tag(theater.name, theater.id, checked = true, name: "theaters[#{theater.name}]", :data => {theater_id: "#{theater.id}", theater_name: "#{theater.name}"}) %><%= theater.name %><br>
         <% end %>

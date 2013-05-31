@@ -8,6 +8,13 @@
   min-height: 1000px;  
 }
 */
+
+.poster .icon-ok {
+  color: #fff;
+  padding: 5px;
+  background: #ff9900;
+}
+
 #poster {
   opacity: 1;
   background: url('/assets/ticket-dino-alpha.png') 50% 0 no-repeat fixed;
@@ -39,6 +46,7 @@
   text-align: center;
   text-transform: uppercase;
   margin-top: -100px;
+  text-shadow: 1px 1px #222;
 }
 
 #poster .row {
@@ -49,28 +57,31 @@
   padding-top: 100px;
 }
 
-div .large-4 {
+#poster .large-4 {
   font-size: 150px;
   text-align: center;
   font-weight: 900;
 }
 
-div .large-4 .icon-map-marker {
-  color: #1f7f5f;
+#poster .large-4 .icon-map-marker {
+  color: #ff9900;
   margin-left: -20px;
+  text-shadow: 1px 1px #222;
 }
 
-div .large-4 .icon-ticket {
-  color: #1f7f5f;
+#poster .large-4 .icon-ticket {
+  color: #ff9900;
   margin-left: -35px;
+  text-shadow: 1px 1px #222;
 }
 
-div .large-4 .icon-group {
-  color: #1f7f5f;
+#poster .large-4 .icon-group {
+  color: #ff9900;
   margin-left: -55px;
+  text-shadow: 1px 1px #222;
 }
 
-div .blurb {
+#poster .blurb {
   width: 333px;
   font-size: 50px;
   margin-left: -140px;

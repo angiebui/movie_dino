@@ -256,7 +256,7 @@ opacity: 1;
 
 .hero {
 background: #1f7f5f;
-background-image: url('/assets/ticket_dino.png');
+background-image: url('/assets/ticket-dino.png');
 background-repeat: no-repeat;
 background-position: 135% 22%;
 background-size: 75%;
@@ -467,6 +467,10 @@ position: absolute;
   outline: none;
 }
 
+#movie-marquee-wrapper {
+  margin-top: 25px;
+}
+
 #movie-marquee-wrapper nav span {
   position: absolute;
   top: 50%;
@@ -670,12 +674,18 @@ position: absolute;
  * ATTENDEES FORM
  */
 
+.theater-listing h3 {
+  color: #777;
+}
+
 .movie-listings img {
   height: 60px;
 }
 
 .movie-listings li {
   list-style: none;
+  padding: 10px 0px;
+  margin: 5px 0px;
 }
 
 .movie-listings .movie ul li {
@@ -691,6 +701,10 @@ position: absolute;
 
 .switch:not(:checked) label {
    background: #333;
+}
+
+.movie-filter .panel {
+  margin-bottom: 5px;
 }
 
 /*.ff-container label {
@@ -801,7 +815,7 @@ footer #date {
 footer #date .date {
   font-weight: bold;
   text-transform: uppercase;
-  color: #3299BB;
+  color: #1f7f5f;
 }
 
 footer #date .rating {
@@ -810,11 +824,29 @@ footer #date .rating {
   border: 1px solid #fff;
 }
 
+footer #date .rating a {
+  color: #fff;
+  font-size: 0.75em;
+}
+
+footer #date .rating a:hover {
+  color: #1f7f5f;
+}
+
 footer #date .twitter a {
   color: #fff;
   font-size: 0.75em;
 }
 
 footer #date .twitter a:hover {
-  color: #3299BB;
+  color: #1f7f5f;
+}
+
+.button {
+  background-color: #ff9900;
+  border-color: #ddd;
+}
+
+.button:hover, .button:focus {
+  background-color: #febb56;
 }
