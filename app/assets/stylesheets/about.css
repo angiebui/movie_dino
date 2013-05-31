@@ -1,3 +1,25 @@
+.about-page-container {
+  width: 100%;
+  text-align: center;
+}
+
+.about-page {
+  margin: 20px auto;
+  height: 600px;
+  width: 1000px;
+  padding: 0;
+}
+
 .about-page .i-profile {
   float: left;
+  margin: 15px;
+  width: 220px;
+  height: 300px;
+  padding: 20px 0;
+  background-color: pink
+}
+
+.about-page .about-image {
+  height: 120px;
+  width: 120px;
 }
