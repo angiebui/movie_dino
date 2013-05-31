@@ -670,12 +670,18 @@ position: absolute;
  * ATTENDEES FORM
  */
 
+.theater-listing h3 {
+  color: #777;
+}
+
 .movie-listings img {
   height: 60px;
 }
 
 .movie-listings li {
   list-style: none;
+  padding: 10px 0px;
+  margin: 5px 0px;
 }
 
 .movie-listings .movie ul li {
@@ -691,6 +697,10 @@ position: absolute;
 
 .switch:not(:checked) label {
    background: #333;
+}
+
+.movie-filter .panel {
+  margin-bottom: 5px;
 }
 
 /*.ff-container label {
@@ -817,4 +827,13 @@ footer #date .twitter a {
 
 footer #date .twitter a:hover {
   color: #3299BB;
+}
+
+.button {
+  background-color: #ff9900;
+  border-color: #ddd;
+}
+
+.button:hover, .button:focus {
+  background-color: #febb56;
 }

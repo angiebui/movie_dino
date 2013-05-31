@@ -39,6 +39,7 @@
   text-align: center;
   text-transform: uppercase;
   margin-top: -100px;
+  text-shadow: 1px 1px #222;
 }
 
 #poster .row {
@@ -56,18 +57,21 @@
 }
 
 #poster .large-4 .icon-map-marker {
-  color: #1f7f5f;
+  color: #ff9900;
   margin-left: -20px;
+  text-shadow: 1px 1px #222;
 }
 
 #poster .large-4 .icon-ticket {
-  color: #1f7f5f;
+  color: #ff9900;
   margin-left: -35px;
+  text-shadow: 1px 1px #222;
 }
 
 #poster .large-4 .icon-group {
-  color: #1f7f5f;
+  color: #ff9900;
   margin-left: -55px;
+  text-shadow: 1px 1px #222;
 }
 
 #poster .blurb {
