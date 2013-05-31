@@ -65,5 +65,13 @@
 
 .about-page .i-icon {
   margin: 0 5px;
-  font-size: 35px;
+  font-size: 40px;
+}
+
+.about-page .i-profile a {
+  color: #222;
+}
+
+.about-page .i-profile a:hover {
+  color: #1f7f5f;
 }
