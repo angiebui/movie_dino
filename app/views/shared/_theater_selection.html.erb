@@ -10,7 +10,7 @@
     <ul class="movie-listings">
       
       <% @outing.get_movies.each do |movie|  %>
-      <% @theater_movies = @theater_selections.where(movie_id: movie.id) %>
+      <% @theater_movies = @theater_selections.where(movie_id: movie.id).order(:time) %>
       <% unless @theater_movies.empty? %>
       
       <div class="row">

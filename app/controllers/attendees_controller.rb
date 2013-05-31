@@ -26,7 +26,7 @@ class AttendeesController < ApplicationController
     @attendee = Attendee.new params[:attendee]
     @outing = @attendee.outing
 
-    if @attendee.save
+    if @attendee.save && params[:selections].present?
       selections = Selection.where :id => convert_to_id(params[:selections])
       @attendee.selections << selections
       session[:outing_id] = @outing.id
