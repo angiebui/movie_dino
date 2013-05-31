@@ -1,59 +1,63 @@
 
-<h3 class='loading-status'>We're preparing your showtimes, watch a trailer while you wait!</h3>
-<div id="player"></div>
+<div class='loading-page'>
+  <h3 class='loading-status'>We're preparing your showtimes, watch a trailer while you wait!</h3>
+  <div id="player"></div>
 
-<script src="http://www.youtube.com/player_api"></script>
+  <script src="http://www.youtube.com/player_api"></script>
 
-<script>
+  <script>
 
-  var jobState = false;
+    var jobState = false;
 
-  function addReadyMessage(){
-    $('.loading-status').html('All ready! Click <%= link_to "HERE", new_outing_path %>.')
-  }
-
-  function longPoll(){
-    var i = setInterval(function(){
-      $.post('/status')
-      .done(function(data){
-        console.log(data)
-        if(data.status === 'true'){
-          clearInterval(i);
-          jobState = true;
-          addReadyMessage();
-        }
-      }).fail(function(){
-        console.log('something went wrong');
-      })
-    },5000)
-  }
-
-  longPoll();
-
-  // create youtube player
-  var player;
-  function onYouTubePlayerAPIReady() {
-    player = new YT.Player('player', {
-      height: '390',
-      width: '640',
-      videoId: 'wArmHSPIvlQ',
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
-
-  // autoplay video
-  function onPlayerReady(event) {
-    event.target.playVideo();
-  }
-
-  // when video ends
-  function onPlayerStateChange(event) {
-    if(event.data === 0 && jobState === true) {
-      window.location = "<%= new_outing_path %>"
+    function addReadyMessage(){
+      $('.loading-status').html('All ready! Click <%= link_to "HERE", new_outing_path %>.')
     }
-  }
 
-</script>
+    function longPoll(){
+      var i = setInterval(function(){
+        $.post('/status')
+        .done(function(data){
+          console.log(data)
+          if(data.status === 'true'){
+            clearInterval(i);
+            jobState = true;
+            addReadyMessage();
+          }
+        }).fail(function(){
+          console.log('something went wrong');
+        })
+      },5000)
+    }
+
+    longPoll();
+
+    var videos = ['dQw4w9WgXcQ', 'CNfiXZzmhjw', 'wArmHSPIvlQ', 'QAEkuVgt6Aw', 'MUrL7GcgHO0', 'IctcdgbksZ4', 'koNSa_6Fd1U', 'MKIXQdv4G7o'];
+    var randVideo = videos[Math.floor(Math.random() * videos.length)];
+
+    // create youtube player
+    var player;
+    function onYouTubePlayerAPIReady() {
+      player = new YT.Player('player', {
+        height: '400',
+        width: '640',
+        videoId: randVideo,
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    // autoplay video
+    function onPlayerReady(event) {
+      event.target.playVideo();
+    }
+
+    // when video ends
+    function onPlayerStateChange(event) {
+      if(event.data === 0 && jobState === true) {
+        window.location = "<%= new_outing_path %>"
+      }
+    }
+  </script>
+</div>

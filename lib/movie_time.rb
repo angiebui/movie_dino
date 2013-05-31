@@ -1,5 +1,5 @@
 class MovieTime
-  EXCEPTIONS = [ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique]
+  EXCEPTIONS = [ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, PG::Error]
   attr_reader :increment, :agent, :time_zone, :zipcode
   attr_accessor :theater, :movie, :page
 
@@ -64,12 +64,12 @@ class MovieTime
 
   def store_time!(one_time)
     count = 0
-    time = datetime(increment,one_time)
+    time = datetime(one_time)
     begin
       Showtime.where(theater_id: theater.id,
                     movie_id: movie.id,
                     time: time).first_or_create
-    rescue *[ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, PG::Error]
+    rescue *EXCEPTIONS
       raise "big problems" if count > 2
       count += 1
       Showtime.where(theater_id: theater.id,
@@ -138,7 +138,7 @@ class MovieTime
     end
   end
 
-  def datetime(increment, time)
+  def datetime(time)
     base = time_zone.at(increment.days.from_now)
     hour, min = time.scan(/\d{1,2}/)
     if time =~ /am/

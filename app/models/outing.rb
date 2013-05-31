@@ -1,6 +1,7 @@
 class Outing < ActiveRecord::Base
   attr_accessor :showtimes
-  attr_accessible :user, :user_id, :result_date, :selections, :showtimes
+  attr_accessible :user, :user_id, :result_date, :selections, :showtimes,
+                  :result_date
 
   has_many :selections
   has_many :attendees

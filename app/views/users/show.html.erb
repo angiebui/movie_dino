@@ -5,11 +5,12 @@
       <div class='outing-box'>
         <div class='outing-title'>
           <h3>Outing on <%= outing[:date] %></h3>
-          <span class='share'><input type='hidden' value='<%= "http://#{request.host}/#{outing[:info].link}" %>' id='link'>Share</span>
+          <span class='share'>Share</span>
+          <span class='link'><%= link_to "#{request.host}/#{outing[:info].link}", "#{outing[:info].link}"%></span>
         </div>
         
-        <span class='profile-button active' id='graphs'>Chart</span>
-        <span class='profile-button' id='info'>Overview</span>
+        <span class='profile-button active' id='graphs'>Overview</span>
+        <span class='profile-button' id='info'>Details</span>
         <span class='profile-button' id='details'>Attendee List</span>
 
         <div class='info-box box'>
@@ -42,9 +43,12 @@
             <ul>
                 <h5 class='last-title'>Comfirmed Attendees</h5>
               <div class='attendee-num'>
-
                 <% outing[:selections].each do |selection| %>
-                  <li> <%= selection[:attendees_num] %> </li>
+                  <% if selection[:attendees_num] == 0 %>
+                    <li>No Attendees</li>
+                  <% else %>
+                    <li> <%= selection[:attendees_num] %> </li>
+                  <% end %>
                 <% end %>
               </div>
             </ul>
@@ -63,14 +67,17 @@
               <h6><%= selection[:showtime] %></h6>
               <br>
               <ul>
-              <% selection[:attendees].sort.each do |attendee| %>
-                <li><%= attendee %></li>
+              <% if selection[:attendees].empty? %>
+                  <li>No Attendees</li>
+              <%  else %>
+                <% selection[:attendees].sort.each do |attendee| %>
+                  <li><%= attendee %></li>
+                <% end %>
               <% end %>
               </ul>
             </div>
           <% end %>
         </div>
-
       </div>
     <% end %>
     <script type='text/javascript'>

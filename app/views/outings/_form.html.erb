@@ -120,9 +120,10 @@
       $('.wrapper-dropdown').removeClass('active');
     });
 
-    function DropDown( el, select ) {
+    function DropDown( el, select, indexStart) {
       this.dd = el;
       this.sel = select;
+      this.indexStart = indexStart
       this.placeholder = this.dd.children( 'span' );
       this.opts = this.dd.find( 'ul.dropdown > li' );
       this.val = '';
@@ -143,7 +144,7 @@
           var opt = $(this);
           obj.val = opt.text();
           // Index starts at 8, so this must start at 8
-          obj.index = opt.index() + 8;
+          obj.index = opt.index() + obj.indexStart;
           obj.placeholder.text( obj.val );
           obj.sel.val(obj.index);
         });
@@ -156,9 +157,9 @@
       }
     }
 
-    var day = new DropDown( $( '#day-dd' ), $( '#day' ) );
-    var start = new DropDown( $( '#start-dd' ), $( '#start_time' ) );
-    var end = new DropDown( $( '#end-dd' ), $( '#end_time' ) );
+    var day = new DropDown( $( '#day-dd' ), $( '#day' ), 0 );
+    var start = new DropDown( $( '#start-dd' ), $( '#start_time' ), 8 );
+    var end = new DropDown( $( '#end-dd' ), $( '#end_time' ), 8 );
 
   });
 </script>
