@@ -64,6 +64,7 @@ class Outing < ActiveRecord::Base
       self.result_date = self.earliest_showtime - 3.hours
       self.save
     end
+
   end
 
   def schedule_result_email

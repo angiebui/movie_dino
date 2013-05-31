@@ -3,28 +3,37 @@
     <div class="large-12 columns">
       <div class="">
         <h1>Clever girl.</h1>
-        <p>Not a clue what to write here... Perhaps Angie can help.
+        <p>Not a clue what to write here... Perhaps Angie can help.</p>
+        <div class="wheel-1"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sub-hero">
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="">
+        <p>Which showtimes are you interested in?</p>
       </div>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="large-9 columns">
+  <div class="large-8 columns">
     <%= form_for @attendee do |f| %>
     <%= render 'shared/theater_selection' %>
   </div>
 
 
-  <div class="large-3 columns sticky-container">
-    <div class="sticky">
+  <div class="large-4 columns sticky-container">
+    <div class="panel sticky">
       <div class='movie-filter'>
        <h4> Movies </h4>
        <% @movies.each do |movie| %>
-       <div>
         <%= check_box_tag(movie.title, movie.id, checked = true, name: "movies[#{movie.title}]", :data => {movie_id: "#{movie.id}", movie_title: "#{movie.title}"}) %>
-        <%= label_tag(movie.title, nil, :class => 'checked panel', :style => "background-image: url(#{movie.poster_large})")%>
-        </div>
+        <%= label_tag(movie.title, nil, :class => 'panel', :style => "")%>
         <% end %>
       </div>
       <div class='theater-filter'>
@@ -41,7 +50,7 @@
   <div class="row">
     <div class="large-6 columns">
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, required: true %>
     </div>
     <div class="large-6 columns">
       <%= f.hidden_field :outing_id, value: @outing.id %>
@@ -56,7 +65,7 @@
  
     var stickyTop = $('.sticky').offset().top;
     var stickyHeight = $( '.sticky' ).height();
-    var container = $( '.large-9' ).height();
+    var container = $( '.large-8' ).height();
    
     $(window).scroll(function(){
    
@@ -66,18 +75,64 @@
 
       if ( (stickyHeight + windowTop) > (stickyTop + container) ) {
         console.log('here')
-        var stickStickly = container - stickyHeight;
+        var stickStickly = container - stickyHeight + 25;
         console.log(stickStickly);
-        $('.sticky').css({ position: 'absolute', top: stickStickly, width: 220 + 'px' });
-        // $('.sticky').removeClass('top-zero').addClass('bottom-zero');
-      } else if ( stickyTop < windowTop ) {
-        $('.sticky').css({ position: 'fixed', top: 0, width: 220 + 'px' });
-        // $('.sticky').removeClass('bottom-zero').addClass('top-zero');
+        $('.sticky').css({ position: 'absolute', top: stickStickly, width: 303 + 'px' });
+
+      } else if ( stickyTop < windowTop + 25 ) {
+        $('.sticky').css({ position: 'fixed', top: 25, width: 303 + 'px' });
+
       } else {
         $('.sticky').css('position','static');
       }
 
     });
+
+    theaterFilter();
+    movieFilter();
+
+    function theaterFilter()
+    {
+      $('.theater-filter :checkbox').change(function(e){
+        e.preventDefault();
+        var theaterId = $(this).data('theater-id');
+        var $theaterBox = $('.theater[data-theater-id=' + theaterId + ']')
+
+        if ($(this).attr('checked')) {
+          $theaterBox.hide();
+          $(this).removeAttr('checked');
+          $theaterBox.find('.showtime-checkbox').children().removeAttr('checked');
+        } else {
+          $theaterBox.show();
+          $(this).attr('checked', 'checked');
+        };
+      })
+    };
+
+    function movieFilter()
+    {
+      $('.movie-filter :checkbox').change(function(e){
+        e.preventDefault();
+        var movieId = $(this).data('movie-id');
+        var $movieCheckBoxes = $('.movie[data-movie-id=' + movieId + ']');
+
+        if($(this).attr('checked')) {
+          $.each($movieCheckBoxes, function() {
+            
+          });
+
+          $($movieCheckBoxes).css('opacity', '0.2');
+          $($movieCheckBoxes).find('input').prop('disabled', true);
+
+          $(this).removeAttr('checked');
+          $movieCheckBoxes.find('.showtime-checkbox').children().removeAttr('checked');
+        } else {
+          $($movieCheckBoxes).css('opacity', '1');
+          $($movieCheckBoxes).find('input').prop('disabled', false);
+          $(this).attr('checked', 'checked');
+        };
+      });
+    };
    
   });
 </script>

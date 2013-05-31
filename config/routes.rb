@@ -26,5 +26,5 @@ MovieDino::Application.routes.draw do
   ###################################
   #please dont move this, it's greedy.
   #maybe we use /m/:link instead?
-  match '/:link', to: 'attendees#new', :as => 'outings_form'
+  match '/:link', to: 'attendees#new', :as => 'outings_form' #outings_form(outing.link)
 end
