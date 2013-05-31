@@ -1,9 +1,34 @@
-<div class="row">
+<!-- <div class="row">
   <div class="large-12 columns">
     <div class="dino-wrapper">
       <div class="dino">
-        <h1>DINO</h1>
+        <div><img src="/assets/ticket_dino.png" /></div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<section id="poster" data-type="background" data-speed="5" class="pages">
+  <article id="movie">MOVIE</article>     
+  <article id="dino">DINO</article>
+</section>   
+
+<script>
+$(document).ready(function(){
+
+  var $window = $( window );
+
+  $('#main').css('padding-top', '0');
+ 
+  $( 'section[data-type="background"]' ).each( function() {
+    var $bgobj = $( this );
+
+    $( window ).scroll( function() {
+      var yPos = -( $window.scrollTop() / $bgobj.data( 'speed' ));
+      var coords = '50% '+ yPos + 'px';
+      $bgobj.css( { backgroundPosition: coords } );
+    });
+  }); 
+ 
+});
+</script>

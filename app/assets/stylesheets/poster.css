@@ -1,0 +1,44 @@
+/*#home { 
+  background: url(home-bg.jpg) 50% 0 repeat fixed;
+  min-height: 1000px;
+}
+ 
+#about { 
+  background: url(about-bg.jpg) 50% 0 no-repeat;
+  min-height: 1000px;  
+}
+*/
+#poster {
+  opacity: 1;
+  background: url('/assets/ticket-dino-alpha.png') 50% 0 no-repeat fixed;
+  background-color: #f8f8f8;
+  min-height: 800px; 
+  height: 800px; 
+  margin: 0 auto; 
+  width: 100%; 
+  position: relative; 
+}
+
+#poster #movie {
+  position: absolute;
+  color: white;
+  font-size: 100px;
+  letter-spacing: 104px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: 47px;
+  top: 48%; 
+  width: 100%;
+  text-shadow: 2px 2px #222;
+}
+ 
+#poster #dino {
+  font-family: 'Bender-Inline', sans-serif;
+  color: #1f7f5f;
+  position: absolute;
+  font-size: 400px;
+  text-align: center;
+  text-transform: uppercase; 
+  top: 50%; 
+  width: 100%; 
+}
