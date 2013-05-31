@@ -11,11 +11,29 @@
 }
 
 .about-page .site-about{
-  margin: 20px auto;
-  height: 300px;
-  width: 600px;
-  padding: 0;
+  margin: 60px auto;
+  height: 275px;
+  width: 800px;
+  padding: 20px;
   text-align: left;
+  color: #222;
+}
+
+.about-page .about-image {
+  float: right;
+  margin: 10px 0 0 20px;
+  border-radius: 8px;
+  border: 1px solid #222
+}
+
+.about-page .site-about h2{
+  color: #222;
+  margin: 0 0 20px 0;
+}
+
+.about-page .site-about p{
+  font-size: 20px;
+  font-family: Oswald;
 }
 
 .about-page .i-profile {
@@ -24,19 +42,19 @@
   width: 220px;
   height: 300px;
   padding: 20px 10px;
-  background-color: #222;
+  background-color: #F8F8F8;
   border-radius: 8px;
+  border: 1px solid #999;
 }
 
-.about-page .about-image {
+.about-page .profile-image {
   height:200px;
   width: 200px;
-  border: 3px solid #F8F8F8;
   -webkit-border-radius: 150px;
   -moz-border-radius: 150px;
 }
 
 .about-page .name {
   margin: 20px auto;
-  color: #F8F8F8;
+  color: #222;
 }
