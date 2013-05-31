@@ -53,7 +53,7 @@ function generateCharts(attendees) {
 };
 
 function truncate(string) {
-  return string.replace(': AN IMAX 3D EXPERIENCE', '').replace(' in 3D', '').replace(' 3D', '');
+  return string.replace(': AN IMAX 3D EXPERIENCE', '').replace(' IN 3D', '').replace(' 3D', '');
 }
 
 function share() {
@@ -67,6 +67,11 @@ function initialise() {
   $('.profile').hide();
   $('.profile').fadeIn(1500);
   $('.profile .details-box').hide();
+
+  if ($('.no-attendee-box'))
+  {
+    $('.no-attendee-box').children('.chart').hide();
+  }
 };
 
 $(document).ready(function() {
