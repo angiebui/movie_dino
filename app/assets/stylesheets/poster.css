@@ -13,7 +13,6 @@
   background: url('/assets/ticket-dino-alpha.png') 50% 0 no-repeat fixed;
   background-color: #f8f8f8;
   min-height: 800px; 
-  height: 800px; 
   position: relative;
   /*text-shadow: 0px 0px 10px rgba(0,0,0,0.5);*/
   text-shadow: 1px 1px #f8f8f8;
@@ -47,7 +46,7 @@
 }
 
 #poster .row.jumbotron {
-
+  padding-top: 100px;
 }
 
 div .large-4 {
