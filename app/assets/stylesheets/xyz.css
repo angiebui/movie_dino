@@ -824,6 +824,15 @@ footer #date .rating {
   border: 1px solid #fff;
 }
 
+footer #date .rating a {
+  color: #fff;
+  font-size: 0.75em;
+}
+
+footer #date .rating a:hover {
+  color: #1f7f5f;
+}
+
 footer #date .twitter a {
   color: #fff;
   font-size: 0.75em;
