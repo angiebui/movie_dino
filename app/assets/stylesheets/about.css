@@ -88,3 +88,8 @@
 .about-page .i-profile .icon-github:hover {
   color: #FFC933;
 }
+
+.about-page-container .footer-clearer {
+  height: 20px;
+  clear: both;
+}
