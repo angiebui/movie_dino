@@ -22,23 +22,14 @@ class OutingsController < ApplicationController
     end
     outing = Outing.new(user: current_user, :showtimes => showtimes)
     if outing.save
-      redirect_to outing
+      session[:outing_id] = outing.id
+      redirect_to '/success'
     else
       render :new
     end
   end
 
   def loading
-  end
-
-  def show
-    @outing = Outing.find(params[:id])
-    if @outing.user == current_user
-      @showtimes = @outing.showtimes
-      render 'show'
-    else
-      redirect_to root_path
-    end
   end
 
   def status
@@ -52,6 +43,16 @@ class OutingsController < ApplicationController
       render :json => {status: completed.to_s}
     end
   end
+
+  def success
+    if session[:outing_id]
+      @outing = Outing.find(session.delete(:outing_id))
+      render :show
+    else
+      redirect_to root_path
+    end
+  end
+
 end
 
 

@@ -7,16 +7,18 @@ MovieDino::Application.routes.draw do
 
   resources :sessions, defaults: { format: 'json'}
   resources :users, except: [:show]
-  resources :outings
-  resources :attendees, except: [:new]
+  resources :outings, except: [:show]
+  resources :attendees, except: [:index, :new]
 
   match '/profile', to: 'users#show',      as: 'profile'
   match '/loading', to: 'outings#loading', as: 'loading'
   match '/status',  to: 'outings#status',  as: 'status'
   match '/start',   to: 'outings#cache'
+  match '/success', to: 'outings#success'
+  match '/thanks',  to: 'attendees#index'
 
   match 'auth/:provider/callback', to: 'sessions#create'
-  match 'auth/failure',            to: redirect('/')
+  match 'auth/failure',            to:  redirect('/')
   match 'signout',                 to: 'sessions#destroy', as: 'signout'
   match '/:provider/auth',         to: 'sessions#create'
 

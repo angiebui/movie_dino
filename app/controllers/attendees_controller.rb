@@ -1,4 +1,14 @@
 class AttendeesController < ApplicationController
+
+  def index
+    if session[:outing_id]
+      @outing = Outing.find(session.delete(:outing_id))
+      render :thanks
+    else
+      redirect_to root_path
+    end
+  end
+
   def new
     @attendee = Attendee.new
 
@@ -19,7 +29,8 @@ class AttendeesController < ApplicationController
     if @attendee.save
       selections = Selection.where :id => convert_to_id(params[:selections])
       @attendee.selections << selections
-      render :thank_you
+      session[:outing_id] = @outing.id
+      redirect_to '/thanks'
     else
       flash[:notice] = "Please select at least one showtime."
       redirect_to outings_form_path(@outing.link)
